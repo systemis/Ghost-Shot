@@ -1,0 +1,68 @@
+.post-card {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 5px; }
+  .post-card .show-user-info {
+    padding-top: 10px;
+    padding-left: 7px;
+    padding-bottom: 10px; }
+    .post-card .show-user-info .show-user-avatar {
+      width: 50px; }
+    .post-card .show-user-info .show-user-username {
+      color: black;
+      text-decoration: none; }
+      .post-card .show-user-info .show-user-username:hover {
+        color: gray;
+        text-decoration: none; }
+  .post-card .show-image img {
+    width: 100%; }
+  .post-card .show-image .multiple-image {
+    position: relative; }
+    .post-card .show-image .multiple-image .fa {
+      position: absolute;
+      color: white;
+      font-size: 25px;
+      top: 50%; }
+      .post-card .show-image .multiple-image .fa.btn-left-image {
+        left: 5px; }
+      .post-card .show-image .multiple-image .fa.btn-right-image {
+        right: 5px; }
+      .post-card .show-image .multiple-image .fa:hover {
+        color: darkgray; }
+  .post-card .show-like-count {
+    padding-left: 7px;
+    padding-top: 10px; }
+    .post-card .show-like-count span:hover {
+      color: darkgray; }
+  .post-card .show-comments {
+    padding-left: 7px; }
+    .post-card .show-comments .more-comment-btn {
+      margin-top: 15px;
+      line-height: 0;
+      border: none;
+      background: transparent;
+      padding-left: 0; }
+      .post-card .show-comments .more-comment-btn:hover {
+        color: darkgray; }
+    .post-card .show-comments .comment-row .show-username {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px; }
+      .post-card .show-comments .comment-row .show-username:hover {
+        text-decoration: none;
+        color: darkgray; }
+    .post-card .show-comments .comment-row .show-comment {
+      padding-left: 4px;
+      font-size: 16px; }
+  .post-card .show-post-comment-field .form-post-comment-post {
+    padding: 5px 7px; }
+    .post-card .show-post-comment-field .form-post-comment-post .post-comment-field {
+      padding: 5px 3px;
+      border: none;
+      border-top: 1px solid #eeeeee;
+      outline: none;
+      width: 100%; }
+
+/*# sourceMappingURL=postcard-style.css.map */
