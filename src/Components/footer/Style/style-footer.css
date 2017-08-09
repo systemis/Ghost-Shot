@@ -1,4 +1,25 @@
 .footer-group {
-  height: 77px; }
+  height: 50px;
+  background: white;
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  right: 0;
+  left: 0; }
+  .footer-group span {
+    line-height: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px; }
+    .footer-group span.time {
+      padding-right: 15px;
+      border-right: 1px solid black; }
+    .footer-group span.developer {
+      padding-left: 15px; }
+      .footer-group span.developer a {
+        color: black;
+        text-decoration: none; }
+        .footer-group span.developer a:hover {
+          color: yellowgreen;
+          text-decoration: none; }
 
 /*# sourceMappingURL=style-footer.css.map */

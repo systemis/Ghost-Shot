@@ -2,7 +2,10 @@
     height: 77px;
     background: #ffffff;
     color: black;
-    position: relative;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
 
     & .container{
         padding-left: 0;
@@ -129,7 +132,7 @@
         }
 
         & #notifis-group{
-            display: none;
+            // display: none;
             position: absolute;
             top: 77px;
             width: 430px;

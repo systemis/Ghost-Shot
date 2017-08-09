@@ -2,7 +2,10 @@
   width: 100%;
   background: #ffffff;
   border: 1px solid #eeeeee;
-  border-radius: 5px; }
+  border-radius: 5px;
+  margin-bottom: 70px; }
+  .post-card:last-child {
+    margin-bottom: 100px; }
   .post-card .show-user-info {
     padding-top: 10px;
     padding-left: 7px;
@@ -59,7 +62,7 @@
   .post-card .show-post-comment-field .form-post-comment-post {
     padding: 5px 7px; }
     .post-card .show-post-comment-field .form-post-comment-post .post-comment-field {
-      padding: 5px 3px;
+      padding: 10px 3px;
       border: none;
       border-top: 1px solid #eeeeee;
       outline: none;

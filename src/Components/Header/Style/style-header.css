@@ -2,7 +2,10 @@
   height: 77px;
   background: #ffffff;
   color: black;
-  position: relative; }
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0; }
   .header-group .container {
     padding-left: 0;
     padding-right: 0; }
@@ -96,7 +99,6 @@
             right: -10px;
             top: -10px; }
     .header-group .tools-group #notifis-group {
-      display: none;
       position: absolute;
       top: 77px;
       width: 430px;

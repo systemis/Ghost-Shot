@@ -28,13 +28,13 @@ class App extends Component {
   render() {
     return (
       <div id="App">
-        <Header />
         <Router>
           <div className="main-layout">
             <Route exact path='/' component={HomePage} />
+            <Footer />
           </div>
         </Router>
-        <Footer />
+        <Header />
       </div>
     );
   }

@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
-
 class ToolsComponent extends Component {
+    constructor(props){
+        super(props);
+        this.state = {isShowNotifis: false}
+    }
+
     onClickHeart(){
-        $("#notifis-group").toggle('hiden');
+        this.setState({isShowNotifis: !this.state.isShowNotifis});
     }
 
     render() {
+        const sss = () => {
+            if(this.state.isShowNotifis){
+                return (
+                    <div id='notifis-group'>
+                    
+                    </div>
+                )
+            }
+        }
         return (
             <div className="tools-group">
                 <ul className="tools-mananger">
                     <li>
                         <i 
                             className="fa fa-heart"
-                            onClick={this.onClickHeart}>
+                            onClick={this.onClickHeart.bind(this)}>
                             <span className="show-notifi-count"> 
                                 1 
                             </span>
@@ -25,9 +37,7 @@ class ToolsComponent extends Component {
                         </a>
                     </li>
                 </ul>
-                <div id="notifis-group">
-                
-                </div>
+                {sss()}
             </div>
         );
     }

@@ -7,7 +7,6 @@ class PostValue extends Component {
     }
 
     componentWillMount() {
-        console.log(`Images length: ${this.props.images}`);
     }
 
     render() {
