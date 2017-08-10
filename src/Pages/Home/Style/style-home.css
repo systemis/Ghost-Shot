@@ -1,6 +1,34 @@
-.home-page .show-posts {
-  max-width: 550px;
-  padding-top: 20px;
-  margin: 0 auto; }
+.home-page .layout {
+  width: 70%;
+  float: right; }
+  .home-page .layout .show-posts {
+    max-width: 700px;
+    padding-top: 20px;
+    margin: 0 auto; }
+.home-page .user-info-page.mobile {
+  float: left;
+  width: 25%;
+  margin: 0;
+  position: fixed;
+  height: 100%;
+  overflow: scroll;
+  padding-bottom: 30px;
+  padding-top: 20px; }
+  .home-page .user-info-page.mobile .show-info .show-user-avatar, .home-page .user-info-page.mobile .show-info .show-user-info {
+    float: none;
+    width: 100%;
+    text-align: center; }
+    .home-page .user-info-page.mobile .show-info .show-user-avatar ul li, .home-page .user-info-page.mobile .show-info .show-user-info ul li {
+      width: 100%;
+      text-align: center; }
+  .home-page .user-info-page.mobile .post-item-mini .show-value:hover .show-env {
+    display: none; }
+@media screen and (max-width: 768px) {
+  .home-page .layout {
+    float: none;
+    width: 100%; }
+  .home-page .user-info-page.mobile {
+    display: none;
+    width: 0; } }
 
 /*# sourceMappingURL=style-home.css.map */

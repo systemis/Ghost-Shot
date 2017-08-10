@@ -1,7 +1,58 @@
 .home-page{
-    & .show-posts{
-        max-width: 550px;
+    & .layout{
+        width: 70%;
+        float: right;
+        & .show-posts{
+            max-width: 700px;
+            padding-top: 20px;
+            margin: 0 auto;
+        }
+
+    }
+
+    
+    & .user-info-page.mobile{
+        float: left;
+        width: 25%;
+        margin: 0;
+        position: fixed;
+        height: 100%;
+        overflow: scroll;
+        padding-bottom: 30px;
         padding-top: 20px;
-        margin: 0 auto;
+        & .show-info{
+            & .show-user-avatar, & .show-user-info{
+                float: none;
+                width: 100%;
+                text-align: center;
+                & ul{
+                    & li{
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
+
+        & .post-item-mini{
+            & .show-value:hover{
+                & .show-env{
+                    display: none;
+                }
+            }
+        }
+    }
+    
+    @media screen and (max-width: 768px){
+        & .layout{
+            float: none;
+            width: 100%;
+        }
+
+        & .user-info-page.mobile{
+            display: none;
+            width: 0;
+        }
     }
 }

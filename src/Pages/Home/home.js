@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect}            from 'react-redux';
 import PostCard             from '../../Components/Card/post-card.js';
+import UserInfoField        from '../User/info.js';
 import exam  from '../../image/logo.png';
 import exW1  from '../../image/ex-w-1.png';
 import exW2  from '../../image/ex-w-2.png';
@@ -67,10 +68,13 @@ class HomePage extends Component {
     render() {
         return (
             <div className="home-page">
-                <div className="show-posts">
-                    {this.state.posts.map((post, index) => {
-                        return <PostCard key={index} postInfo={post} />
-                    })}
+                <UserInfoField clientInfo={true}/>
+                <div className="layout">
+                    <div className="show-posts">
+                        {this.state.posts.map((post, index) => {
+                            return <PostCard key={index} postInfo={post} />
+                        })}
+                    </div>
                 </div>
             </div>
         );
