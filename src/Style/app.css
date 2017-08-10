@@ -25,6 +25,11 @@ body {
       background: rgba(0, 0, 0, 0.75);
       display: block;
       width: 100%; }
+    #App #dialog-field .layout {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0; }
     #App #dialog-field .exit-btn {
       background: transparent;
       float: right;

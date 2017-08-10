@@ -38,6 +38,13 @@ body{
             width: 100%;
         }
         
+        & .layout{
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+        }
+
         & .exit-btn{
             background: transparent;
             float: right;

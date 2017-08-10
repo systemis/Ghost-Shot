@@ -30,14 +30,16 @@ class DialogField extends Component {
     render() {
         return (
             <div id="dialog-field">
-                <button 
-                    className="exit-btn"
-                    onClick={this.exitDialog.bind(this)}> 
-                    <i className="fa fa-times"></i>
-                </button>
-                <br/>
-                <div className="child">
-                    {this.mainLayout()}
+                <div className="layout">
+                    <button 
+                        className="exit-btn"
+                        onClick={this.exitDialog.bind(this)}> 
+                        <i className="fa fa-times"></i>
+                    </button>
+                    <br/>
+                    <div className="child">
+                        {this.mainLayout()}
+                    </div>
                 </div>
             </div>
         );
