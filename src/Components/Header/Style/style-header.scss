@@ -1,8 +1,9 @@
 .header-group{
+    border-bottom: 1px solid #eeeeee;
     height: 77px;
     background: #ffffff;
     color: black;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;
@@ -128,11 +129,25 @@
                         }
                     }
                 }
+
+                &.show-client-avatar{
+                    line-height: 77px;
+                    & img{
+                        width: 35px;
+                        border-radius: 50%;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+
+            @media screen and (max-width: 768px){
+                display: none;
+                width: 0;
             }
         }
 
         & #notifis-group{
-            // display: none;
+            display: none;
             position: absolute;
             top: 77px;
             width: 430px;

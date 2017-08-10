@@ -1,0 +1,65 @@
+.user-info-page{
+    & .layout{
+        position: relative;
+        flex: 1;
+        min-height: 90vh;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        & .show-info{
+            float: left;
+            width: 30%;
+            min-height: 90vh;
+            border-right: 1px solid #eeeeee;
+            & .show-user-avatar{
+                @media screen and (min-width: 768px) {
+                    width: 50%;
+                    margin: 0 25%;
+                }
+
+                & img{
+                    width: 100%;
+                    border-radius: 50%;
+                    border: 1px solid #eeeeee;
+                }
+            }
+
+            & .show-user-info{
+                & .show-user-name{
+                    & .tools-manager{
+                        
+                    }
+                }
+            }
+        }
+
+        & .show-posts{
+            float: right;
+            width: 70%;
+            min-height: 90vh;
+        }
+
+
+        @media screen and (min-width: 768px) {
+            & .show-info, & .show-posts {
+                padding-top: 10px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            & .show-info, & .show-posts{
+                float: none;
+                width: 100%;
+                min-height: auto;
+            }
+
+            & .show-info{
+                border-right: none;
+            }
+        }
+
+        @media screen and (max-width: 700px) {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    }   
+}

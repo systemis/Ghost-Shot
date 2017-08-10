@@ -1,8 +1,9 @@
 .header-group {
+  border-bottom: 1px solid #eeeeee;
   height: 77px;
   background: #ffffff;
   color: black;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0; }
@@ -98,7 +99,18 @@
             position: absolute;
             right: -10px;
             top: -10px; }
+        .header-group .tools-group .tools-mananger li.show-client-avatar {
+          line-height: 77px; }
+          .header-group .tools-group .tools-mananger li.show-client-avatar img {
+            width: 35px;
+            border-radius: 50%;
+            margin-bottom: 10px; }
+      @media screen and (max-width: 768px) {
+        .header-group .tools-group .tools-mananger {
+          display: none;
+          width: 0; } }
     .header-group .tools-group #notifis-group {
+      display: none;
       position: absolute;
       top: 77px;
       width: 430px;

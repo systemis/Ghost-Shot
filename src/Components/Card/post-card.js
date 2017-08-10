@@ -11,14 +11,14 @@ class PostCard extends Component {
         }
     }
 
+    likePost(){
+        console.log(`someone just have liked post`);
+    }
+
     postComment(e){
         e.preventDefault();
         console.log('Posting comment');
         return false;
-    }
-
-    showCommets(){
-
     }
 
     render() {
@@ -55,10 +55,14 @@ class PostCard extends Component {
                     <PostValueCard images={this.props.postInfo.images} />
                 </div>
                 <div className="show-tools">
-            
+                    <ul className='tools-manager-post-card'>
+                        <li onClick={this.likePost}>
+                            <i className="fa fa-heart"></i>
+                        </li>
+                    </ul>
                 </div>
                 <div className="show-like-count">
-                    <span> {this.props.postInfo.like.length} like </span>
+                    <p> {this.props.postInfo.like.length} like </p>
                 </div>
                 <div className="show-comments">
                     {moreCommentBtn()}

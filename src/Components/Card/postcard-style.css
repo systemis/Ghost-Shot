@@ -33,11 +33,31 @@
         right: 5px; }
       .post-card .show-image .multiple-image .fa:hover {
         color: darkgray; }
+  .post-card .show-tools {
+    margin: 0;
+    padding: 0;
+    height: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px; }
+    .post-card .show-tools .tools-manager-post-card {
+      margin: 0;
+      padding: 0;
+      list-style-type: none; }
+      .post-card .show-tools .tools-manager-post-card li {
+        margin-left: 7px;
+        float: left; }
+        .post-card .show-tools .tools-manager-post-card li i {
+          font-size: 25px;
+          color: black; }
+        .post-card .show-tools .tools-manager-post-card li.active i, .post-card .show-tools .tools-manager-post-card li:hover i {
+          color: red; }
   .post-card .show-like-count {
     padding-left: 7px;
     padding-top: 10px; }
-    .post-card .show-like-count span:hover {
-      color: darkgray; }
+    .post-card .show-like-count p {
+      margin-bottom: 0; }
+      .post-card .show-like-count p:hover {
+        color: darkgray; }
   .post-card .show-comments {
     padding-left: 7px; }
     .post-card .show-comments .more-comment-btn {

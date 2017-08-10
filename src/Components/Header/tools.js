@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
+import ex from '../../image/logo.png';
+import $  from 'jquery';
 class ToolsComponent extends Component {
     constructor(props){
         super(props);
-        this.state = {isShowNotifis: false}
     }
 
     onClickHeart(){
-        this.setState({isShowNotifis: !this.state.isShowNotifis});
+        $("#notifis-group").toggle('hiden');
     }
 
     render() {
-        const sss = () => {
-            if(this.state.isShowNotifis){
-                return (
-                    <div id='notifis-group'>
-                    
-                    </div>
-                )
-            }
-        }
         return (
             <div className="tools-group">
                 <ul className="tools-mananger">
@@ -36,8 +28,15 @@ class ToolsComponent extends Component {
                             <i className="fa fa-compass" aria-hidden="true" />
                         </a>
                     </li>
+                    <li className="show-client-avatar">
+                        <a href="/systemis">
+                            <img src={ex} alt="User avatar"/>
+                        </a>
+                    </li>
                 </ul>
-                {sss()}
+                <div id='notifis-group'>
+                    
+                </div>
             </div>
         );
     }

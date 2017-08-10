@@ -1,0 +1,39 @@
+.user-info-page .layout {
+  position: relative;
+  flex: 1;
+  min-height: 90vh;
+  padding-top: 5px;
+  padding-bottom: 5px; }
+  .user-info-page .layout .show-info {
+    float: left;
+    width: 30%;
+    min-height: 90vh;
+    border-right: 1px solid #eeeeee; }
+    @media screen and (min-width: 768px) {
+      .user-info-page .layout .show-info .show-user-avatar {
+        width: 50%;
+        margin: 0 25%; } }
+    .user-info-page .layout .show-info .show-user-avatar img {
+      width: 100%;
+      border-radius: 50%;
+      border: 1px solid #eeeeee; }
+  .user-info-page .layout .show-posts {
+    float: right;
+    width: 70%;
+    min-height: 90vh; }
+  @media screen and (min-width: 768px) {
+    .user-info-page .layout .show-info, .user-info-page .layout .show-posts {
+      padding-top: 10px; } }
+  @media screen and (max-width: 768px) {
+    .user-info-page .layout .show-info, .user-info-page .layout .show-posts {
+      float: none;
+      width: 100%;
+      min-height: auto; }
+    .user-info-page .layout .show-info {
+      border-right: none; } }
+  @media screen and (max-width: 700px) {
+    .user-info-page .layout {
+      padding-left: 5px;
+      padding-right: 5px; } }
+
+/*# sourceMappingURL=info-style.css.map */
