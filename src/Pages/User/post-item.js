@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect}            from 'react-redux';
+import PostCard             from '../../Components/Card/post-card.js';
 import exam from '../../image/ex-avatar.png';
 class PostItem extends Component {
     constructor(props){
@@ -26,21 +28,31 @@ class PostItem extends Component {
 
     showPost(){
         console.log('Show post');
+        this.props.dispatch({
+            type: 'CHANGE_DIALOG', 
+            value: {
+                type: 'post',
+                component: <PostCard postInfo={this.state.detailsInfo}/>
+            }
+        })
     }
 
     render() {
         return (
             <div 
-                className='post-item-mini col-md-4 col-sm-4 col-xs-6'
-                onClick={this.showPost}>
+                className='post-item-mini col-md-4 col-sm-4 col-xs-6'>
                 <div className="child">
                     <div 
                         className="show-value"
                         id={`show-value-post-${this.props.post.id}`}>
-                        <div className="show-env">
-                            <p className="show-like-count">{this.state.detailsInfo.like.length} Like</p>
-                            <p className="show-comment-count">{this.state.detailsInfo.comments.length} Comment</p>
-                        </div>
+                        <button
+                            className="dh-btn"
+                            onClick={this.showPost.bind(this)}>
+                            <div className="show-env">
+                                <p className="show-like-count">{this.state.detailsInfo.like.length} Like</p>
+                                <p className="show-comment-count">{this.state.detailsInfo.comments.length} Comment</p>
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -54,4 +66,8 @@ class PostItem extends Component {
     }
 }
 
-export default PostItem;
+export default connect(state => {
+    return {
+        dialogInfo: state.dialogInfo
+    }
+})(PostItem);

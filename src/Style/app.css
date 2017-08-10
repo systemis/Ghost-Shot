@@ -10,12 +10,77 @@ body {
   height: 100%;
   font-family: 'Times New Roman', Times, serif;
   font-size: 16px; }
-  #App .main-layout {
+  #App #main-layout {
     min-height: 92%;
     background: #fafafa;
     position: absolute;
     right: 0;
     left: 0;
     top: 77px; }
+  #App #dialog-field {
+    position: absolute;
+    display: none;
+    width: 0; }
+    #App #dialog-field.show {
+      background: rgba(0, 0, 0, 0.75);
+      display: block;
+      width: 100%; }
+    #App #dialog-field .exit-btn {
+      background: transparent;
+      float: right;
+      margin: 10px 15px;
+      border: none;
+      outline: none;
+      color: white;
+      font-size: 30px; }
+      #App #dialog-field .exit-btn:hover {
+        color: black; }
+    #App #dialog-field .child {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+      padding-top: 200px; }
+      #App #dialog-field .child .users-list-field {
+        background: white;
+        color: black; }
+        #App #dialog-field .child .users-list-field .header {
+          background: #fafafa;
+          text-align: center;
+          border-bottom: 1px solid #eeeeee;
+          padding-top: 10px;
+          padding-bottom: 10px; }
+        #App #dialog-field .child .users-list-field .user-item-users-list-field {
+          padding: 0;
+          margin: 0;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #eeeeee; }
+          #App #dialog-field .child .users-list-field .user-item-users-list-field .show-avatar {
+            float: left;
+            width: 10%;
+            text-align: center; }
+            #App #dialog-field .child .users-list-field .user-item-users-list-field .show-avatar img {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%; }
+          #App #dialog-field .child .users-list-field .user-item-users-list-field .show-username {
+            float: left;
+            width: 70%; }
+            #App #dialog-field .child .users-list-field .user-item-users-list-field .show-username p {
+              font-size: 20px; }
+          #App #dialog-field .child .users-list-field .user-item-users-list-field .show-btn-follow {
+            float: left;
+            width: 20%; }
+            #App #dialog-field .child .users-list-field .user-item-users-list-field .show-btn-follow button.btn-follow-user {
+              background: green;
+              outline: none;
+              border: none;
+              line-height: 30px;
+              color: white;
+              text-align: center;
+              min-width: 100px;
+              border-radius: 15px; }
+              #App #dialog-field .child .users-list-field .user-item-users-list-field .show-btn-follow button.btn-follow-user:hover {
+                color: black; }
 
 /*# sourceMappingURL=app.css.map */

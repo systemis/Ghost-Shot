@@ -4,6 +4,7 @@ import {connect}    from 'react-redux';
 import $            from 'jquery';
 import HomePage     from './Pages/Home/home.js';
 import UserInfoPage from './Pages/User/info.js';
+import DialogField from  './Components/Dialog/dialog.js';
 import Header       from './Components/Header/index.js';
 import Footer       from './Components/footer/index.js';
 import './Style/app.css';
@@ -30,13 +31,14 @@ class App extends Component {
     return (
       <div id="App">
         <Router>
-          <div className="main-layout">
+          <div id="main-layout">
             <Route exact path='/'    component={HomePage} />
             <Route path='/:username' component={UserInfoPage} />
             <Footer />
           </div>
         </Router>
         <Header />
+        <DialogField />
       </div>
     );
   }

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect}            from 'react-redux';
+import UserListField        from '../Fields/users-list-field.js';
 import PostValueCard        from './Components/post-value-card.js';
 import CommentRow           from './Components/comment-row.js';
 import './postcard-style.css';
@@ -9,6 +11,16 @@ class PostCard extends Component {
         this.state = {
             countToShowComment: 3
         }
+    }
+
+    showUserLiked(){
+        this.props.dispatch({
+            type: 'CHANGE_DIALOG',
+            value: {
+                type: 'user_list',
+                component: <UserListField data={this.props.postInfo.comments}/>
+            }
+        })
     }
 
     likePost(){
@@ -62,7 +74,11 @@ class PostCard extends Component {
                     </ul>
                 </div>
                 <div className="show-like-count">
-                    <p> {this.props.postInfo.like.length} like </p>
+                    <button 
+                        className='show-user-like-btn'
+                        onClick={this.showUserLiked.bind(this)}> 
+                            {this.props.postInfo.like.length} like 
+                    </button>
                 </div>
                 <div className="show-comments">
                     {moreCommentBtn()}
@@ -92,4 +108,8 @@ class PostCard extends Component {
     }
 }
 
-export default PostCard;
+export default connect(state => {
+    return {
+        screenVersion: state.screenVersion
+    }
+})(PostCard);

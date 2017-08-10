@@ -18,12 +18,14 @@
         padding-left: 7px;
         padding-bottom: 10px;
         & .show-user-avatar{
+            border-radius: 50%;
             width: 50px;
         }
 
         & .show-user-username{
             color: black;
             text-decoration: none;
+            padding-left: 15px;
             &:hover{
                 color: gray;
                 text-decoration: none;
@@ -86,7 +88,10 @@
     & .show-like-count{
         padding-left: 7px;
         padding-top: 10px;
-        & p{
+        & button{
+            border: none;
+            outline: none;
+            background: transparent;
             margin-bottom: 0;
             &:hover{
                 color: darkgray;

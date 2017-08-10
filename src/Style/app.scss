@@ -1,3 +1,8 @@
+@mixin flex(){
+    padding: 0;
+    margin: 0;
+}
+
 body{
     width: 100%;
     min-height: 100vh;
@@ -14,12 +19,98 @@ body{
     font-family: 'Times New Roman', Times, serif;
     font-size: 16px;
 
-    .main-layout{
+    #main-layout{
         min-height: 92%;
         background: #fafafa;
         position: absolute;
         right: 0;
         left: 0;
         top: 77px;
+
+    }
+    #dialog-field{
+        position: absolute;
+        display: none;
+        width: 0;
+        &.show{
+            background: rgba(0,0,0,.75);;
+            display: block;
+            width: 100%;
+        }
+        
+        & .exit-btn{
+            background: transparent;
+            float: right;
+            margin: 10px 15px;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 30px;
+            &:hover{
+                color: black;
+            }
+        }
+
+        & .child{
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            padding-top: 200px;
+
+            & .users-list-field{
+                background: white;
+                color: black;
+                & .header{
+                    background: #fafafa;
+                    text-align: center;
+                    border-bottom: 1px solid #eeeeee;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                }
+
+                & .user-item-users-list-field{
+                    @include flex();
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid #eeeeee;
+                    & .show-avatar{
+                        float: left;
+                        width: 10%;
+                        text-align: center;
+                        & img{
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                        }
+                    }
+
+                    & .show-username{
+                        float: left;
+                        width: 70%;
+                        & p{
+                            font-size: 20px;
+                        }
+                    }
+
+                    & .show-btn-follow{
+                        float: left;
+                        width: 20%;
+                        & button.btn-follow-user{
+                            background: green;
+                            outline: none;
+                            border: none;
+                            line-height: 30px;
+                            color: white;
+                            text-align: center;
+                            min-width: 100px;
+                            border-radius: 15px;
+                            &:hover{
+                                color: black;
+                            }
+                        }
+                    }
+                }   
+            }
+        }
     }
 }
