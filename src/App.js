@@ -3,6 +3,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {connect}    from 'react-redux';
 import $            from 'jquery';
 import HomePage     from './Pages/Home/home.js';
+import SignInPage   from './Pages/Login/sign-in.js';
+import SignUpPage   from './Pages/Login/sign-up.js';
 import UserInfoPage from './Pages/User/info.js';
 import DialogField from  './Components/Dialog/dialog.js';
 import Header       from './Components/Header/index.js';
@@ -33,7 +35,9 @@ class App extends Component {
         <Router>
           <div id="main-layout">
             <Route exact path='/'    component={HomePage} />
-            <Route path='/:username' component={UserInfoPage} />
+            <Route path='/user/:username' component={UserInfoPage} />
+            <Route path='/sign-in'   component={SignInPage} />
+            <Route path='/sign-up'   component={SignUpPage} />
             <Footer />
           </div>
         </Router>

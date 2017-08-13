@@ -1,0 +1,76 @@
+.sign-in-page, .sign-up-page{
+    & .child-group{
+        max-width: 450px;
+        // height: 400px;
+        margin: 0 auto;
+        margin-top: 100px;
+        background: #efeff0;
+        padding: 15px;
+        & .header{
+            text-align: center;
+            font-size: 30px;
+            padding-top: 10px;
+        }
+
+        & .login-normal{
+            width: 100%;
+            & .main-layout{
+                padding-top: 15px;
+                & input[type=text]{
+                    width: 100%;
+                    margin-bottom: 10px;
+                    padding-top: 20px;
+                    padding-bottom: 20px;
+                    outline: none;
+                    border-radius: 0;
+                    background: #fafafa;
+                    border: 1px solid #eeeeee;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                }
+            }
+
+            & .footer{
+                text-align: center;
+                & .login-btn{
+                    outline: none;
+                    border: 1px solid #eeeeee;
+                    background: red;
+                    color: #ffffff;
+                    font-size: 20px;
+                    padding: 10px 6em;
+                    &:hover{
+                        background: #000;
+                    }
+                }
+
+                & p{
+                    padding-top: 5px;
+                    text-indent: 1em;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+
+        & .login-socialnetwork{
+            width: 100%;
+            height: 100px;
+            & .social-list{
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                line-height: 100px;
+                text-align: center;
+                & .logo-social{
+                    width: 80px;
+                    height: 80px;
+                    margin-right: 5px;;
+                }
+            }
+        }
+    }
+}
+
+.sign-up-page{
+
+}
