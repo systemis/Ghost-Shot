@@ -63,5 +63,9 @@
   @media screen and (max-height: 768px) {
     .sign-in-page .child-group, .sign-up-page .child-group {
       margin-top: 60px; } }
+  @media screen and (max-height: 600px) {
+    .sign-in-page .child-group, .sign-up-page .child-group {
+      max-width: 290px;
+      margin-top: 15px; } }
 
 /*# sourceMappingURL=style.css.map */
