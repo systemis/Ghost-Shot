@@ -22,12 +22,22 @@ app.use(expresssession({
     saveUninitialized: true
 }))
 
-app.get('*', (req, res) => {
+require('./Server/app/auth.js')(app);
+app.get('/sign-in', (req, res) => {
     res.sendFile(path.resolve(__dirname, '.', 'build/index.html'))
 });
 
-require('./Server/app/auth.js')(app);
-const PORT = process.env.PORT || 3000;
+app.get('/sign-up', (req, res) => {
+    console.log('d');
+    res.sendFile(path.resolve(__dirname, '.', 'build/index.html'))
+});
+
+app.get('/home', (req, res) => {
+    console.log('d' + req.user);
+    res.send(req.isAuthenticated() + ' ' + req.user);
+})
+
+const PORT = process.env.PORT || 3200;
 server.listen(PORT, () => {
     console.log(`Server listeinng on: ${PORT}`);
     // userDM.newUser({id: '', email: 'sss', username: 'sysstemis', password: 'ddd', avatar: 'ddd'}, (err, result) => {

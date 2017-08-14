@@ -13,6 +13,7 @@ class userDM{
         const createTable = id => {
             bundle.id = id;
             pool.query(`INSERT INTO ${tableName} SET ?`, bundle, (err, result) => {
+                console.log(err);
                 fn(err, result);
             });
         }
@@ -31,18 +32,21 @@ class userDM{
 
     findUserById(id, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id], (err, result) => {
+            if(result.length <= 0) return fn('Not exists', null);
             return fn(err, result[0]);
         });
     }
     
     findUserByEmail(email, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE email = ?`, [email], (err, result) => {
+            if(result.length <= 0) return fn('Not exists', null);
             return fn(err, result[0]);
         });
     }
 
     findUserByName(username, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE username = ?`, [username], (err, result) => {
+            if(result.length <= 0) return fn('Not exists', null);
             return fn(err, result[0]);
         });
     }
