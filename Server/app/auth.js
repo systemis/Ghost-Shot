@@ -1,8 +1,9 @@
 module.exports = (app) => {
-    const passport      = require('passport');
-    const passportLocal = require('passport-local');
-    const passportFb    = require('passport-facebook');
-    const userDM        = require('../model/user.js');
+    const passport         = require('passport');
+    const passportLocal    = require('passport-local');
+    const passportFb       = require('passport-facebook');
+    const passportTwtiiter = require('passport-twitter');
+    const userDM           = require('../model/user.js');
 
     app.use(passport.initialize());
     app.use(passport.session());
@@ -32,19 +33,29 @@ module.exports = (app) => {
             ps.password = 'euw8yjbmcsdbjisadknsjknvjk'
             ps.username = ps.name;
             delete ps.name;
-
-            userDM.newUser(ps, (err, result) => {
-                if(err){
-                    userDM.findUserByEmail(ps.email, (error, rs) => {
-                        console.log(rs);
-                        return done(null, rs);
-                    })
-                }else{
-                    return done(null, result);
-                }
+            userDM.findOrCreate(ps, (err, result) => {
+                return done(null, result);
             })
         }
     ))
+
+    passport.use(new passportTwtiiter.Strategy(
+        {
+            consumerKey: 'JEwImG5MD0KEORcqFQgrQvcbU',
+            consumerSecret: 'VF6Hq1G4lAj8Rh2HPt1MD4oDTRJTe7eGwzZiY4q8pLOhehD01E',
+            callbackURL: 'http://localhost:3200/auth/twitter'
+        },
+        function(accessToken, refreshToken, profile, done){
+            profile = profile._json;
+            console.log(profile);
+            const ps = {
+                id: profile.id,
+                username: profile.screen_name
+            };
+            userDM.findOrCreate(ps, (err, result) => {
+                return done(null, result);
+            })
+        }))
 
     passport.deserializeUser((user, done) => {
         done(null, user);
@@ -70,6 +81,13 @@ module.exports = (app) => {
 
     app.get('/login/fb', passport.authenticate('facebook', {scope: ['email']}));
     app.get('/auth/fb', passport.authenticate('facebook', 
+    {
+         successRedirect: '/home', 
+         failureRedirect: '/sign-in',
+    }));
+
+    app.get('/login/twitter', passport.authenticate('twitter', {scope: ['email']}));
+    app.get('/auth/twitter' , passport.authenticate('twitter', 
     {
          successRedirect: '/home', 
          failureRedirect: '/sign-in',

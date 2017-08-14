@@ -2,7 +2,7 @@ const pool = require('../config/database.js');
 const tableName = 'UserData';
 class userDM{
     constructor(){
-        pool.query('CREATE TABLE IF NOT EXISTS`'+tableName+'` ( `id` VARCHAR(200) NOT NULL , `email` TEXT NOT NULL , `username` TEXT NOT NULL , `password` TEXT NOT NULL , `phone` TEXT NULL , `avatar` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci', (err, result) => {
+        pool.query('CREATE TABLE IF NOT EXISTS`'+tableName+'` ( `id` VARCHAR(200) NOT NULL , `email` TEXT NULL , `username` TEXT NULL , `password` TEXT NOT NULL , `phone` TEXT NULL , `avatar` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci', (err, result) => {
             console.log(`Error when create table ${tableName}: ${err}`);
         })
     }
@@ -25,6 +25,23 @@ class userDM{
                 this.randomId(bundle.id, id => {
                     createTable(id);
                 })
+            })
+        })
+    }
+
+    findOrCreate(bundle, fn){
+        const createTable = id => {
+            bundle.id = id;
+            pool.query(`INSERT INTO ${tableName} SET ?`, bundle, (err, result) => {
+                console.log(err);
+                fn(err, result);
+            });
+        }
+
+        this.findUserByName(bundle.username, (error, result) => {
+            if(!error) return fn(null, result);
+            this.randomId(bundle.id, id => {
+                createTable(id);
             })
         })
     }
