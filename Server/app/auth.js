@@ -64,12 +64,14 @@ module.exports = (app) => {
     })
 
     app.post('/sign-in', passport.authenticate('local', {
-        successRedirect: '/',
+        successRedirect: '/home',
         failureRedirect: '/sign-in'
     }));
 
     app.get('/login/fb', passport.authenticate('facebook', {scope: ['email']}));
-    app.get('/auth/fb', passport.authenticate('facebook', {
-         successRedirect: '/home', failureRedirect: '/sign-in',
+    app.get('/auth/fb', passport.authenticate('facebook', 
+    {
+         successRedirect: '/home', 
+         failureRedirect: '/sign-in',
     }));
 }

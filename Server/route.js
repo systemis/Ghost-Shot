@@ -1,12 +1,13 @@
 module.exports = app => {
     const path = require('path');
     const routeK1 = (req, res) => {
-        if(!req.isAuthenticated()) return res.redirect('/sign-in');
+        if(!req.isAuthenticated()) {return res.redirect('/sign-in');}
         return res.sendFile(path.resolve(__dirname, '../build/index.html'));
     }
 
     const routeK2 = (req, res) => {
-        if(req.isAuthenticated()) return res.redirect('/home');
+        console.log(req.isAuthenticated());
+        if(req.isAuthenticated()) {return res.redirect('/home');}
         return res.sendFile(path.resolve(__dirname, '../build/index.html'));
     }
 

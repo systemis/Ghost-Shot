@@ -34,7 +34,7 @@ class App extends Component {
       <div id="App">
         <Router>
           <div id="main-layout">
-            <Route exact path='/'    component={HomePage} />
+            <Route path='/home'    component={HomePage} />
             <Route path='/user/:username' component={UserInfoPage} />
             <Route path='/sign-in'   component={SignInPage} />
             <Route path='/sign-up'   component={SignUpPage} />
