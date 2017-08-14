@@ -23,19 +23,7 @@ app.use(expresssession({
 }))
 
 require('./Server/app/auth.js')(app);
-app.get('/sign-in', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '.', 'build/index.html'))
-});
-
-app.get('/sign-up', (req, res) => {
-    console.log('d');
-    res.sendFile(path.resolve(__dirname, '.', 'build/index.html'))
-});
-
-app.get('/home', (req, res) => {
-    console.log('d' + req.user);
-    res.send(req.isAuthenticated() + ' ' + req.user);
-})
+require('./Server/route.js')(app);
 
 const PORT = process.env.PORT || 3200;
 server.listen(PORT, () => {
