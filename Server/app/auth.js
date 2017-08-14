@@ -5,6 +5,11 @@ module.exports = (app) => {
     const passportTwtiiter = require('passport-twitter');
     const passportGithub   = require('passport-github2');
     const userDM           = require('../model/user.js');
+    
+    const dhAuth = {
+        successRedirect: '/home', 
+        failureRedirect: '/sign-in',
+    }
 
     app.use(passport.initialize());
     app.use(passport.session());
@@ -97,29 +102,14 @@ module.exports = (app) => {
         })
     })
 
-    app.post('/sign-in', passport.authenticate('local', {
-        successRedirect: '/home',
-        failureRedirect: '/sign-in'
-    }));
+    app.post('/sign-in', passport.authenticate('local', dhAuth));
 
     app.get('/login/fb', passport.authenticate('facebook', {scope: ['email']}));
-    app.get('/auth/fb', passport.authenticate('facebook', 
-    {
-         successRedirect: '/home', 
-         failureRedirect: '/sign-in',
-    }));
+    app.get('/auth/fb', passport.authenticate('facebook', dhAuth));
 
     app.get('/login/twitter', passport.authenticate('twitter', {scope: ['email']}));
-    app.get('/auth/twitter' , passport.authenticate('twitter', 
-    {
-         successRedirect: '/home', 
-         failureRedirect: '/sign-in',
-    }));
+    app.get('/auth/twitter' , passport.authenticate('twitter', dhAuth));
 
     app.get('/login/github', passport.authenticate('github'));
-    app.get('/auth/github', passport.authenticate('github', 
-    {
-        successRedirect: '/home', 
-        failureRedirect: '/sign-in',
-    }))
+    app.get('/auth/github', passport.authenticate('github', dhAuth))
 }

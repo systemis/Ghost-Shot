@@ -68,6 +68,22 @@
                 }
             }
         }
+
+        @media screen and (max-width: 500px) {
+            max-width: 300px;
+            & .login-normal .footer .login-btn{
+                padding-left: 4em;
+                padding-right: 4em;
+            }
+        }
+
+        @media screen and (min-height: 1024px){
+            margin-top: 30%;
+        }
+
+        @media screen and (max-height: 768px){
+            margin-top: 60px;
+        }
     }
 }
 
