@@ -7,6 +7,7 @@ const bodyParser     = require('body-parser');
 const morgan         = require('morgan');
 const path           = require('path');
 const http           = require('http');
+const userDM         = require('./Server/model/user.js');
 const app            = express();
 const server         = http.Server(app);
 
@@ -21,11 +22,17 @@ app.use(expresssession({
     saveUninitialized: true
 }))
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '.', 'build/index.html'))
 });
 
-const PORT = process.env.PORT || 3001;
+require('./Server/app/auth.js')(app);
+const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log(`Server listeinng on: ${PORT}`);
+    // userDM.newUser({id: '', email: 'sss', username: 'sysstemis', password: 'ddd', avatar: 'ddd'}, (err, result) => {
+    //     console.log(err);
+    // });
+
+    // userDM.dropTable((result, err) => console.log(result));
 })

@@ -20,21 +20,25 @@ class SignInPage extends Component {
                         </div>
                     </div>
                     <div className="login-normal">
-                        <div className="main-layout">
-                            <input 
-                                className="username-field"
-                                type="text" 
-                                placeholder="Type email or username here ..."/>
-                            <br/>
-                            <input 
-                                className="password-field"
-                                type="text" 
-                                placeholder="Type password here ..."/>
-                        </div>
-                        <div className="footer">
-                            <button className="login-btn">Login</button>
-                            <p>Don't have account, <a href="sign-up"> Create new account!</a></p>
-                        </div>
+                        <form action="/sign-in" method="POST">
+                            <div className="main-layout">
+                                <input 
+                                    name="username"
+                                    className="username-field"
+                                    type="text" 
+                                    placeholder="Type email or username here ..."/>
+                                <br/>
+                                <input 
+                                    name="password"
+                                    className="password-field"
+                                    type="text" 
+                                    placeholder="Type password here ..."/>
+                            </div>
+                            <div className="footer">
+                                <button className="login-btn">Login</button>
+                                <p>Don't have account, <a href="sign-up"> Create new account!</a></p>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
