@@ -15,7 +15,7 @@ class SignInPage extends Component {
                     <div className="login-socialnetwork">
                         <div className="social-list">
                             <a href="/login/fb"><img src={fbLogo} alt="Facebook logo" className="logo-social"/></a>
-                            <a href="/"><img src={ghLogo} alt="Github logo"   className="logo-social"/></a>
+                            <a href="/login/github"><img src={ghLogo} alt="Github logo"   className="logo-social"/></a>
                             <a href="/login/twitter"><img src={ttLogo} alt="Twitter logo"  className="logo-social"/></a>
                         </div>
                     </div>

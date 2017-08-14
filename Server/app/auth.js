@@ -3,6 +3,7 @@ module.exports = (app) => {
     const passportLocal    = require('passport-local');
     const passportFb       = require('passport-facebook');
     const passportTwtiiter = require('passport-twitter');
+    const passportGithub   = require('passport-github2');
     const userDM           = require('../model/user.js');
 
     app.use(passport.initialize());
@@ -55,7 +56,29 @@ module.exports = (app) => {
             userDM.findOrCreate(ps, (err, result) => {
                 return done(null, result);
             })
-        }))
+        }
+    ))
+
+    passport.use(new passportGithub(
+        {
+            clientID: 'c2adbee4e8bacb7fa9d0',
+            clientSecret: '5d8dfb3c7f59922823977b3e23e6c041b33de8c6',
+            callbackURL: 'http://localhost:3200/auth/github'
+        },
+        function(accessToken, refreshToken, profile, done){
+            profile = profile._json;
+            console.log(profile);
+            const ps = {
+                id: profile.id,
+                username: profile.login,
+                avatar: profile.avatar_url
+            }
+
+            userDM.findOrCreate(ps, (err, result) => {
+                return done(null, result);
+            })
+        }
+    ))
 
     passport.deserializeUser((user, done) => {
         done(null, user);
@@ -92,4 +115,11 @@ module.exports = (app) => {
          successRedirect: '/home', 
          failureRedirect: '/sign-in',
     }));
+
+    app.get('/login/github', passport.authenticate('github'));
+    app.get('/auth/github', passport.authenticate('github', 
+    {
+        successRedirect: '/home', 
+        failureRedirect: '/sign-in',
+    }))
 }

@@ -22,6 +22,7 @@ class userDM{
             if(rs) return existsEmailError();
             this.checkAlreadyUserName(bundle.username, rs2 => {
                 if(rs2) return existsNamelError();
+                bundle.id = Math.floor((Math.random() * 100000) + 1).toString();
                 this.randomId(bundle.id, id => {
                     createTable(id);
                 })
@@ -79,21 +80,15 @@ class userDM{
     
     randomId(defaultId, fn){
         var isAlreadyId = false
-        var randomId    = () => {
-            defaultId = Math.floor((Math.random() * 100000) + 1).toString();
-        }
-
-
-        if(!defaultId) {randomId();}
         do{
             this.checkAlreadyId(defaultId, bool => {
                 isAlreadyId = bool;
-                if(!isAlreadyId){
-                    fn(defaultId);
+                if(!bool){
+                    return fn(defaultId);
+                }else{
+                    defaultId = Math.floor((Math.random() * 100000) + 1).toString();
                 }
             })
-
-            randomId();
         }while(isAlreadyId)
     }
 
