@@ -2,7 +2,7 @@ const pool = require('../config/database.js');
 const tableName = 'UserData';
 class userDM{
     constructor(){
-        pool.query('CREATE TABLE IF NOT EXISTS`'+tableName+'` ( `id` VARCHAR(200) NOT NULL , `email` TEXT NULL , `username` TEXT NULL , `password` TEXT NOT NULL , `phone` TEXT NULL , `avatar` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci', (err, result) => {
+        pool.query('CREATE TABLE IF NOT EXISTS`'+tableName+'` ( `id` VARCHAR(200) NOT NULL , `email` TEXT NULL , `username` TEXT NULL , `password` TEXT NULL , `phone` TEXT NULL , `avatar` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci', (err, result) => {
             console.log(`Error when create table ${tableName}: ${err}`);
         })
     }
@@ -13,15 +13,26 @@ class userDM{
         const newUser = id => {
             bundle.id = id;
             pool.query(`INSERT INTO ${tableName} SET ?`, bundle, (err, result) => {
-                console.log(err);
+                console.log('Error when new user with auth local: ' + err);
                 fn(err, result);
             });
         }
 
-        this.checkAlreadyEmail(bundle.email, rs => {
-            if(rs) return existsEmailError();
-            this.checkAlreadyUserName(bundle.username, rs2 => {
-                if(rs2) return existsNamelError();
+        // this.checkAlreadyEmail(bundle.email, rs => {
+        //     if(rs) return existsEmailError();
+        //     this.checkAlreadyUserName(bundle.username, rs2 => {
+        //         if(rs2) return existsNamelError();
+        //         bundle.id = Math.floor((Math.random() * 100000) + 1).toString();
+        //         this.randomId(bundle.id, id => {
+        //             newUser(id);
+        //         })
+        //     })
+        // })
+
+        this.findUserByEmail(bundle.email, (error, result) => {
+            if(!error) return existsEmailError();
+            this.findUserByName(bundle.username, (err, rs) => {
+                if(!err) return existsNamelError();
                 bundle.id = Math.floor((Math.random() * 100000) + 1).toString();
                 this.randomId(bundle.id, id => {
                     newUser(id);
@@ -34,7 +45,7 @@ class userDM{
         const newUser = id => {
             bundle.id = id;
             pool.query(`INSERT INTO ${tableName} SET ?`, bundle, (err, result) => {
-                console.log(err);
+                console.log(`Error when new user with auth social: ${err}`);
                 delete result['password'];
                 fn(err, result);
             });

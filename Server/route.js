@@ -1,7 +1,7 @@
 module.exports = app => {
     const path = require('path');
     const routeK1 = (req, res) => {
-        console.log(req.user);
+        console.log('User info: ' + JSON.stringify(req.user));
         if(!req.isAuthenticated()) {return res.redirect('/sign-in');}
         return res.sendFile(path.resolve(__dirname, '../build/index.html'));
     }

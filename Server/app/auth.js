@@ -104,7 +104,7 @@ module.exports = (app) => {
             id: '',
             username: bundle.username,
             email:    bundle.email,
-            password: bundle.avatar,
+            password: bundle.password,
             avatar:   `https://gitlab.com/uploads/-/system/user/avatar/56386/tt_avatar_small.jpg`
         };
         
