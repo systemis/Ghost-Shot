@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect}            from 'react-redux';
 import PostCard             from '../../Components/Card/post-card.js';
 import UserInfoField        from '../User/info.js';
+import userMG               from '../../js/user.js';
 import exam  from '../../image/logo.png';
 import exW1  from '../../image/ex-w-1.png';
 import exW2  from '../../image/ex-w-2.png';
@@ -59,6 +60,19 @@ class HomePage extends Component {
                 }
             ]
         }
+    }
+
+    getClientInfo(){    
+        const {dispatch} = this.props;
+        userMG.getClientInfo((err, result) => {
+            if(err) {
+                console.log(`Error when get client info: ${err}`);
+                return dispatch({type: `CHANGE_CLIENT_INFO`, value: ''});
+            }
+
+            console.log(`Client info: ${result}`);
+            dispatch({type: `CHANGE_CLIENT_INFO`, value: result});
+        })
     }
 
     componentWillMount() {

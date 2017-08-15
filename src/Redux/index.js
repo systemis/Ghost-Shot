@@ -1,5 +1,6 @@
-var redux      = require('redux');
-var uiReducers = require('./ui.js');
+var redux        = require('redux');
+var uiReducers   = require('./ui.js');
+var userReducers = require('./user.js');
 
 const screenVersionReducer = (state = 'desktop', action) => {
     switch(action.type){
@@ -12,7 +13,8 @@ const screenVersionReducer = (state = 'desktop', action) => {
 
 const reducer = redux.combineReducers({
     screenVersion: screenVersionReducer,
-    dialogInfo: uiReducers.dialogReducer
+    dialogInfo: uiReducers.dialogReducer,
+    clientInfo: userReducers.clientInfoReducers
 })
 
 const store = redux.createStore(reducer);
