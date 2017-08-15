@@ -35,8 +35,10 @@ class userDM{
             bundle.id = id;
             pool.query(`INSERT INTO ${tableName} SET ?`, bundle, (err, result) => {
                 console.log(`Error when new user with auth social: ${err}`);
-                delete result['password'];
-                fn(err, result);
+                this.findUserById(id, (error, rs) => {
+                    delete rs['password'];
+                    fn(error, rs);
+                })
             });
         }
 
@@ -79,6 +81,7 @@ class userDM{
             if(err) return fn('User not already exists', null);
             if(password !== result.password) return fn('Password is not correct!', null);
 
+            delete result['password'];
             fn(null, result);
         })
     }
