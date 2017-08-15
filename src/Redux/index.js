@@ -14,11 +14,11 @@ const screenVersionReducer = (state = 'desktop', action) => {
 const reducer = redux.combineReducers({
     screenVersion: screenVersionReducer,
     dialogInfo: uiReducers.dialogReducer,
-    clientInfo: userReducers.clientInfoReducers
+    clientInfo: userReducers.clientInfoReducers,
+    userSelectedInfo: userReducers.usserSelectedInfoReducer
 })
 
 const store = redux.createStore(reducer);
-
 store.subscribe(() => {
     console.log(store.getState().screenVersion);
 })

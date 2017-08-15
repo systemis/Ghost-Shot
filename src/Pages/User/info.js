@@ -9,19 +9,19 @@ class UserInfoPage extends Component {
     constructor(props){
         super(props);
         const username =  () => {
-            if(this.props.clientInfo){
-                return 'systemis'
-            }
+            if(window.location.href.indexOf('home') === -1){
+                return this.props.match.params.username  
+            } 
 
-            return this.props.match.params.username
+            return;
         }
 
         this.state = {
-            username: username(),
             info:{
                 username:  username(),
                 follower: [11, 12],
                 following: [22, 23],
+                avatar: '',
                 posts: [{
                     id: 'exavs',
                     value: ex1
@@ -54,10 +54,6 @@ class UserInfoPage extends Component {
         }
     }
 
-    getInfoData(){
-
-    }
-
     showFollowers(){
         console.log('Show follower');
     }
@@ -67,23 +63,26 @@ class UserInfoPage extends Component {
     }
     
     componentWillMount() {
-        this.getInfoData();
+        if(window.location.href.indexOf('/user/') !== -1){
+            console.log(this.props.match.params.username);
+        }
     }
 
     render() {
+        console.log(this.state.info);
         return (
             <div className='user-info-page mobile'>
                 <div className="layout">
                     <div className="show-info row">
                         <div className="show-user-avatar col-md-3 col-sm-3 col-xs-3">
-                            <img src={image} alt="User avatar"/>
+                            <img src={this.props.info.avatar} alt="User avatar"/>
                         </div>
                         <div className="show-user-info col-md-9 col-sm-9 col-xs-9">
                             <div className="show-user-name show-btn-edit">
                                 <div className="row">
                                     <ul className="tools-manager">
                                         <li className="show-username">
-                                            {this.state.username}
+                                            {this.props.info.username}
                                             <i className="fa fa-pencil"></i>
                                         </li>
                                     </ul>        
@@ -128,6 +127,7 @@ class UserInfoPage extends Component {
 
 export default connect(state => {
     return {
-        screenVersion: state.screenVersion
+        screenVersion: state.screenVersion,
+        info: state.userSelectedInfo
     }
 })(UserInfoPage);

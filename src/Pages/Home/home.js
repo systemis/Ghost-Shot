@@ -67,11 +67,14 @@ class HomePage extends Component {
         userMG.getClientInfo((err, result) => {
             if(err) {
                 console.log(`Error when get client info: ${err}`);
-                return dispatch({type: `CHANGE_CLIENT_INFO`, value: ''});
+                dispatch({type: `CHANGE_CLIENT_INFO`, value: ''});
+                dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: ''});
+                return;
             }
 
             console.log(`Client info: ${result}`);
             dispatch({type: `CHANGE_CLIENT_INFO`, value: result});
+            dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: result});
         })
     }
 

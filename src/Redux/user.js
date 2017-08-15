@@ -1,4 +1,14 @@
-const clientInfoReducer = (state = '', action) => {
+const infoState = {
+    id: '',
+    username: '',
+    email: '',
+    avatar: '',
+    follower: '',
+    following: '',
+    posts: []
+}
+
+const clientInfoReducer = (state = infoState, action) => {
     switch(action.type){
         case `CHANGE_CLIENT_INFO`:
             return action.value;
@@ -7,6 +17,16 @@ const clientInfoReducer = (state = '', action) => {
     }
 }
 
+const usserSelectedInfoReducer = (state = infoState, action) => {
+    switch(action.type){
+        case `CHANGE_USER_SELECTED_INFO`:
+            return action.value;
+        default:
+            return state;
+    }
+}
+
 module.exports = {
-    clientInfoReducer: clientInfoReducer
+    clientInfoReducer: clientInfoReducer,
+    usserSelectedInfoReducer: usserSelectedInfoReducer
 }
