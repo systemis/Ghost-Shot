@@ -18,17 +18,6 @@ class userDM{
             });
         }
 
-        // this.checkAlreadyEmail(bundle.email, rs => {
-        //     if(rs) return existsEmailError();
-        //     this.checkAlreadyUserName(bundle.username, rs2 => {
-        //         if(rs2) return existsNamelError();
-        //         bundle.id = Math.floor((Math.random() * 100000) + 1).toString();
-        //         this.randomId(bundle.id, id => {
-        //             newUser(id);
-        //         })
-        //     })
-        // })
-
         this.findUserByEmail(bundle.email, (error, result) => {
             if(!error) return existsEmailError();
             this.findUserByName(bundle.username, (err, rs) => {
@@ -110,26 +99,6 @@ class userDM{
 
     checkAlreadyId(id, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id], (err, result) => {
-            if(err || result.length <= 0){
-                return fn(false);
-            }
-
-            return fn(true);
-        })
-    }
-
-    checkAlreadyEmail(email, fn){
-        pool.query(`SELECT * FROM ${tableName} WHERE email = ?`, [email], (err, result) => {
-            if(err || result.length <= 0){
-                return fn(false);
-            }
-
-            return fn(true);
-        })
-    }
-
-    checkAlreadyUserName(username, fn){
-        pool.query(`SELECT * FROM ${tableName} WHERE username = ?`, [username], (err, result) => {
             if(err || result.length <= 0){
                 return fn(false);
             }
