@@ -20,6 +20,7 @@ const clientInfoReducer = (state = infoState, action) => {
 const usserSelectedInfoReducer = (state = infoState, action) => {
     switch(action.type){
         case `CHANGE_USER_SELECTED_INFO`:
+            console.log(action.value);
             return action.value;
         default:
             return state;

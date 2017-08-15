@@ -4,6 +4,7 @@ module.exports = app => {
         if(!req.isAuthenticated()) return res.send({err: 'Not login', result: null});
 
         const clientId = req.user.id;
+        console.log(clientId);
         userDM.findUserById(clientId, (err, result) => {
             return res.send({err: err, result: result});
         })

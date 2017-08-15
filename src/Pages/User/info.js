@@ -69,7 +69,7 @@ class UserInfoPage extends Component {
     }
 
     render() {
-        console.log(this.state.info);
+        console.log(this.props.info);
         return (
             <div className='user-info-page mobile'>
                 <div className="layout">
@@ -122,6 +122,10 @@ class UserInfoPage extends Component {
                 </div>
             </div>
         );
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return true;
     }
 }
 
