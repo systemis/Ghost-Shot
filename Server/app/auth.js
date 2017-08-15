@@ -4,8 +4,15 @@ module.exports = (app) => {
     const passportFb       = require('passport-facebook');
     const passportTwtiiter = require('passport-twitter');
     const passportGithub   = require('passport-github2');
+    const githubUserEmail  = require('github-user-email');
+    const axios            = require('axios');
     const userDM           = require('../model/user.js');
-    
+
+    githubUserEmail('Systemis').then(email => {
+        console.log(email);
+        //=> 'johndoe@gmail.com' 
+    });
+
     const dhAuth = {
         successRedirect: '/home', 
         failureRedirect: '/sign-in',
@@ -35,10 +42,14 @@ module.exports = (app) => {
             profileFields: ['email', 'displayName']
         },
         function(accessToken, refreshToken, profile, done){
-            const ps = profile._json;
-            ps.password = 'euw8yjbmcsdbjisadknsjknvjk'
-            ps.username = ps.name;
-            delete ps.name;
+            profile     = profile._json;
+            const ps = {
+                id: profile.id, 
+                username: profile.name,
+                email: profile.email,
+                avatar: `https://graph.facebook.com/${profile.id}/picture`
+            }
+
             userDM.findOrCreate(ps, (err, result) => {
                 return done(null, result);
             })
@@ -52,12 +63,14 @@ module.exports = (app) => {
             callbackURL: 'http://localhost:3200/auth/twitter'
         },
         function(accessToken, refreshToken, profile, done){
-            profile = profile._json;
             console.log(profile);
+            profile = profile._json;
             const ps = {
                 id: profile.id,
-                username: profile.screen_name
+                username: profile.screen_name,
+                avatar: `https://twitter.com/${profile.screen_name}/profile_image?size=original`
             };
+
             userDM.findOrCreate(ps, (err, result) => {
                 return done(null, result);
             })
@@ -68,11 +81,12 @@ module.exports = (app) => {
         {
             clientID: 'c2adbee4e8bacb7fa9d0',
             clientSecret: '5d8dfb3c7f59922823977b3e23e6c041b33de8c6',
-            callbackURL: 'http://localhost:3200/auth/github'
+            callbackURL: 'http://localhost:3200/auth/github',
+            //scope: ['user:email']
         },
         function(accessToken, refreshToken, profile, done){
-            profile = profile._json;
             console.log(profile);
+            profile = profile._json;
             const ps = {
                 id: profile.id,
                 username: profile.login,
@@ -110,6 +124,6 @@ module.exports = (app) => {
     app.get('/login/twitter', passport.authenticate('twitter', {scope: ['email']}));
     app.get('/auth/twitter' , passport.authenticate('twitter', dhAuth));
 
-    app.get('/login/github', passport.authenticate('github'));
+    app.get('/login/github', passport.authenticate('github', {scope: ['user: email']}));
     app.get('/auth/github', passport.authenticate('github', dhAuth))
 }
