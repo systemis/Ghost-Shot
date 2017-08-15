@@ -10,7 +10,7 @@ class userDM{
     newUser(bundle, fn){
         const existsEmailError = () => fn('Email already exists!', null);
         const existsNamelError = () => fn('Username already exists!', null);
-        const createTable = id => {
+        const newUser = id => {
             bundle.id = id;
             pool.query(`INSERT INTO ${tableName} SET ?`, bundle, (err, result) => {
                 console.log(err);
@@ -24,25 +24,30 @@ class userDM{
                 if(rs2) return existsNamelError();
                 bundle.id = Math.floor((Math.random() * 100000) + 1).toString();
                 this.randomId(bundle.id, id => {
-                    createTable(id);
+                    newUser(id);
                 })
             })
         })
     }
 
     findOrCreate(bundle, fn){
-        const createTable = id => {
+        const newUser = id => {
             bundle.id = id;
             pool.query(`INSERT INTO ${tableName} SET ?`, bundle, (err, result) => {
                 console.log(err);
+                delete result['password'];
                 fn(err, result);
             });
         }
 
         this.findUserByName(bundle.username, (error, result) => {
-            if(!error) return fn(null, result);
+            if(!error) {
+                delete result['password'];
+                return fn(null, result);
+            }
+
             this.randomId(bundle.id, id => {
-                createTable(id);
+                newUser(id);
             })
         })
     }

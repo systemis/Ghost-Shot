@@ -4,15 +4,8 @@ module.exports = (app) => {
     const passportFb       = require('passport-facebook');
     const passportTwtiiter = require('passport-twitter');
     const passportGithub   = require('passport-github2');
-    const githubUserEmail  = require('github-user-email');
     const axios            = require('axios');
     const userDM           = require('../model/user.js');
-
-    githubUserEmail('Systemis').then(email => {
-        console.log(email);
-        //=> 'johndoe@gmail.com' 
-    });
-
     const dhAuth = {
         successRedirect: '/home', 
         failureRedirect: '/sign-in',
@@ -63,7 +56,6 @@ module.exports = (app) => {
             callbackURL: 'http://localhost:3200/auth/twitter'
         },
         function(accessToken, refreshToken, profile, done){
-            console.log(profile);
             profile = profile._json;
             const ps = {
                 id: profile.id,
@@ -85,7 +77,6 @@ module.exports = (app) => {
             //scope: ['user:email']
         },
         function(accessToken, refreshToken, profile, done){
-            console.log(profile);
             profile = profile._json;
             const ps = {
                 id: profile.id,
@@ -109,9 +100,15 @@ module.exports = (app) => {
 
     app.post(`/sign-up`, (req, res) => {
         const bundle = req.body.bundle;
-        bundle.id     = '';
-        bundle.avatar = 'https://gitlab.com/uploads/-/system/user/avatar/56386/tt_avatar_small.jpg';
-        userDM.newUser(bundle, (err, result) => {
+        const ps = {
+            id: '',
+            username: bundle.username,
+            email:    bundle.email,
+            password: bundle.avatar,
+            avatar:   `https://gitlab.com/uploads/-/system/user/avatar/56386/tt_avatar_small.jpg`
+        };
+        
+        userDM.newUser(ps, (err, result) => {
             return res.send({err, result});
         })
     })
