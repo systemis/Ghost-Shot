@@ -16,7 +16,7 @@ class userMG{
         $.ajax({
             url: `/client/info/get`, type: `POST`,
             success: data => {
-                fn(data.err, data.result);
+                fn(data.err, JSON.stringify(data.result));
             },
             error: err => fn(JSON.stringify(err), null)
         })

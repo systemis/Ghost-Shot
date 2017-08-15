@@ -76,7 +76,7 @@ class HomePage extends Component {
     }
 
     componentWillMount() {
-        console.log(this.props.screenVersion);
+        this.getClientInfo();
     }
 
     render() {
