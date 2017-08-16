@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect}            from 'react-redux';
 
 class PostValue extends Component {
     constructor(props){
@@ -52,10 +53,21 @@ class PostValue extends Component {
     }
 
     componentDidMount() {
-        const sh = document.getElementById(`sh-show-value-${this.props.postId}-${this.state.indexValue}`);
-        sh.style.height = `${sh.clientWidth - 18}px`;
-        console.log(sh.clientWidth);
+        this.props.dispatch({type: `ADD_CALLBACK_RESIZE_SCREEN`, value: () => {
+            console.log('test');
+            const sh = document.getElementById(`sh-show-value-${this.props.postId}-${this.state.indexValue}`);
+            sh.style.height = `${sh.clientWidth - 18}px`;
+            console.log(`${sh.clientWidth - 18}px`)
+        }})
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        
     }
 }
 
-export default PostValue;
+export default connect(state => {
+    return {
+        screenVersion: state.screenVersion
+    }
+})(PostValue);

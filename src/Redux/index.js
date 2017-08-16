@@ -14,6 +14,7 @@ const screenVersionReducer = (state = 'desktop', action) => {
 const reducer = redux.combineReducers({
     screenVersion: screenVersionReducer,
     dialogInfo: uiReducers.dialogReducer,
+    callbacksResizeScreen: uiReducers.callbacksResizeScreenReducer,
     clientInfo: userReducers.clientInfoReducers,
     userSelectedInfo: userReducers.usserSelectedInfoReducer
 })

@@ -27,6 +27,10 @@ class App extends Component {
       this.setState({screenWidth: screenWidth});
       this.props.dispatch({type: 'CHANGE_SCREEN_VERSION', value: 'modile'});
     }
+
+    this.props.callbacksResizeScreen.map((cb, index) => {
+      cb();
+    })
   }
 
   render() {
@@ -58,6 +62,7 @@ class App extends Component {
 
 export default connect(state => {
   return {
-    screenVersion: state.screenVersion
+    screenVersion: state.screenVersion,
+    callbacksResizeScreen: state.callbacksResizeScreen
   }
 })(App);
