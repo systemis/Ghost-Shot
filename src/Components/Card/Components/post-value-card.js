@@ -53,16 +53,13 @@ class PostValue extends Component {
     }
 
     componentDidMount() {
-        this.props.dispatch({type: `ADD_CALLBACK_RESIZE_SCREEN`, value: () => {
-            console.log('test');
+        const changeSize = () => {
             const sh = document.getElementById(`sh-show-value-${this.props.postId}-${this.state.indexValue}`);
             sh.style.height = `${sh.clientWidth - 18}px`;
-            console.log(`${sh.clientWidth - 18}px`)
-        }})
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
+        }
         
+        changeSize();
+        this.props.dispatch({type: `ADD_CALLBACK_RESIZE_SCREEN`, value: changeSize});
     }
 }
 

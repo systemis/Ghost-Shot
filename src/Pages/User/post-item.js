@@ -60,9 +60,14 @@ class PostItem extends Component {
     }
 
     componentDidMount() {
-        const showValueField = document.getElementById(`show-value-post-${this.props.post.id}`);
-        showValueField.style.backgroundImage = `url('${this.props.post.value}')`
-        showValueField.style.height          = `${document.getElementsByClassName('post-item-mini')[0].clientWidth}px`;
+        const changeSize = () => {
+            const showValueField = document.getElementById(`show-value-post-${this.props.post.id}`);
+            showValueField.style.backgroundImage = `url('${this.props.post.value}')`
+            showValueField.style.height          = `${document.getElementsByClassName('post-item-mini')[0].clientWidth}px`;
+        }
+
+        changeSize();
+        this.props.dispatch({type: `ADD_CALLBACK_RESIZE_SCREEN`, value: changeSize})
     }
 }
 
