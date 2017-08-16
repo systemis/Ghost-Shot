@@ -45,6 +45,11 @@ body {
       max-width: 600px;
       margin: 0 auto;
       padding-top: 200px; }
+      @media screen and (max-height: 768px) {
+        #App #dialog-field .child {
+          padding-top: 35px;
+          padding-right: 5px;
+          padding-left: 5px; } }
       #App #dialog-field .child .users-list-field {
         background: white;
         color: black; }

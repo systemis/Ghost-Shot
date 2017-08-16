@@ -101,6 +101,14 @@
 
     & .show-comments{
         padding-left: 7px;
+        @media screen and (max-height: 700px) {
+            overflow: scroll;       
+            height: 211px;
+            @media screen and (max-height: 600px) {
+                height: 140px;
+            }
+        }
+
         & .more-comment-btn{
             margin-top: 15px;
             line-height: 0;
