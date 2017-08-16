@@ -21,6 +21,16 @@ class userMG{
             error: err => fn(JSON.stringify(err), null)
         })
     }
+
+    findUserByName(username, fn){
+        $.ajax({
+            url: `/user/info/get/username/${username}`, type: `POST`,
+            success: data => {
+                fn(data.err, data.result);
+            },
+            error: err => fn(JSON.stringify(err), null)
+        })
+    }
 }
 
 export default new userMG();

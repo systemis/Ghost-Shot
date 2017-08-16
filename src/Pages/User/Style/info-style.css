@@ -12,7 +12,7 @@
   .user-info-page .layout .show-info {
     min-height: 100px; }
     .user-info-page .layout .show-info .show-user-avatar img {
-      width: 100%;
+      width: 75%;
       border-radius: 50%;
       border: 1px solid #eeeeee; }
     .user-info-page .layout .show-info .show-user-info {

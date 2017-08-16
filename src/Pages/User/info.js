@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect}            from 'react-redux';
 import PostItem             from './post-item.js';
+import userMG               from '../../js/user.js';
 import image                from '../../image/ex-avatar.png';
 import ex1                  from '../../image/ex-w-1.png';
 import ex2                  from '../../image/ex-w-2.png';
@@ -64,12 +65,17 @@ class UserInfoPage extends Component {
     
     componentWillMount() {
         if(window.location.href.indexOf('/user/') !== -1){
-            console.log(this.props.match.params.username);
+            const userName = this.props.match.params.username;
+            userMG.findUserByName(userName, (err, result) => {
+                if(err) return console.log(`Error when get user info by userName: ${err}`);
+
+                console.log(result);
+                this.props.dispatch({type: `CHANGE_USER_SELETED_INFO`, value: result});
+            })
         }
     }
 
     render() {
-        console.log(this.props.info);
         return (
             <div className='user-info-page mobile'>
                 <div className="layout">
