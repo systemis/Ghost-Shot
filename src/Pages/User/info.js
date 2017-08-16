@@ -70,7 +70,7 @@ class UserInfoPage extends Component {
                 if(err) return console.log(`Error when get user info by userName: ${err}`);
 
                 console.log(result);
-                this.props.dispatch({type: `CHANGE_USER_SELETED_INFO`, value: result});
+                this.props.dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: result});
             })
         }
     }
@@ -97,7 +97,7 @@ class UserInfoPage extends Component {
                             <div className="show-about-env">
                                 <div className="row">
                                     <ul className="tools-manager">
-                                        <li>14 post</li>
+                                        <li>{this.props.info.post.length}</li>
                                         <li onClick={this.showFollowers}>
                                             <button>
                                                 <strong>
