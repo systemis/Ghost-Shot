@@ -31,10 +31,11 @@ class PostValue extends Component {
                     <span 
                         className="fa fa-chevron-circle-left btn-left-image" 
                         onClick={() => changeIndex(-1)}/>
-                    <img 
-                        src={postData[indexValue]}
+                    <div
+                        style={{backgroundImage: `url(${postData[indexValue]})`}}
                         alt="Image value" 
-                        className="show-image-post"/>
+                        className="show-image-post"
+                        id={`sh-show-value-${this.props.postId}-${indexValue}`}/>
                     <span 
                         className="fa fa-chevron-circle-right btn-right-image" 
                         onClick={() => changeIndex(-1)}/>
@@ -48,6 +49,12 @@ class PostValue extends Component {
                     className="show-image-post"/>
             )
         }
+    }
+
+    componentDidMount() {
+        const sh = document.getElementById(`sh-show-value-${this.props.postId}-${this.state.indexValue}`);
+        sh.style.height = `${sh.clientWidth - 18}px`;
+        console.log(sh.clientWidth);
     }
 }
 

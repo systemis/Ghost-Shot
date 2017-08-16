@@ -34,8 +34,12 @@
     }
 
     & .show-image{
-        & img{
+        & .show-image-post{
             width: 100%;
+            // height: 100px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
         }
 
         & .multiple-image{

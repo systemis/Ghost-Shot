@@ -64,7 +64,9 @@ class PostCard extends Component {
                     </a>
                 </div>
                 <div className="show-image">
-                    <PostValueCard images={this.props.postInfo.images} />
+                    <PostValueCard 
+                        postId={this.props.postInfo.id}
+                        images={this.props.postInfo.images} />
                 </div>
                 <div className="show-tools">
                     <ul className='tools-manager-post-card'>

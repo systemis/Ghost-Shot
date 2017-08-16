@@ -29,7 +29,7 @@ class UserInfoPage extends Component {
                     value: ex1
                 }, {
                     id: 'exasss',
-                    value: ex2
+                    value: ex1
                 }, {
                     id: 'exadsdsss',
                     value: ex2
@@ -79,13 +79,13 @@ class UserInfoPage extends Component {
     }
 
     render() {
-        if(this.props.info.id === '0'){
-            return (
-                <div className="show-label-not-exists-user">
-                    <h1 style={{textAlign: 'center', lineHeight: '100vh'}}>User not exists</h1>
-                </div>
-            )
-        }
+        // if(this.props.info.id === '0'){
+        //     return (
+        //         <div className="show-label-not-exists-user">
+        //             <h1 style={{textAlign: 'center', lineHeight: '100vh'}}>User not exists</h1>
+        //         </div>
+        //     )
+        // }
 
         const editBtn = () => {
             userMG.isEdit(this.props.info.id, isEdit => {

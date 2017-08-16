@@ -20,8 +20,11 @@
       .post-card .show-user-info .show-user-username:hover {
         color: gray;
         text-decoration: none; }
-  .post-card .show-image img {
-    width: 100%; }
+  .post-card .show-image .show-image-post {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; }
   .post-card .show-image .multiple-image {
     position: relative; }
     .post-card .show-image .multiple-image .fa {
