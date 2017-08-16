@@ -44,10 +44,11 @@ class PostValue extends Component {
             )
         }else{
             return (
-                <img 
-                    src={postData[0]}
+                <div
+                    style={{backgroundImage: `url(${postData[0]})`}}
                     alt="Image value" 
-                    className="show-image-post"/>
+                    className="show-image-post"
+                    id={`sh-show-value-${this.props.postId}-${0}`}/>
             )
         }
     }

@@ -32,7 +32,10 @@ class PostItem extends Component {
             type: 'CHANGE_DIALOG', 
             value: {
                 type: 'post',
-                component: <PostCard postInfo={this.state.detailsInfo}/>
+                component:
+                     <PostCard
+                            id={this.state.detailsInfo.id} 
+                            postInfo={this.state.detailsInfo}/>
             }
         })
     }
@@ -44,7 +47,8 @@ class PostItem extends Component {
                 <div className="child">
                     <div 
                         className="show-value"
-                        id={`show-value-post-${this.props.post.id}`}>
+                        id={`show-value-post-${this.props.post.id}`}
+                        style={{backgroundImage: `url(${this.props.post.value})`}}>
                         <button
                             className="dh-btn"
                             onClick={this.showPost.bind(this)}>
@@ -62,7 +66,6 @@ class PostItem extends Component {
     componentDidMount() {
         const changeSize = () => {
             const showValueField = document.getElementById(`show-value-post-${this.props.post.id}`);
-            showValueField.style.backgroundImage = `url('${this.props.post.value}')`
             showValueField.style.height          = `${document.getElementsByClassName('post-item-mini')[0].clientWidth}px`;
         }
 

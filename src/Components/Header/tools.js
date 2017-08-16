@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
-import ex from '../../image/logo.png';
+import NewPostGroup         from '../NewPost/new-post.js';
+import {connect}            from 'react-redux';
+// import ex from '../../image/logo.png';
 import $  from 'jquery';
 class ToolsComponent extends Component {
     constructor(props){
         super(props);
+    }
+
+    showDialogNewPost(){
+        this.props.dispatch({
+            type: `CHANGE_DIALOG`,
+            value: {
+                type: `NEW_POST`,
+                component: <NewPostGroup />
+            }
+        })
     }
 
     onClickHeart(){
@@ -29,7 +41,7 @@ class ToolsComponent extends Component {
                         </a>
                     </li>
                     <li>
-                        <button>
+                        <button onClick={this.showDialogNewPost.bind(this)}>
                             <i className="fa fa-plus"></i>
                         </button>
                     </li>
@@ -48,4 +60,8 @@ class ToolsComponent extends Component {
 //                         </a>
 //                     </li>
 
-export default ToolsComponent;
+export default connect(state => {
+    return{
+        dialogInfo: state.dialogInfo
+    }
+})(ToolsComponent);

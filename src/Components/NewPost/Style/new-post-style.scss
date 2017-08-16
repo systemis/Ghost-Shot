@@ -1,0 +1,9 @@
+.new-post-group{
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px 5px;
+    & .child-group{
+        min-height: 430px;
+        background: pink;
+    }   
+}

@@ -14,7 +14,7 @@ class DialogField extends Component {
 
     newHeight(){
         document.getElementById('dialog-field').style.height = 
-        document.getElementById('main-layout').clientHeight + 'px';
+        document.getElementById('main-layout').clientHeight + 90 + 'px';
     }
 
     mainLayout(){
@@ -49,7 +49,8 @@ class DialogField extends Component {
         console.log(nextProps.dialogInfo);
         if(nextProps.dialogInfo){
             document.getElementById('dialog-field').classList.add('show');
-            this.newHeight();        
+            this.newHeight();     
+            this.props.dispatch({type: `ADD_CALLBACK_RESIZE_SCREEN`, value: this.newHeight});
         }
 
         return true;        
