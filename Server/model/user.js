@@ -81,7 +81,6 @@ class userDM{
 
     findUserByName(username, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE username = ?`, [username], (err, result) => {
-            console.log(result);
             if(result.length <= 0) return fn('Not exists', null);
             return fn(err, result[0]);
         });

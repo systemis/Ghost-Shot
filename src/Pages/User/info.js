@@ -97,7 +97,7 @@ class UserInfoPage extends Component {
                             <div className="show-about-env">
                                 <div className="row">
                                     <ul className="tools-manager">
-                                        <li>{this.props.info.post.length}</li>
+                                        <li>{this.props.info.posts.length}</li>
                                         <li onClick={this.showFollowers}>
                                             <button>
                                                 <strong>
