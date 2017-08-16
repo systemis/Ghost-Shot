@@ -4,6 +4,8 @@ module.exports = app => {
         if(!req.isAuthenticated()) return res.send({err: 'Not login', result: null});
         const clientId = req.user.id;
 
+        req.user.follower  = JSON.parse(req.user.follower);
+        req.user.following = JSON.parse(req.user.following);
         res.send({err: null, result: req.user});
     })
 }

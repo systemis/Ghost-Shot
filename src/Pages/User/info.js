@@ -95,14 +95,14 @@ class UserInfoPage extends Component {
                                         <li onClick={this.showFollowers}>
                                             <button>
                                                 <strong>
-                                                    {this.state.info.follower.length}
+                                                    {this.props.info.follower.length}
                                                 </strong> Follower
                                             </button>
                                         </li>
                                         <li onClick={this.showFollowing}>
                                             <button>
                                                 <strong>
-                                                    {this.state.info.following.length}
+                                                    {this.props.info.following.length}
                                                 </strong> Following
                                             </button>
                                         </li>

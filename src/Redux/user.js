@@ -3,8 +3,8 @@ const infoState = {
     username: '',
     email: '',
     avatar: '',
-    follower: '',
-    following: '',
+    follower: [],
+    following: [],
     posts: []
 }
 
