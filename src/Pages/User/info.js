@@ -82,7 +82,7 @@ class UserInfoPage extends Component {
         if(this.props.info.id === '0'){
             return (
                 <div>
-                    <h1 style={{textAlign: 'center'}}>User not exists</h1>
+                    <h1 style={{textAlign: 'center', lineHeight: '100vh'}}>User not exists</h1>
                 </div>
             )
         }
