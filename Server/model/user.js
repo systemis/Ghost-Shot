@@ -68,6 +68,9 @@ class userDM{
     findUserById(id, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id], (err, result) => {
             if(result.length <= 0) return fn('Not exists', null);
+            result[0].follower  = JSON.parse(result[0].follower);
+            result[0].following = JSON.parse(result[0].following);
+            result[0].posts     = JSON.parse(result[0].posts);
             return fn(err, result[0]);
         });
     }
@@ -75,13 +78,19 @@ class userDM{
     findUserByEmail(email, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE email = ?`, [email], (err, result) => {
             if(result.length <= 0) return fn('Not exists', null);
+            result[0].follower  = JSON.parse(result[0].follower);
+            result[0].following = JSON.parse(result[0].following);
+            result[0].posts     = JSON.parse(result[0].posts);
             return fn(err, result[0]);
         });
     }
 
     findUserByName(username, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE username = ?`, [username], (err, result) => {
-            if(result.length <= 0) return fn('Not exists', null);
+            if(err || result.length <= 0) return fn('Not exists', null);
+            result[0].follower  = JSON.parse(result[0].follower);
+            result[0].following = JSON.parse(result[0].following);
+            result[0].posts     = JSON.parse(result[0].posts);
             return fn(err, result[0]);
         });
     }

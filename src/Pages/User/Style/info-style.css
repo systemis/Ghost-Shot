@@ -28,7 +28,7 @@
             float: left; }
             .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username {
               font-size: 30px; }
-              .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username .fa {
+              .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username #show-edit-btn .fa {
                 font-size: 25px;
                 padding-left: 10px; }
       .user-info-page .layout .show-info .show-user-info .show-about-env {

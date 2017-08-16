@@ -18,6 +18,7 @@ class UserInfoPage extends Component {
         }
 
         this.state = {
+            isExists: false, 
             info:{
                 username:  username(),
                 follower: [11, 12],
@@ -67,7 +68,9 @@ class UserInfoPage extends Component {
         if(window.location.href.indexOf('/user/') !== -1){
             const userName = this.props.match.params.username;
             userMG.findUserByName(userName, (err, result) => {
-                if(err) return console.log(`Error when get user info by userName: ${err}`);
+                if(err) {
+                    return console.log(`Error when get user info by userName: ${err}`);
+                }
 
                 console.log(result);
                 this.props.dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: result});
@@ -76,6 +79,22 @@ class UserInfoPage extends Component {
     }
 
     render() {
+        if(this.props.info.id === '0'){
+            return (
+                <div>
+                    <h1 style={{textAlign: 'center'}}>User not exists</h1>
+                </div>
+            )
+        }
+
+        const editBtn = () => {
+            userMG.isEdit(this.props.info.id, isEdit => {
+                console.log(isEdit);
+                if(!isEdit) return;
+                document.getElementById('show-edit-btn').innerHTML = '<i class="fa fa-pencil"></i>'
+            })
+        }
+
         return (
             <div className='user-info-page mobile'>
                 <div className="layout">
@@ -89,7 +108,9 @@ class UserInfoPage extends Component {
                                     <ul className="tools-manager">
                                         <li className="show-username">
                                             {this.props.info.username}
-                                            <i className="fa fa-pencil"></i>
+                                            <span id="show-edit-btn">
+                                                {editBtn()}
+                                            </span>
                                         </li>
                                     </ul>        
                                 </div>
@@ -97,7 +118,13 @@ class UserInfoPage extends Component {
                             <div className="show-about-env">
                                 <div className="row">
                                     <ul className="tools-manager">
-                                        <li>{this.props.info.posts.length}</li>
+                                        <li>
+                                            <button>
+                                                <strong>
+                                                    {this.props.info.posts.length}
+                                                </strong> Posts
+                                            </button>
+                                        </li>
                                         <li onClick={this.showFollowers}>
                                             <button>
                                                 <strong>

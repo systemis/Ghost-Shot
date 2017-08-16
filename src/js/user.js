@@ -22,6 +22,14 @@ class userMG{
         })
     }
 
+    isEdit(id, fn){
+        $.ajax({
+            url: `/user/isEdit/${id}`, type: `POST`,
+            success: isEdit => fn(isEdit),
+            error: err => fn(false)
+        })
+    }
+
     findUserByName(username, fn){
         $.ajax({
             url: `/user/info/get/username/${username}`, type: `POST`,

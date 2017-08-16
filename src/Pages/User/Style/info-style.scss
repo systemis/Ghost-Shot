@@ -40,9 +40,11 @@
                             float: left;
                             &.show-username{
                                 font-size: 30px;
-                                & .fa{
-                                    font-size: 25px;
-                                    padding-left: 10px;
+                                & #show-edit-btn{
+                                    & .fa{
+                                        font-size: 25px;
+                                        padding-left: 10px;
+                                    }
                                 }
                             }
                         }

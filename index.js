@@ -25,6 +25,7 @@ app.use(expresssession({
 require('./Server/app/auth.js')(app);
 require('./Server/route.js')(app);
 require('./Server/app/user.js')(app);
+require('./Server/app/app.js')(app);
 
 const PORT = process.env.PORT || 3200;
 server.listen(PORT, () => {

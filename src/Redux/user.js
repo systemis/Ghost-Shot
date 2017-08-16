@@ -1,5 +1,5 @@
 const infoState = {
-    id: '',
+    id: '0',
     username: '',
     email: '',
     avatar: '',
