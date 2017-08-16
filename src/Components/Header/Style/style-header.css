@@ -86,6 +86,11 @@
         float: left;
         line-height: 77px;
         padding-right: 35px; }
+        .header-group .tools-group .tools-mananger li button {
+          line-height: 0;
+          border: none;
+          outline: none;
+          background: transparent; }
         .header-group .tools-group .tools-mananger li a {
           color: black;
           text-decoration: none; }

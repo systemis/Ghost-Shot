@@ -9,7 +9,6 @@
         }
 
     }
-
     
     & .user-info-page.mobile{
         float: left;
@@ -42,6 +41,11 @@
                 }
             }
         }
+    }
+
+    & .show-label-not-exists-user{
+        float: left;
+        width: 25%;
     }
     
     @media screen and (max-width: 768px){

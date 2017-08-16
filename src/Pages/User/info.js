@@ -81,7 +81,7 @@ class UserInfoPage extends Component {
     render() {
         if(this.props.info.id === '0'){
             return (
-                <div>
+                <div className="show-label-not-exists-user">
                     <h1 style={{textAlign: 'center', lineHeight: '100vh'}}>User not exists</h1>
                 </div>
             )
@@ -96,7 +96,7 @@ class UserInfoPage extends Component {
         }
 
         return (
-            <div className='user-info-page mobile'>
+            <div className={`user-info-page mobile`}>
                 <div className="layout">
                     <div className="show-info row">
                         <div className="show-user-avatar col-md-3 col-sm-3 col-xs-3">

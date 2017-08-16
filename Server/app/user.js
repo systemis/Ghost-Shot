@@ -11,7 +11,6 @@ module.exports = app => {
         if(!req.isAuthenticated()) return res.send(false);
         if(userId !== req.user.id) return res.send(false);
 
-        console.log(`Edit`);
         res.send(true);
     })
     

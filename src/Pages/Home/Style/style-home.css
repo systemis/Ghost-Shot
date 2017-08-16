@@ -21,8 +21,11 @@
     .home-page .user-info-page.mobile .show-info .show-user-avatar ul li, .home-page .user-info-page.mobile .show-info .show-user-info ul li {
       width: 100%;
       text-align: center; }
-  .home-page .user-info-page.mobile .post-item-mini .show-value:hover .show-env {
+  .home-page .user-info-page.mobile .post-item-mini .dh-btn:hover .show-env {
     display: none; }
+.home-page .show-label-not-exists-user {
+  float: left;
+  width: 25%; }
 @media screen and (max-width: 768px) {
   .home-page .layout {
     float: none;

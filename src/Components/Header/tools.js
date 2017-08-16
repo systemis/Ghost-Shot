@@ -28,10 +28,10 @@ class ToolsComponent extends Component {
                             <i className="fa fa-compass" aria-hidden="true" />
                         </a>
                     </li>
-                    <li className="show-client-avatar">
-                        <a href="/systemis">
-                            <img src={ex} alt="User avatar"/>
-                        </a>
+                    <li>
+                        <button>
+                            <i className="fa fa-plus"></i>
+                        </button>
                     </li>
                 </ul>
                 <div id='notifis-group'>
@@ -41,5 +41,11 @@ class ToolsComponent extends Component {
         );
     }
 }
+
+// <li className="show-client-avatar">
+//                         <a href="/systemis">
+//                             <img src={ex} alt="User avatar"/>
+//                         </a>
+//                     </li>
 
 export default ToolsComponent;
