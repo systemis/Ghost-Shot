@@ -2,7 +2,7 @@ const pool = require('../config/database.js');
 const tableName = 'UserData';
 class userDM{
     constructor(){
-        pool.query('CREATE TABLE IF NOT EXISTS`'+tableName+'` ( `id` VARCHAR(200) NOT NULL , `email` TEXT NULL , `username` TEXT NULL , `password` TEXT NULL , `phone` TEXT NULL , `avatar` TEXT NOT NULL, `follower` TEXT NULL, `following` TEXT NULL , `posts` TEXT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci', (err, result) => {
+        pool.query('CREATE TABLE IF NOT EXISTS`'+tableName+'` ( `id` VARCHAR(200) NOT NULL , `email` TEXT NULL , `username` TEXT NULL , `password` TEXT NULL , `phone` TEXT NULL , `avatar` TEXT NOT NULL, `follower` TEXT NULL, `following` TEXT NULL , `posts` TEXT NULL, `description` TEXT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci', (err, result) => {
             console.log(`Error when create table ${tableName}: ${err}`);
         })
     }
@@ -14,6 +14,7 @@ class userDM{
             bundle.id = id;
             bundle.follower  = '[]';
             bundle.following = '[]';
+            bundle.posts     = `[]`;
             pool.query(`INSERT INTO ${tableName} SET ?`, bundle, (err, result) => {
                 console.log('Error when new user with auth local: ' + err);
                 fn(err, result);
@@ -37,6 +38,7 @@ class userDM{
             bundle.id = id;
             bundle.follower  = '[]';
             bundle.following = '[]';
+            bundle.posts     = `[]`;
             pool.query(`INSERT INTO ${tableName} SET ?`, bundle, (err, result) => {
                 if(err) {
                     console.log(err);

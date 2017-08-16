@@ -110,7 +110,7 @@ class UserInfoPage extends Component {
                                 </div>
                             </div>
                             <div className="show-status">
-                                <h4>Follow dream !</h4>
+                                <h4>{this.props.info.description}</h4>
                             </div>
                         </div>
                     </div>

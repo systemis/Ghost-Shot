@@ -5,6 +5,7 @@ const infoState = {
     avatar: '',
     follower: [],
     following: [],
+    description: '',
     posts: []
 }
 
