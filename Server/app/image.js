@@ -1,12 +1,16 @@
 module.exports = app => {
+    const imgurUploader = require('imgur-uploader');
     const multer = require('multer');
     const path   = require('path');
+    const fs     = require('fs');
 
+    var filename;
     const storage = multer.diskStorage({
         destination: (req, file, cb) => {
             cb(null, path.resolve(__dirname, './'));
         },
         filename: (req, file, cb) => {
+            filename = './Server/app/' + file.originalname;
             cb(null, file.originalname);
         }
     })
@@ -22,7 +26,11 @@ module.exports = app => {
                 return res.send('Upload error !');
             }
             
-            res.send('Upload success !');
+            imgurUploader(fs.readFileSync(filename), {title: `Image`}).then(data => {
+                fs.unlink(filename);
+                filename = '';
+                return res.send(data.link);
+            })
         })
     })
 }
