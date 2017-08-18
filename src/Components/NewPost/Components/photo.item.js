@@ -8,7 +8,7 @@ class PhotoItem extends Component {
                 <div 
                     className="child-photo-item"
                     id={`show-image-uploaded-imgur${this.props.index}`}
-                    style={{backgroundImage: `url(${ex})`}}>>
+                    style={{backgroundImage: `url(${this.props.link})`}}>>
                 </div>
             </div>
         );
