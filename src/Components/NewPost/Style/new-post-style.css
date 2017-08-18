@@ -52,7 +52,11 @@
       display: none; }
     .new-post-group .child-group .main-layout #photo-post-group {
       margin: 0;
-      padding: 0; }
+      padding: 0;
+      text-align: center; }
+      .new-post-group .child-group .main-layout #photo-post-group label {
+        width: 100%;
+        font-size: 60px; }
     .new-post-group .child-group .main-layout .post-photo-group {
       margin: 0;
       padding: 0; }

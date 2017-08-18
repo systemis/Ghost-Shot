@@ -81,7 +81,10 @@ $height-header: 54px;
 
             & #photo-post-group{
                 @include photoItemCharacter();
+                text-align: center;
                 & label{
+                    width: 100%;
+                    font-size: 60px;
                 }
             }
 

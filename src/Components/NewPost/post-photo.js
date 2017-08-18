@@ -18,8 +18,12 @@ class PostPhotoGroup extends Component {
                 <div 
                     id="photo-post-group"
                     className="col-md-4 col-sm-4 col-xs-4">
-                        <div className="child">
-                            <label htmlFor="uploadFileItem1">Choose a file</label>
+                        <div className="child-photo-item">
+                            <label 
+                                id="dh-upload-image"
+                                htmlFor="uploadFileItem1">
+                                <i className="fa fa-plus" aria-hidden="true"></i>
+                            </label>
                         </div>
                 </div>
                 
@@ -30,8 +34,10 @@ class PostPhotoGroup extends Component {
     }
 
     componentDidMount() {
-        document.getElementById('photo-post-group').style.height = 
-        document.getElementById('photo-post-group').clientWidth - 1 + 'px';
+        const dhupLoadImage  = document.getElementById('dh-upload-image');
+        const photoPostGroup = document.getElementById('photo-post-group');
+        photoPostGroup.style.height    = photoPostGroup.clientWidth - 1 + 'px';
+        dhupLoadImage .style.lineHeight = photoPostGroup.clientWidth - 1 + 'px';
         
     }
     
