@@ -51,6 +51,7 @@ class PostGroup extends Component {
             }else{
                 return(
                     <PostStatus 
+                        photo={this.state.photo}
                         status={this.state.status}
                         changeStatus={this.changeStatus.bind(this)}/>
                 )
@@ -77,6 +78,7 @@ class PostGroup extends Component {
             if(this.state.index === 0){
                 enTry.classGroup = 'next-btn-screen-new-post-group';
                 enTry.classLabel = 'fa fa-chevron-right';
+                // enTry.event      = () => this.setState({index: 1});
                 if(photos.length > 0 && photos[photos.length - 1]){
                     enTry.event      = () => this.setState({index: 1});
                 }
@@ -91,7 +93,7 @@ class PostGroup extends Component {
                     className={enTry.classGroup}
                     onClick={enTry.event}
                     style={{color: styleSheets.color()}}>
-                    <span className={enTry.classLabel}></span>
+                        <span className={enTry.classLabel}></span>
                 </button>   
             )
         }

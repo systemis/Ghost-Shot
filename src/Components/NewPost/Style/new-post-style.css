@@ -87,5 +87,33 @@
               background: transparent;
               font-size: 30px;
               color: white; }
+      .new-post-group .child-group .main-layout .post-status-group {
+        border-bottom: 1px solid #eeeeee; }
+        .new-post-group .child-group .main-layout .post-status-group #child-group-post-status.row {
+          margin: 0;
+          padding: 0;
+          height: 200px; }
+          .new-post-group .child-group .main-layout .post-status-group #child-group-post-status.row .show-image-post-status {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: red; }
+            .new-post-group .child-group .main-layout .post-status-group #child-group-post-status.row .show-image-post-status .child-group-show-imageselected {
+              width: 100%;
+              height: 100%;
+              background-size: cover;
+              background-repeat: no-repeat; }
+          .new-post-group .child-group .main-layout .post-status-group #child-group-post-status.row .show-input-status-field {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: yellow; }
+            .new-post-group .child-group .main-layout .post-status-group #child-group-post-status.row .show-input-status-field textarea {
+              width: 100%;
+              height: 100%;
+              outline: none;
+              overflow: scroll;
+              font-size: 15px;
+              border: 1px solid #eeeeee; }
 
 /*# sourceMappingURL=new-post-style.css.map */
