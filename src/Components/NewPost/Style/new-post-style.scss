@@ -39,6 +39,7 @@ $height-header: 54px;
                 height: 100%;
                 // background: red;
                 border-right: 1px solid #eeeeee;
+                border-left: 1px solid #eeeeee;
                 text-align: center;
                 & p{
                     line-height: $height-header;
@@ -74,6 +75,7 @@ $height-header: 54px;
             overflow: scroll;
             @mixin photoItemCharacter(){
                 @include flex();
+                position: relative;
                 padding: 5px;
                 text-align: center;
             }
@@ -99,8 +101,28 @@ $height-header: 54px;
                 & .photo-item{
                     @include flex();
                     & .child-photo-item{
+                        position: relative;
+                        width: 100%;
                         background-repeat: no-repeat;
                         background-size: cover;
+
+                        &:hover{
+                            & .btn-remove-group{
+                                display: block;
+                            }
+                        }
+
+                        & .btn-remove-group{
+                            & button{
+                                position: absolute;
+                                right: 0;
+                                outline: none;
+                                border: none;
+                                background: transparent;
+                                font-size: 30px;
+                                color: white;
+                            }
+                        }
                     }
                 }
             }

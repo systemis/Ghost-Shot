@@ -29,8 +29,10 @@ class PostGroup extends Component {
         this.setState({photo: [...photos, link]});
     }
 
-    removePhoto(){
-
+    removePhoto(index){
+        var photos = [...this.state.photo];
+        photos.splice(index, 1);
+        this.setState({photo: photos});
     }
 
     changeStatus(status){
@@ -75,7 +77,7 @@ class PostGroup extends Component {
             if(this.state.index === 0){
                 enTry.classGroup = 'next-btn-screen-new-post-group';
                 enTry.classLabel = 'fa fa-chevron-right';
-                if(photos.length > 0){
+                if(photos.length > 0 && photos[photos.length - 1]){
                     enTry.event      = () => this.setState({index: 1});
                 }
             }else{

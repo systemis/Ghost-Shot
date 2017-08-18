@@ -30,6 +30,7 @@
         width: 80%;
         height: 100%;
         border-right: 1px solid #eeeeee;
+        border-left: 1px solid #eeeeee;
         text-align: center; }
         .new-post-group .child-group .header.row .show-title-label p {
           line-height: 54px;
@@ -57,6 +58,7 @@
       .new-post-group .child-group .main-layout #photo-post-group {
         margin: 0;
         padding: 0;
+        position: relative;
         padding: 5px;
         text-align: center;
         border: 2px dashed #dddfe2;
@@ -71,7 +73,19 @@
           margin: 0;
           padding: 0; }
           .new-post-group .child-group .main-layout .post-photo-group .photo-item .child-photo-item {
+            position: relative;
+            width: 100%;
             background-repeat: no-repeat;
             background-size: cover; }
+            .new-post-group .child-group .main-layout .post-photo-group .photo-item .child-photo-item:hover .btn-remove-group {
+              display: block; }
+            .new-post-group .child-group .main-layout .post-photo-group .photo-item .child-photo-item .btn-remove-group button {
+              position: absolute;
+              right: 0;
+              outline: none;
+              border: none;
+              background: transparent;
+              font-size: 30px;
+              color: white; }
 
 /*# sourceMappingURL=new-post-style.css.map */

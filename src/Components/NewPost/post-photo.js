@@ -19,8 +19,9 @@ class PostPhotoGroup extends Component {
                     return(
                         <PhotoItem 
                             key={index}
-                            index={index + 1} 
-                            link={link} />
+                            index={index} 
+                            link={link} 
+                            removeEvent={this.props.removePhoto}/>
                     )
                 })}
 

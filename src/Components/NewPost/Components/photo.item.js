@@ -21,6 +21,21 @@ class PhotoItem extends Component {
             )
         }
 
+        const removeGroup = () => {
+            if(!this.props.link) return;
+            const removeEvent = () => {
+                this.props.removeEvent(this.props.index);
+            }
+
+            return(
+                <div className="btn-remove-group">
+                    <button onClick={removeEvent.bind(this)}>
+                        <span className="fa fa-times"></span>
+                    </button>
+                </div>
+            )
+        }
+
         return (
             <div className="photo-item col-md-4 col-sm-4 col-xs-4">
                 <div 
@@ -28,6 +43,7 @@ class PhotoItem extends Component {
                     id={`show-image-uploaded-imgur${this.props.index}`}
                     style={{backgroundImage: `url(${this.props.link})`}}>
                         {progressBar()}
+                        {removeGroup()}
                 </div>
             </div>
         );
