@@ -20,8 +20,13 @@ class PostGroup extends Component {
     }
 
     addPhoto(link){
-        console.log(link);
-        this.setState({photo: [...this.state.photo, link]});
+        var photos = [...this.state.photo];
+        if(photos.length >= 1 && photos[photos.length - 1] === ''){
+            photos.splice(photos.length - 1, 1);
+            console.log('photos');
+        }
+        
+        this.setState({photo: [...photos, link]});
     }
 
     removePhoto(){

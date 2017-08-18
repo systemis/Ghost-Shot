@@ -70,6 +70,8 @@ $height-header: 54px;
         }
 
         & .main-layout{
+            height: 376px;
+            overflow: scroll;
             @mixin photoItemCharacter(){
                 @include flex();
                 padding: 5px;

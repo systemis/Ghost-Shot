@@ -13,7 +13,9 @@ class PhotoItem extends Component {
             if(this.props.link) return;
 
             return(
-                <div className="show-progress-bar">
+                <div 
+                    className="show-progress-bar"
+                    style={{textAlign: 'center'}}>
                     Progress bar
                 </div>
             )
