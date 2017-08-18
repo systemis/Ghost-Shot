@@ -55,6 +55,26 @@ class PostGroup extends Component {
             }
         }
 
+        const dhScreenButton = () => {
+            if(this.state.index === 0){
+                return(
+                    <button
+                        className="next-btn-screen-new-post-group"
+                        >
+                        <span className="fa fa-chevron-right"></span>
+                    </button>   
+                )
+            }
+
+            return (
+                <button
+                    className="back-btn-screen-new-post-group"
+                    >
+                    <span className="fa fa-chevron-left"></span>
+                </button>   
+            )
+        }
+
         return (
             <div className="new-post-group">
                 Post group
@@ -71,11 +91,7 @@ class PostGroup extends Component {
                             <p>Create new post </p>
                         </div>
                         <div className="show-back-btn">
-                            <button
-                                className="back-btn-screen-new-post-group"
-                                >
-                                <span className="fa fa-chevron-left"></span>
-                            </button>
+                            {dhScreenButton()}
                         </div>
                     </div>
                     <div className="main-layout">
