@@ -5,5 +5,9 @@
     & .child-group{
         min-height: 430px;
         background: pink;
+        & .header{
+            height: 100px;
+            background: orange;
+        }
     }   
 }

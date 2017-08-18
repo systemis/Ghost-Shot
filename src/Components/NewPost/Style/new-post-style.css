@@ -5,5 +5,8 @@
   .new-post-group .child-group {
     min-height: 430px;
     background: pink; }
+    .new-post-group .child-group .header {
+      height: 100px;
+      background: orange; }
 
 /*# sourceMappingURL=new-post-style.css.map */
