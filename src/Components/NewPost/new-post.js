@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect}            from 'react-redux';
 import PostPhoto            from './post-photo.js';
 import PostStatus           from './post-status.js';
+import $                    from 'jquery';
 import './Style/new-post-style.css';
 
 class PostGroup extends Component {
@@ -36,7 +37,30 @@ class PostGroup extends Component {
     }
 
     changeStatus(status){
-        console.log(status);
+        this.setState({status: status});
+    }
+
+    uploadPost(){
+        const status = this.state.status;
+        const photos = this.state.photo
+        if(!status || photos.length <= 0){
+            alert('Một số thông tin còn thiếu, xin mời kiểm tra lại!');
+        }
+
+        $.ajax({
+            url: `/new/post/`, type: `POST`,
+            data: {
+                status: status,
+                photos: photos,
+                date: new Date().toLocaleString()
+            },
+            success: data => {
+                console.log(data)
+            },
+            error: err => {
+                console.log(err);
+            }
+        })
     }
 
     render() {
@@ -53,7 +77,8 @@ class PostGroup extends Component {
                     <PostStatus 
                         photo={this.state.photo}
                         status={this.state.status}
-                        changeStatus={this.changeStatus.bind(this)}/>
+                        changeStatus={this.changeStatus.bind(this)}
+                        uploadPost={this.uploadPost.bind(this)}/>
                 )
             }
         }

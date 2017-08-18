@@ -164,14 +164,15 @@ $height-header: 54px;
                 & .show-btn-upload{
                     text-align: center;
                     #new-post-btn{
-                        width: 12vw;
-                        height: 3vw;
+                        width: 12em;
+                        height: 3em;
                         position: absolute;
                         bottom: 10px;
                         text-align: center;
                         right: 10px;
                         background: linear-gradient(135deg,#e91e63,#3772ff);
                         border: none;
+                        outline: none;
                         color: white;
                         text-transform: uppercase;
                         letter-spacing: 5px;

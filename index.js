@@ -25,6 +25,7 @@ require('./Server/app/auth.js')(app);
 require('./Server/app/app.js')(app);
 require('./Server/app/user.js')(app);
 require('./Server/app/image.js')(app);
+require('./Server/app/product.js')(app);
 require('./Server/route.js')(app);
 
 const server = http.Server(app);

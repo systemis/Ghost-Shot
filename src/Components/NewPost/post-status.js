@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import {connect}            from 'react-redux';
 
 class PostStatusGroup extends Component {
+    changeStatus(){
+        const value = document.getElementById('input-status-field-create-post').value;
+        this.props.changeStatus(value);
+    }
+
     newHeight(){
         const childGroup = document.getElementById('child-group-post-status');
         const imageGroup = document.getElementsByClassName('show-image-post-status')[0];
@@ -23,12 +28,16 @@ class PostStatusGroup extends Component {
                         <textarea 
                             name="status-post" 
                             placeholder="Bạn muốn gởi gì đến mọi người "
-                            id="input-status-field-create-post"></textarea>
+                            onChange={this.changeStatus.bind(this)}
+                            id="input-status-field-create-post">
+                        </textarea>
                     </div>
                 </div>
                 <div className="show-btn-upload">
-                    <button id="new-post-btn">
-                        Upload
+                    <button 
+                        id="new-post-btn"
+                        onClick={() => this.props.uploadPost()}>
+                            Upload
                     </button>
                 </div>
             </div>
