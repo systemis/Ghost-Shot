@@ -8,7 +8,6 @@ class DialogField extends Component {
     }
 
     exitDialog(){       
-        document.getElementById('dialog-field').classList.remove('show');
         this.props.dispatch({type: 'CHANGE_DIALOG', value: ''});
     }
 

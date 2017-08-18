@@ -1,6 +1,10 @@
 const dialogReducer = (state = '', action) => {
     switch(action.type){
         case 'CHANGE_DIALOG':
+            if(!action.value){
+                document.getElementById('dialog-field').classList.remove('show');
+            }
+            
             return action.value;
         default:    
             return state;

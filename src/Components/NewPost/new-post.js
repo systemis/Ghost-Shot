@@ -16,7 +16,6 @@ class PostGroup extends Component {
     }
 
     exitGroup(){
-        document.getElementById('dialog-field').classList.remove('show');
         this.props.dispatch({type: 'CHANGE_DIALOG', value: ''});
     }
 
