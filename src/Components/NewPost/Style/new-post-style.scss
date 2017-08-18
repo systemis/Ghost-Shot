@@ -69,13 +69,30 @@ $height-header: 54px;
         }
 
         & .main-layout{
+            @mixin photoItemCharacter(){
+                @include flex();
+            }
+
+            & input[type=file]{
+                width: 0;
+                height: 0;
+                display: none;
+            }
+
+            & #photo-post-group{
+                @include photoItemCharacter();
+                & label{
+                }
+            }
+
             & .post-photo-group{
+                @include flex();
                 & .photo-item{
-                    float: left;
-                    width: 120px;
-                    height: 120px;
-                    background-repeat: no-repeat;
-                    background-size: cover;
+                    @include flex();
+                    & .child-photo-item{
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
                 }
             }
 
