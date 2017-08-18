@@ -26,6 +26,11 @@ class PostStatusGroup extends Component {
                             id="input-status-field-create-post"></textarea>
                     </div>
                 </div>
+                <div className="show-btn-upload">
+                    <button id="new-post-btn">
+                        Upload
+                    </button>
+                </div>
             </div>
         );
     }

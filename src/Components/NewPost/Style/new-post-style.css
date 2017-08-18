@@ -50,7 +50,8 @@
           width: 85%; } }
     .new-post-group .child-group .main-layout {
       height: 376px;
-      overflow: scroll; }
+      overflow: scroll;
+      position: relative; }
       .new-post-group .child-group .main-layout input[type=file] {
         width: 0;
         height: 0;
@@ -117,5 +118,20 @@
               overflow: scroll;
               font-size: 15px;
               border: 1px solid #eeeeee; }
+        .new-post-group .child-group .main-layout .post-status-group .show-btn-upload {
+          text-align: center; }
+          .new-post-group .child-group .main-layout .post-status-group .show-btn-upload #new-post-btn {
+            width: 12vw;
+            height: 3vw;
+            position: absolute;
+            bottom: 10px;
+            text-align: center;
+            right: 10px;
+            background: linear-gradient(135deg, #e91e63, #3772ff);
+            border: none;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            border-radius: 20px; }
 
 /*# sourceMappingURL=new-post-style.css.map */

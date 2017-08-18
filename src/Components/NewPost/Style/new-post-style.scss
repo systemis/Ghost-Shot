@@ -73,6 +73,7 @@ $height-header: 54px;
         & .main-layout{
             height: 376px;
             overflow: scroll;
+            position: relative;
             @mixin photoItemCharacter(){
                 @include flex();
                 position: relative;
@@ -157,6 +158,24 @@ $height-header: 54px;
                             font-size: 15px;
                             border: 1px solid #eeeeee;
                         }
+                    }
+                }
+
+                & .show-btn-upload{
+                    text-align: center;
+                    #new-post-btn{
+                        width: 12vw;
+                        height: 3vw;
+                        position: absolute;
+                        bottom: 10px;
+                        text-align: center;
+                        right: 10px;
+                        background: linear-gradient(135deg,#e91e63,#3772ff);
+                        border: none;
+                        color: white;
+                        text-transform: uppercase;
+                        letter-spacing: 5px;
+                        border-radius: 20px;
                     }
                 }
             }            
