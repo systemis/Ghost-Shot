@@ -19,8 +19,9 @@ class PostGroup extends Component {
         this.props.dispatch({type: 'CHANGE_DIALOG', value: ''});
     }
 
-    addPhoto(){
-
+    addPhoto(link){
+        console.log(link);
+        this.setState({photo: [...this.state.photo, link]});
     }
 
     removePhoto(){
@@ -73,6 +74,10 @@ class PostGroup extends Component {
                 </div>
             </div>
         );
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log(nextState.photo);
     }
 }
 
