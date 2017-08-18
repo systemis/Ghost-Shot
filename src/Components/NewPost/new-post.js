@@ -65,7 +65,7 @@ class PostGroup extends Component {
 
             var styleSheets = {
                 color: () => {
-                    if(photos.length <= 0 && !photos[photos.length - 1]) {
+                    if(photos.length <= 0 || !photos[photos.length - 1]) {
                         return 'gray';
                     }
                     return 'black'
