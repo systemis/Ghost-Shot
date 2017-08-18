@@ -44,7 +44,7 @@ class PostGroup extends Component {
         const status = this.state.status;
         const photos = this.state.photo
         if(!status || photos.length <= 0){
-            alert('Một số thông tin còn thiếu, xin mời kiểm tra lại!');
+            return alert('Một số thông tin còn thiếu, xin mời kiểm tra lại!');
         }
 
         $.ajax({
