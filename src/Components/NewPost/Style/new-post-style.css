@@ -3,10 +3,40 @@
   margin: 0 auto;
   padding: 30px 5px; }
   .new-post-group .child-group {
+    margin: 0;
+    padding: 0;
     min-height: 430px;
     background: pink; }
-    .new-post-group .child-group .header {
-      height: 100px;
-      background: orange; }
+    .new-post-group .child-group .header.row {
+      margin: 0;
+      padding: 0;
+      height: 54px;
+      background: #fff; }
+      .new-post-group .child-group .header.row button {
+        font-szie: 20px;
+        outline: none;
+        border: none;
+        background: transparent;
+        line-height: 54px; }
+      .new-post-group .child-group .header.row .show-back-btn {
+        float: left;
+        width: 10%;
+        height: 100%;
+        border-right: 1px solid #eeeeee;
+        text-align: center; }
+      .new-post-group .child-group .header.row .show-title-label {
+        float: left;
+        width: 80%;
+        height: 100%;
+        border-right: 1px solid #eeeeee;
+        text-align: center; }
+        .new-post-group .child-group .header.row .show-title-label p {
+          line-height: 54px;
+          font-size: 20px; }
+      .new-post-group .child-group .header.row .show-exit-btn {
+        float: left;
+        width: 10%;
+        height: 100%;
+        text-align: center; }
 
 /*# sourceMappingURL=new-post-style.css.map */

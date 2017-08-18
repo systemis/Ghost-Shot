@@ -1,13 +1,56 @@
+$height-header: 54px;
 .new-post-group{
     max-width: 500px;
     margin: 0 auto;
     padding: 30px 5px;
+    @mixin flex(){
+        margin: 0;
+        padding: 0;
+    }
+    
     & .child-group{
+        @include flex();
         min-height: 430px;
         background: pink;
-        & .header{
-            height: 100px;
-            background: orange;
+        & .header.row{
+            @include flex();
+            height: 54px;
+            background: #fff;
+            & button{
+                font-szie: 20px;
+                outline: none;
+                border: none;
+                background: transparent;
+                line-height: $height-header;
+            }
+
+            & .show-back-btn{
+                float: left;
+                width: 10%;
+                height: 100%;
+                border-right: 1px solid #eeeeee;
+                text-align: center;
+            }
+            
+            & .show-title-label{
+                float: left;
+                width: 80%;
+                height: 100%;
+                // background: red;
+                border-right: 1px solid #eeeeee;
+                text-align: center;
+                & p{
+                    line-height: $height-header;
+                    font-size: 20px;
+                }
+            }
+            
+            & .show-exit-btn{
+                float: left;
+                width: 10%;
+                height: 100%;
+                text-align: center;
+            }
         }
     }   
 }
