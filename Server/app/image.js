@@ -27,7 +27,7 @@ module.exports = app => {
             }
             
             imgurUploader(fs.readFileSync(filename), {title: `Image`}).then(data => {
-                fs.unlink(filename);
+                if(filename) fs.unlink(filename);
                 filename = '';
                 return res.send(data.link);
             })

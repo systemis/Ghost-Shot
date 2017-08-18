@@ -6,12 +6,13 @@
     margin: 0;
     padding: 0;
     min-height: 430px;
-    background: pink; }
+    background: white; }
     .new-post-group .child-group .header.row {
       margin: 0;
       padding: 0;
       height: 54px;
-      background: #fff; }
+      background: #fff;
+      border-bottom: 1px solid #eeeeee; }
       .new-post-group .child-group .header.row button {
         font-szie: 20px;
         outline: none;
@@ -53,6 +54,9 @@
     .new-post-group .child-group .main-layout #photo-post-group {
       margin: 0;
       padding: 0;
+      padding: 5px;
+      text-align: center;
+      border: 2px dashed #dddfe2;
       text-align: center; }
       .new-post-group .child-group .main-layout #photo-post-group label {
         width: 100%;

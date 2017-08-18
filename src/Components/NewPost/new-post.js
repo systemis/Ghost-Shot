@@ -55,21 +55,21 @@ class PostGroup extends Component {
                 Post group
                 <div className="child-group">
                     <div className="header row">
-                        <div className="show-back-btn">
-                            <button
-                                className="back-btn-screen-new-post-group"
-                                >
-                                <span className="fa fa-chevron-left"></span>
-                            </button>
-                        </div>
-                        <div className="show-title-label">
-                            <p>Create new post </p>
                         </div>
                         <div className="show-exit-btn">
                             <button
                                 className="exit-btn-new-post-group"
                                 onClick={this.exitGroup.bind(this)}>
                                 <span className="fa fa-times"></span>
+                            </button>
+                        </div>
+                        <div className="show-title-label">
+                            <p>Create new post </p>
+                        <div className="show-back-btn">
+                            <button
+                                className="back-btn-screen-new-post-group"
+                                >
+                                <span className="fa fa-chevron-left"></span>
                             </button>
                         </div>
                     </div>

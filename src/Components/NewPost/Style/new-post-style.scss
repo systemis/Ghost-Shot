@@ -11,11 +11,12 @@ $height-header: 54px;
     & .child-group{
         @include flex();
         min-height: 430px;
-        background: pink;
+        background: white;
         & .header.row{
             @include flex();
             height: 54px;
             background: #fff;
+            border-bottom: 1px solid #eeeeee;
             & button{
                 font-szie: 20px;
                 outline: none;
@@ -71,6 +72,8 @@ $height-header: 54px;
         & .main-layout{
             @mixin photoItemCharacter(){
                 @include flex();
+                padding: 5px;
+                text-align: center;
             }
 
             & input[type=file]{
@@ -81,6 +84,7 @@ $height-header: 54px;
 
             & #photo-post-group{
                 @include photoItemCharacter();
+                border: 2px dashed #dddfe2;
                 text-align: center;
                 & label{
                     width: 100%;

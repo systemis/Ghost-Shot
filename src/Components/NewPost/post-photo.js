@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
+import {connect}            from 'react-redux';
 import PhotoItem            from './Components/photo.item.js';
 import PhotoPostItem        from './Components/photo-post-item.js';
 
 class PostPhotoGroup extends Component {
+    newHeight(){    
+        const dhupLoadImage  = document.getElementById('dh-upload-image');
+        const photoPostGroup = document.getElementById('photo-post-group');
+        console.log(photoPostGroup.clientWidth)
+        photoPostGroup.style.height     = photoPostGroup.clientWidth + 4 + 'px';
+        dhupLoadImage .style.lineHeight = photoPostGroup.clientWidth + 4 + 'px';
+    }
+
     render() {
         return (
             <div className="post-photo-group row">
@@ -34,11 +43,11 @@ class PostPhotoGroup extends Component {
     }
 
     componentDidMount() {
-        const dhupLoadImage  = document.getElementById('dh-upload-image');
-        const photoPostGroup = document.getElementById('photo-post-group');
-        photoPostGroup.style.height    = photoPostGroup.clientWidth - 1 + 'px';
-        dhupLoadImage .style.lineHeight = photoPostGroup.clientWidth - 1 + 'px';
-        
+        this.newHeight();
+        this.props.dispatch({
+            type: `ADD_CALLBACK_RESIZE_SCREEN`, 
+            value: this.newHeight.bind(this)
+        });
     }
     
     shouldComponentUpdate(nextProps, nextState) {
@@ -47,4 +56,8 @@ class PostPhotoGroup extends Component {
     }
 }
 
-export default PostPhotoGroup;
+export default connect(state => {
+    return {
+        callbacksResizeScreen: state.callbacksResizeScreen
+    }
+})(PostPhotoGroup);
