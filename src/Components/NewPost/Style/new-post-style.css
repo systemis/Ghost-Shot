@@ -79,14 +79,16 @@
             background-size: cover; }
             .new-post-group .child-group .main-layout .post-photo-group .photo-item .child-photo-item:hover .btn-remove-group {
               display: block; }
-            .new-post-group .child-group .main-layout .post-photo-group .photo-item .child-photo-item .btn-remove-group button {
-              position: absolute;
-              right: 0;
-              outline: none;
-              border: none;
-              background: transparent;
-              font-size: 30px;
-              color: white; }
+            .new-post-group .child-group .main-layout .post-photo-group .photo-item .child-photo-item .btn-remove-group {
+              display: none; }
+              .new-post-group .child-group .main-layout .post-photo-group .photo-item .child-photo-item .btn-remove-group button {
+                position: absolute;
+                right: 0;
+                outline: none;
+                border: none;
+                background: transparent;
+                font-size: 30px;
+                color: white; }
       .new-post-group .child-group .main-layout .post-status-group {
         border-bottom: 1px solid #eeeeee; }
         .new-post-group .child-group .main-layout .post-status-group #child-group-post-status.row {

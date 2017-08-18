@@ -113,6 +113,7 @@ $height-header: 54px;
                         }
 
                         & .btn-remove-group{
+                            display: none;
                             & button{
                                 position: absolute;
                                 right: 0;
