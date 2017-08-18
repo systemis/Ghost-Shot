@@ -7,6 +7,8 @@ class PhotoPostItem extends Component {
         const value    = $('#uploadFileItem1')[0].files[0];
         const formData = new FormData();
         formData.append('image', $('#uploadFileItem1')[0].files[0])
+        
+        this.props.addPhoto('');
         $.ajax({
             url: `/upload/image/imgur`,
             data: formData, 

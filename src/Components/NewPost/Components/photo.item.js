@@ -9,12 +9,23 @@ class PhotoItem extends Component {
     }
 
     render() {
+        const progressBar = () => {
+            if(this.props.link) return;
+
+            return(
+                <div className="show-progress-bar">
+                    Progress bar
+                </div>
+            )
+        }
+
         return (
             <div className="photo-item col-md-4 col-sm-4 col-xs-4">
                 <div 
                     className="child-photo-item"
                     id={`show-image-uploaded-imgur${this.props.index}`}
-                    style={{backgroundImage: `url(${this.props.link})`}}>>
+                    style={{backgroundImage: `url(${this.props.link})`}}>
+                        {progressBar()}
                 </div>
             </div>
         );
