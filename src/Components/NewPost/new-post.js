@@ -32,19 +32,24 @@ class PostGroup extends Component {
         console.log(status);
     }
 
-    componentWillMount() {
-        this.setState({screens: [
-            <PostPhoto 
-                photo={this.state.photo}
-                addPhoto={this.addPhoto.bind(this)}
-                removePhoto={this.removePhoto.bind(this)}/>,
-            <PostStatus 
-                status={this.state.status}
-                changeStatus={this.changeStatus.bind(this)}/>
-        ]})        
-    }
-
     render() {
+        const mainLayout = () => {
+            if(this.state.index === 0){
+                return (
+                    <PostPhoto 
+                        photo={this.state.photo}
+                        addPhoto={this.addPhoto.bind(this)}
+                        removePhoto={this.removePhoto.bind(this)}/>
+                )
+            }else{
+                return(
+                    <PostStatus 
+                        status={this.state.status}
+                        changeStatus={this.changeStatus.bind(this)}/>
+                )
+            }
+        }
+
         return (
             <div className="new-post-group">
                 Post group
@@ -69,7 +74,7 @@ class PostGroup extends Component {
                         </div>
                     </div>
                     <div className="main-layout">
-                        {this.state.screens[this.state.index]}
+                        {mainLayout()}
                     </div>
                 </div>
             </div>
@@ -78,6 +83,7 @@ class PostGroup extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         console.log(nextState.photo);
+        return true;
     }
 }
 

@@ -67,5 +67,21 @@ $height-header: 54px;
                 }
             }
         }
+
+        & .main-layout{
+            & .post-photo-group{
+                & .photo-item{
+                    float: left;
+                    width: 120px;
+                    height: 120px;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+            }
+
+            & .post-status-group{
+
+            }            
+        }
     }   
 }

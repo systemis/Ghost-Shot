@@ -5,12 +5,7 @@ class PhotoItem extends Component {
         return (
             <div 
                 className="photo-item"
-                style={{
-                    width: '120px',
-                    height: '120px',
-                    backgroundSize: 'cover',
-                    backgroundImage: `url(${this.props.link})`
-                }}>
+                style={{backgroundImage: `url(${this.props.link})`}}>
                 
             </div>
         );

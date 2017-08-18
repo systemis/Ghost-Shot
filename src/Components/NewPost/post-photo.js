@@ -7,14 +7,23 @@ class PostPhotoGroup extends Component {
         return (
             <div className="post-photo-group">
                 {this.props.photo.map((link, index) => {
-                    <PhotoItem 
+                    console.log(link);
+                    return(
+                        <PhotoItem 
                             key={index} 
                             link={link} />
+                    )
                 })}
                 <PhotoPostItem 
                     addPhoto={this.props.addPhoto}/>
             </div>
         );
+    }
+
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log(nextProps.photo);
+        return true;
     }
 }
 
