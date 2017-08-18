@@ -56,16 +56,28 @@ class PostGroup extends Component {
         }
 
         const dhScreenButton = () => {
-            var enTry = {
+            var photos = this.state.photo;
+            var enTry  = {
                 classGroup: '',
                 classLabel: '',
                 event: '',
             }
 
+            var styleSheets = {
+                color: () => {
+                    if(photos.length <= 0 && photos[photos.length - 1]) {
+                        return 'gray';
+                    }
+                    return 'black'
+                }
+            }
+
             if(this.state.index === 0){
                 enTry.classGroup = 'next-btn-screen-new-post-group';
                 enTry.classLabel = 'fa fa-chevron-right';
-                enTry.event      = () => this.setState({index: 1});
+                if(photos.length > 0){
+                    enTry.event      = () => this.setState({index: 1});
+                }
             }else{
                 enTry.classGroup = 'back-btn-screen-new-post-group';
                 enTry.classLabel = 'fa fa-chevron-left';
@@ -75,7 +87,8 @@ class PostGroup extends Component {
             return (
                 <button
                     className={enTry.classGroup}
-                    onClick={enTry.event}>
+                    onClick={enTry.event}
+                    style={{color: styleSheets.color()}}>
                     <span className={enTry.classLabel}></span>
                 </button>   
             )
