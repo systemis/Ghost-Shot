@@ -9,7 +9,6 @@ const path           = require('path');
 const http           = require('http');
 const userDM         = require('./Server/model/user.js');
 const app            = express();
-const server         = http.Server(app);
 
 
 app.use(express.static('build'));
@@ -23,11 +22,13 @@ app.use(expresssession({
 }))
 
 require('./Server/app/auth.js')(app);
-require('./Server/route.js')(app);
-require('./Server/app/user.js')(app);
 require('./Server/app/app.js')(app);
+require('./Server/app/user.js')(app);
+require('./Server/app/image.js')(app);
+require('./Server/route.js')(app);
 
-const PORT = process.env.PORT || 3200;
+const server = http.Server(app);
+const PORT   = process.env.PORT || 3200;
 server.listen(PORT, () => {
     console.log(`Server listeinng on: ${PORT}`);
     // userDM.newUser({id: '', email: 'sss', username: 'sysstemis', password: 'ddd', avatar: 'ddd'}, (err, result) => {
