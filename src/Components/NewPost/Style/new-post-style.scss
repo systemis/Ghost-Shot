@@ -51,6 +51,21 @@ $height-header: 54px;
                 height: 100%;
                 text-align: center;
             }
+
+            @media screen and (max-width: 551px) {
+                & .show-exit-btn{
+                    width: 0;
+                    display: none;
+                }
+
+                & .show-back-btn{
+                    width: 15%;
+                }
+
+                & .show-title-label{
+                    width: 85%;
+                }
+            }
         }
     }   
 }

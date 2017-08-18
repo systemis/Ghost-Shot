@@ -38,5 +38,13 @@
         width: 10%;
         height: 100%;
         text-align: center; }
+      @media screen and (max-width: 551px) {
+        .new-post-group .child-group .header.row .show-exit-btn {
+          width: 0;
+          display: none; }
+        .new-post-group .child-group .header.row .show-back-btn {
+          width: 15%; }
+        .new-post-group .child-group .header.row .show-title-label {
+          width: 85%; } }
 
 /*# sourceMappingURL=new-post-style.css.map */
