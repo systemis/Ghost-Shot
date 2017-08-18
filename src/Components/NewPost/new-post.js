@@ -55,7 +55,6 @@ class PostGroup extends Component {
                 Post group
                 <div className="child-group">
                     <div className="header row">
-                        </div>
                         <div className="show-exit-btn">
                             <button
                                 className="exit-btn-new-post-group"
@@ -65,6 +64,7 @@ class PostGroup extends Component {
                         </div>
                         <div className="show-title-label">
                             <p>Create new post </p>
+                        </div>
                         <div className="show-back-btn">
                             <button
                                 className="back-btn-screen-new-post-group"
