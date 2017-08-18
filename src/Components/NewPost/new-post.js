@@ -56,21 +56,27 @@ class PostGroup extends Component {
         }
 
         const dhScreenButton = () => {
+            var enTry = {
+                classGroup: '',
+                classLabel: '',
+                event: '',
+            }
+
             if(this.state.index === 0){
-                return(
-                    <button
-                        className="next-btn-screen-new-post-group"
-                        >
-                        <span className="fa fa-chevron-right"></span>
-                    </button>   
-                )
+                enTry.classGroup = 'next-btn-screen-new-post-group';
+                enTry.classLabel = 'fa fa-chevron-right';
+                enTry.event      = () => this.setState({index: 1});
+            }else{
+                enTry.classGroup = 'back-btn-screen-new-post-group';
+                enTry.classLabel = 'fa fa-chevron-left';
+                enTry.event      = () => this.setState({index: 0});
             }
 
             return (
                 <button
-                    className="back-btn-screen-new-post-group"
-                    >
-                    <span className="fa fa-chevron-left"></span>
+                    className={enTry.classGroup}
+                    onClick={enTry.event}>
+                    <span className={enTry.classLabel}></span>
                 </button>   
             )
         }
