@@ -29,6 +29,32 @@ class postsMG{
             }
         })
     }
+
+    addNewComment(id, comment, fn){
+        $.ajax({
+            url: `/post/comment/new/${id}`,
+            type: `POST`,
+            success: data => {
+                fn(data.err, data.result);
+            },
+            error: err => {
+                fn(JSON.stringify(err), null);
+            }
+        })
+    }
+
+    likeOrUnLike(id, fn){
+        $.ajax({
+            url: `/post/like-or-unlike/${id}`,
+            type: `POST`,
+            success: data => {
+                fn(data.err, data.result);
+            },
+            error: err => {
+                fn(JSON.stringify(err), null);
+            }
+        })
+    }
 }
 
 export default new postsMG();
