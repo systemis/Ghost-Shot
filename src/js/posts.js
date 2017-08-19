@@ -34,6 +34,7 @@ class postsMG{
         $.ajax({
             url: `/post/comment/new/${id}`,
             type: `POST`,
+            data: {comment: comment},
             success: data => {
                 fn(data.err, data.result);
             },
