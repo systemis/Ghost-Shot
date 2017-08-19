@@ -14,7 +14,7 @@ class HomePage extends Component {
         this.state = {
             posts: [
                 {   
-                    id: 92432029,
+                    id: '92043229',
                     user: {id: '999', username: 'systemis', avatar: exam},
                     status: 'Hello new day !', 
                     likes: [111, 112], 
@@ -27,7 +27,7 @@ class HomePage extends Component {
                 },
 
                 {   
-                    id: 92029,
+                    id: '92029',
                     user: {id: '999', username: 'systemis', avatar: exam},
                     status: 'Hello new day !', 
                     likes: [111, 112], 
@@ -41,7 +41,7 @@ class HomePage extends Component {
 
 
                 {   
-                    id: 92043229,
+                    id: '204322329',
                     user: {id: '999', username: 'systemis', avatar: exam},
                     status: 'Hello new day !', 
                     likes: [111, 112], 

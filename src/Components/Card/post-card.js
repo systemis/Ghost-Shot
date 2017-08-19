@@ -13,6 +13,13 @@ class PostCard extends Component {
             comments: [],
             countToShowComment: 3
         }
+
+        // this.scroll = this.scroll.bind(this);
+    }
+
+    scroll(){
+        const field = document.getElementById(`show-comments-group-${this.props.postInfo.id}`);
+        field.scrollTop = field.scrollHeight;
     }
 
     showUserLiked(){
@@ -31,7 +38,9 @@ class PostCard extends Component {
 
     postComment(e){
         e.preventDefault();
-        const comment = document.getElementById(`post-comment-field-${this.props.postInfo.id}`).value;
+        
+        const field   = document.getElementById(`post-comment-field-${this.props.postInfo.id}`);
+        const comment = field.value;
         postMG.addNewComment(this.props.postInfo.id, comment, (error, result) => {
             if(error) {
                 alert(`Có lỗi xảy ra: ${error}, vui long thử lại sau !`);
@@ -49,6 +58,7 @@ class PostCard extends Component {
             })
 
             this.setState({comments: old});
+            field.value = '';
         })
         
         return false;
@@ -109,8 +119,10 @@ class PostCard extends Component {
                             {this.props.postInfo.likes.length} like 
                     </button>
                 </div>
-                <div className="show-comments">
-                    {moreCommentBtn()}
+                {moreCommentBtn()}
+                <div 
+                    className="show-comments"
+                    id={`show-comments-group-${this.props.postInfo.id}`}>
                     <CommentRow comment={{
                             comment: this.props.postInfo.status,
                             user: {
@@ -141,9 +153,14 @@ class PostCard extends Component {
         );
     }
 
+    componentDidMount() {
+        this.scroll();
+    }
+
     shouldComponentUpdate(nextProps, nextState) {
         console.log('new comment');
         this.render();
+        this.scroll();
         return true;        
     }
 }
