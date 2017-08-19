@@ -1,8 +1,6 @@
 const postsDM = require('../model/posts.js');
 module.exports = app => {
     app.post(`/new/post/`, (req, res) => {
-        console.log(req.user);
-        console.log(req.body);
         if(!req.isAuthenticated()) return res.send({err: 'Not login', result: null});
 
         const post   = req.body;
@@ -18,12 +16,17 @@ module.exports = app => {
             }
         }
 
-        console.log(user);
-        console.log(post);
         postsDM.newPost(bundle, (error, result) => {
             console.log(error);
             console.log(result);
 
+            res.send({err: error, result: result});
+        })
+    })
+
+    app.post(`/post/get/id/:id`, (req, res) => {
+        const postId = req.params.id;
+        postsDM.findById(postId, (error, result) => {
             res.send({err: error, result: result});
         })
     })

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect}            from 'react-redux';
 import PostItem             from './post-item.js';
 import userMG               from '../../js/user.js';
+import postsMG              from '../../js/posts.js';
 import image                from '../../image/ex-avatar.png';
 import ex1                  from '../../image/ex-w-1.png';
 import ex2                  from '../../image/ex-w-2.png';
@@ -54,6 +55,16 @@ class UserInfoPage extends Component {
                 }],
             }
         }
+    }
+
+    getPostsInfo(postsId){
+        console.log(postsId);
+        postsId.map((id, index) => {
+            postsMG.findPostById(id, (error, result) => {
+                console.log(`Error when find post by id: ${error}`);
+                console.log(result);
+            })
+        })
     }
 
     showFollowers(){
@@ -158,6 +169,10 @@ class UserInfoPage extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
+        if(nextProps.info && nextProps.info !== this.props.info){
+            this.getPostsInfo(nextProps.info.posts);
+        }
+
         return true;
     }
 }

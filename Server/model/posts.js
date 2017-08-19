@@ -45,7 +45,14 @@ class postsDM{
     findById(id, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id], (error, result) => {
             if(error || result.length <= 0) return fn('Not exists', null);
-            return fn(null, result[0]);
+
+            var data      = result[0];
+            data.user     = JSON.parse(data.user);
+            data.photos   = JSON.parse(data.photos);
+            data.comments = JSON.parse(data.comments);
+            data.likes    = JSON.parse(data.comments);
+
+            return fn(null, data);
         })
     }
 
