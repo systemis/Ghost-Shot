@@ -57,6 +57,9 @@ class PostValue extends Component {
         const changeSize = () => {
             const sh = document.getElementById(`sh-show-value-${this.props.postId}-${this.state.indexValue}`);
             sh.style.height = `${sh.clientWidth - 18}px`;
+            if(this.props.isShowInDialog){
+                sh.style.height = `${sh.clientWidth - 168}px`;
+            }
         }
         
         changeSize();

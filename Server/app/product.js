@@ -1,3 +1,4 @@
+const userDM  = require('../model/user.js');
 const postsDM = require('../model/posts.js');
 module.exports = app => {
     app.post(`/new/post/`, (req, res) => {
@@ -21,6 +22,11 @@ module.exports = app => {
             console.log(result);
 
             res.send({err: error, result: result});
+            userDM.findUserById(user.id, (err, rs) => {
+                if(!err){
+                    req.user.posts = rs.posts;
+                }
+            })
         })
     })
 

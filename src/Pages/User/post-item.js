@@ -35,7 +35,8 @@ class PostItem extends Component {
                 component:
                      <PostCard
                             id={this.props.post.id} 
-                            postInfo={this.props.post}/>
+                            postInfo={this.props.post}
+                            isShowInDialog={true}/>
             }
         })
     }

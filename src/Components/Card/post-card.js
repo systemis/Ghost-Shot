@@ -66,6 +66,7 @@ class PostCard extends Component {
                 <div className="show-image">
                     <PostValueCard 
                         postId={this.props.postInfo.id}
+                        isShowInDialog={this.props.isShowInDialog}
                         images={this.props.postInfo.photos} />
                 </div>
                 <div className="show-tools">

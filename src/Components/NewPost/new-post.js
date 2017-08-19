@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect}            from 'react-redux';
 import PostPhoto            from './post-photo.js';
 import PostStatus           from './post-status.js';
+import postsMG              from '../../js/posts.js';
 import $                    from 'jquery';
 import './Style/new-post-style.css';
 
@@ -47,18 +48,11 @@ class PostGroup extends Component {
             return alert('Một số thông tin còn thiếu, xin mời kiểm tra lại!');
         }
 
-        $.ajax({
-            url: `/new/post/`, type: `POST`,
-            data: {
-                status: status,
-                photos: photos,
-                date: new Date().toLocaleString()
-            },
-            success: data => {
-                console.log(data)
-            },
-            error: err => {
-                console.log(err);
+        postsMG.newPost(status, photos, (error, result) => {
+            console.log(result);
+            console.log(error);
+            if(!error){
+                window.location.reload();
             }
         })
     }
