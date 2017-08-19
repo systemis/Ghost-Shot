@@ -10,6 +10,7 @@ class PostCard extends Component {
     constructor(props){
         super(props);
         this.state = {
+            comments: [],
             countToShowComment: 3
         }
     }
@@ -30,14 +31,32 @@ class PostCard extends Component {
 
     postComment(e){
         e.preventDefault();
-        console.log('Posting comment');
         const comment = document.getElementById(`post-comment-field-${this.props.postInfo.id}`).value;
         postMG.addNewComment(this.props.postInfo.id, comment, (error, result) => {
-            console.log(error);
-            console.log(result);
+            if(error) {
+                alert(`Có lỗi xảy ra: ${error}, vui long thử lại sau !`);
+                return window.location.reload();
+            }
+
+            var old = this.state.comments;
+            old.push({
+                comment: comment, 
+                user: {
+                    id: this.props.clientInfo.id, 
+                    username: this.props.clientInfo.username, 
+                    avatar: this.props.clientInfo.avatar
+                }
+            })
+
+            this.setState({comments: old});
         })
         
         return false;
+    }
+
+    
+    componentWillMount() {
+        this.setState({comments: this.props.postInfo.comments});
     }
 
     render() {
@@ -99,7 +118,7 @@ class PostCard extends Component {
                             },
                         }
                     } />
-                    {this.props.postInfo.comments.map((comment, index) => {
+                    {this.state.comments.map((comment, index) => {
                         if(index >= this.state.countToShowComment){ return; }
                         return (
                             <CommentRow comment={comment} key={index} />
@@ -122,12 +141,16 @@ class PostCard extends Component {
         );
     }
 
-    componentDidMount() {
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('new comment');
+        this.render();
+        return true;        
     }
 }
 
 export default connect(state => {
     return {
-        screenVersion: state.screenVersion
+        screenVersion: state.screenVersion,
+        clientInfo: state.userSelectedInfo,
     }
 })(PostCard);

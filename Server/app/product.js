@@ -49,8 +49,6 @@ module.exports = app => {
         } 
 
         postsDM.addComment(postId, comment, (error, result) => {
-            console.log(error);
-            console.log(result);
             res.send({err: error, result: result});
         })
     })

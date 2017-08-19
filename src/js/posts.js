@@ -17,7 +17,6 @@ class postsMG{
                 date: new Date().toLocaleString()
             },
             success: data => {
-                console.log(data)
                 if(!data.err){
                     window.location.reload();
                 }

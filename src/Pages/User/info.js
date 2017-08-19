@@ -62,7 +62,6 @@ class UserInfoPage extends Component {
         const addNewPost = post => {
             var odl = [...this.state.posts];
             odl.push(post);
-            console.log(odl);
             this.setState({posts: odl});
         }
 
@@ -91,7 +90,6 @@ class UserInfoPage extends Component {
                     return console.log(`Error when get user info by userName: ${err}`);
                 }
 
-                console.log(result);
                 this.props.dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: result});
             })
         }
@@ -108,7 +106,6 @@ class UserInfoPage extends Component {
 
         const editBtn = () => {
             userMG.isEdit(this.props.info.id, isEdit => {
-                console.log(isEdit);
                 if(!isEdit) return;
                 document.getElementById('show-edit-btn').innerHTML = '<i class="fa fa-pencil"></i>'
             })
@@ -168,7 +165,6 @@ class UserInfoPage extends Component {
                     </div>
                     <div className="show-posts row">
                         {this.state.posts.map((post, index) => {
-                            console.log(post);
                             return <PostItem post={post} key={index} />
                         })}
                     </div>
