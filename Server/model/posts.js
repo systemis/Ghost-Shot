@@ -34,8 +34,25 @@ class postDM{
 
     findById(id, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id], (error, result) => {
-            if(result.length <= 0 || error) return fn('Not exists', null);
+            if(error || result.length <= 0) return fn('Not exists', null);
             return fn(null, result[0]);
+        })
+    }
+
+    findByStatus(status, fn){
+        pool.query(`SELECT * FROM ${tableName}`, (error, result) => {
+            if(error || result.length <= 0) return fn('Not data', null);
+            
+            var rs = [];
+            for(var i = 0, length = result.length; i < length; i++){
+                if(result[i].status.indexOf(status) >= 0){
+                    rs.push(result[i]);
+                }
+
+                if(i === length - 1){
+                    return fn(null, rs);
+                }
+            }
         })
     }
 

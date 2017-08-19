@@ -47,4 +47,9 @@ server.listen(PORT, () => {
     //     console.log(error);
     //     console.log(result);
     // })
+
+    // postsDM.findByStatus('Hello', (error, result) => {
+    //     console.log(error);
+    //     console.log(result);
+    // })
 })
