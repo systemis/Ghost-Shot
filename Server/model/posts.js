@@ -50,7 +50,7 @@ class postsDM{
             data.user     = JSON.parse(data.user);
             data.photos   = JSON.parse(data.photos);
             data.comments = JSON.parse(data.comments);
-            data.likes    = JSON.parse(data.comments);
+            data.likes    = JSON.parse(data.likes);
 
             return fn(null, data);
         })
