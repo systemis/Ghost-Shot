@@ -39,4 +39,12 @@ server.listen(PORT, () => {
 
     // userDM.dropTable((result, err) => console.log(result));
     // postsDM.dropTable();
+    // postsDM.newPost({
+    //     status: 'Hello',
+    //     photos: [],
+    //     date: new Date().toLocaleString()
+    // }, (error, result) => {
+    //     console.log(error);
+    //     console.log(result);
+    // })
 })
