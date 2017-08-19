@@ -85,6 +85,11 @@ class PostCard extends Component {
                 </div>
                 <div className="show-comments">
                     {moreCommentBtn()}
+                    <CommentRow comment={{
+                            username: this.props.postInfo.user.username, 
+                            comment: this.props.postInfo.status
+                        }
+                    } />
                     {this.props.postInfo.comments.map((comment, index) => {
                         if(index >= this.state.countToShowComment){ return; }
                         return (

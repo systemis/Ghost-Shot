@@ -7,7 +7,7 @@ class CommentRow extends Component {
                 <div 
                     className="post-comment-row" >
                     <a 
-                        href={`/${this.props.comment.username}`}
+                        href={`/user/${this.props.comment.username}`}
                         className="show-username">
                         {this.props.comment.username}
                     </a>
