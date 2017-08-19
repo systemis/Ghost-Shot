@@ -3,7 +3,6 @@ import {connect}            from 'react-redux';
 import PostPhoto            from './post-photo.js';
 import PostStatus           from './post-status.js';
 import postsMG              from '../../js/posts.js';
-import $                    from 'jquery';
 import './Style/new-post-style.css';
 
 class PostGroup extends Component {

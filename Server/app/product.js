@@ -18,13 +18,10 @@ module.exports = app => {
         }
 
         postsDM.newPost(bundle, (error, result) => {
-            console.log(error);
-            console.log(result);
-
-            res.send({err: error, result: result});
             userDM.findUserById(user.id, (err, rs) => {
                 if(!err){
-                    req.user.posts = rs.posts;
+                    user.posts = rs.posts;
+                    res.send({err: error, result: result});
                 }
             })
         })
