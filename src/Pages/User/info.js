@@ -20,6 +20,7 @@ class UserInfoPage extends Component {
 
         this.state = {
             isExists: false, 
+            posts: [],
             info:{
                 username:  username(),
                 follower: [11, 12],
@@ -58,11 +59,18 @@ class UserInfoPage extends Component {
     }
 
     getPostsInfo(postsId){
-        console.log(postsId);
+        const addNewPost = post => {
+            var odl = [...this.state.posts];
+            odl.push(post);
+            console.log(odl);
+            this.setState({posts: odl});
+        }
+
         postsId.map((id, index) => {
             postsMG.findPostById(id, (error, result) => {
-                console.log(`Error when find post by id: ${error}`);
-                console.log(result);
+                if(!error){
+                    addNewPost(result);
+                }
             })
         })
     }
@@ -159,7 +167,8 @@ class UserInfoPage extends Component {
                         </div>
                     </div>
                     <div className="show-posts row">
-                        {this.state.info.posts.map((post, index) => {
+                        {this.state.posts.map((post, index) => {
+                            console.log(post);
                             return <PostItem post={post} key={index} />
                         })}
                     </div>

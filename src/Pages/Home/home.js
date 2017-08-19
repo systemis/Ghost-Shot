@@ -17,7 +17,7 @@ class HomePage extends Component {
                     id: 92432029,
                     user: {id: '999', username: 'systemis', avatar: exam},
                     status: 'Hello new day !', 
-                    like: [111, 112], 
+                    likes: [111, 112], 
                     comments: [
                         {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                         {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
@@ -25,14 +25,14 @@ class HomePage extends Component {
                         {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                         {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                     ],
-                    images: [exW1, exW2]
+                    photos: [exW1, exW2]
                 },
 
                 {   
                     id: 92029,
                     user: {id: '999', username: 'systemis', avatar: exam},
                     status: 'Hello new day !', 
-                    like: [111, 112], 
+                    likes: [111, 112], 
                     comments: [
                         {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                         {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
@@ -40,7 +40,7 @@ class HomePage extends Component {
                         {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                         {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                     ],
-                    images: [exW1, exW2]
+                    photos: [exW1, exW2]
                 },
 
 
@@ -48,7 +48,7 @@ class HomePage extends Component {
                     id: 92043229,
                     user: {id: '999', username: 'systemis', avatar: exam},
                     status: 'Hello new day !', 
-                    like: [111, 112], 
+                    likes: [111, 112], 
                     comments: [
                         {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                         {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
@@ -56,7 +56,7 @@ class HomePage extends Component {
                         {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                         {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                     ],
-                    images: [exW1, exW2]
+                    photos: [exW1, exW2]
                 }
             ]
         }

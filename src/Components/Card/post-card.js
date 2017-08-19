@@ -18,7 +18,7 @@ class PostCard extends Component {
             type: 'CHANGE_DIALOG',
             value: {
                 type: 'user_list',
-                component: <UserListField data={this.props.postInfo.comments}/>
+                component: <UserListField data={this.props.postInfo.likes}/>
             }
         })
     }
@@ -66,7 +66,7 @@ class PostCard extends Component {
                 <div className="show-image">
                     <PostValueCard 
                         postId={this.props.postInfo.id}
-                        images={this.props.postInfo.images} />
+                        images={this.props.postInfo.photos} />
                 </div>
                 <div className="show-tools">
                     <ul className='tools-manager-post-card'>
@@ -79,7 +79,7 @@ class PostCard extends Component {
                     <button 
                         className='show-user-like-btn'
                         onClick={this.showUserLiked.bind(this)}> 
-                            {this.props.postInfo.like.length} like 
+                            {this.props.postInfo.likes.length} like 
                     </button>
                 </div>
                 <div className="show-comments">

@@ -34,8 +34,8 @@ class PostItem extends Component {
                 type: 'post',
                 component:
                      <PostCard
-                            id={this.state.detailsInfo.id} 
-                            postInfo={this.state.detailsInfo}/>
+                            id={this.props.post.id} 
+                            postInfo={this.props.post}/>
             }
         })
     }
@@ -48,13 +48,13 @@ class PostItem extends Component {
                     <div 
                         className="show-value"
                         id={`show-value-post-${this.props.post.id}`}
-                        style={{backgroundImage: `url(${this.props.post.value})`}}>
+                        style={{backgroundImage: `url(${this.props.post.photos[0]})`}}>
                         <button
                             className="dh-btn"
                             onClick={this.showPost.bind(this)}>
                             <div className="show-env">
-                                <p className="show-like-count">{this.state.detailsInfo.like.length} Like</p>
-                                <p className="show-comment-count">{this.state.detailsInfo.comments.length} Comment</p>
+                                <p className="show-like-count">{this.props.post.likes.length} Like</p>
+                                <p className="show-comment-count">{this.props.post.comments.length} Comment</p>
                             </div>
                         </button>
                     </div>
