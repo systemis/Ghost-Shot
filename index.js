@@ -8,6 +8,7 @@ const morgan         = require('morgan');
 const path           = require('path');
 const http           = require('http');
 const userDM         = require('./Server/model/user.js');
+const postsDM        = require('./Server/model/posts.js');
 const app            = express();
 
 
@@ -37,4 +38,5 @@ server.listen(PORT, () => {
     // });
 
     // userDM.dropTable((result, err) => console.log(result));
+    // postsDM.dropTable();
 })
