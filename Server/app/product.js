@@ -33,4 +33,21 @@ module.exports = app => {
             res.send({err: error, result: result});
         })
     })
+
+    app.post(`/post/like-or-unlike/:id`, (req, res) => {
+        if(!req.isAuthenticated()) return res.send({err: 'Not login!', result: null});
+        
+        const postId = req.params.id;
+        const user   = {
+            id: req.user.id,
+            username: req.user.username,
+            avatar: req.user.avatar
+        }
+
+        postsDM.likeOrUnLike(postId, user, (error, result) => {
+            console.log(error);
+            console.log(result);
+            res.send({err: error, result: result});
+        })
+    })
 }
