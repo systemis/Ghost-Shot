@@ -93,8 +93,10 @@ class PostCard extends Component {
                 <div className="show-comments">
                     {moreCommentBtn()}
                     <CommentRow comment={{
-                            username: this.props.postInfo.user.username, 
-                            comment: this.props.postInfo.status
+                            comment: this.props.postInfo.status,
+                            user: {
+                                username: this.props.postInfo.user.username, 
+                            },
                         }
                     } />
                     {this.props.postInfo.comments.map((comment, index) => {

@@ -19,11 +19,9 @@ class HomePage extends Component {
                     status: 'Hello new day !', 
                     likes: [111, 112], 
                     comments: [
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
+                        {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
+                        {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
+                        {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                     ],
                     photos: [exW1, exW2]
                 },
@@ -34,11 +32,9 @@ class HomePage extends Component {
                     status: 'Hello new day !', 
                     likes: [111, 112], 
                     comments: [
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
+                        {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
+                        {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
+                        {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                     ],
                     photos: [exW1, exW2]
                 },
@@ -50,11 +46,9 @@ class HomePage extends Component {
                     status: 'Hello new day !', 
                     likes: [111, 112], 
                     comments: [
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                        {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
+                        {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
+                        {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
+                        {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                     ],
                     photos: [exW1, exW2]
                 }
