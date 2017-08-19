@@ -67,7 +67,9 @@
       .post-card .show-like-count button:hover {
         color: darkgray; }
   .post-card .show-comments {
-    padding-left: 7px; }
+    padding-left: 7px;
+    height: 75px;
+    overflow: scroll; }
     .post-card .show-comments .more-comment-btn {
       margin-top: 15px;
       line-height: 0;
