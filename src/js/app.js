@@ -8,3 +8,5 @@ class appMG{
         })
     }
 }
+
+export default new appMG();
