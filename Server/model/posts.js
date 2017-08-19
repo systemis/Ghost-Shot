@@ -1,4 +1,5 @@
-const pool = require('../config/database.js');
+const pool   = require('../config/database.js');
+const userDM = require('./user.js');
 const tableName = `PostsData`
 class postsDM{
     constructor(){
@@ -12,7 +13,14 @@ class postsDM{
         var createNewPost = data => {
             pool.query(`INSERT INTO ${tableName} SET ?`, data, (error, result) => {
                 if(error) console.log(error);
-                return fn(error, result);
+
+                // Add posts to user data info - wall 
+                userDM.addNewPost(JSON.parse(bundle.user).id, bundle.id, (err, rs) => {
+                    if(error) return fn(error, null);
+                    if(err) return fn(err, null);
+                    
+                    return fn(null, result);
+                })
             })
         }
 
@@ -25,6 +33,7 @@ class postsDM{
                     bundle.photos   = JSON.stringify(bundle.photos);
                     bundle.comments = '[]';
                     bundle.likes    = '[]';
+
                     createNewPost(bundle);
                 }else{
                     bool = true;

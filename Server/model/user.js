@@ -64,6 +64,19 @@ class userDM{
         })
     }
 
+    addNewPost(id, postId, fn){
+        this.findUserById(id, (error, result) => {
+            if(error) return fn(error, null);
+
+            var posts = result.posts;
+            posts.push(postId);
+            posts = JSON.stringify(posts);
+            pool.query(`UPDATE ${tableName} SET posts = ? WHERE id = ?`, [posts, id], (err, rs) => {
+                return fn(err, rs);
+            })
+        })
+    }
+
 
     findUserById(id, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id], (err, result) => {
