@@ -55,6 +55,31 @@ class postsDM{
         })
     }
 
+    likeOrUnLike(id, user, fn){
+        this.findById(id, (error, result) => {
+            if(error) return fn(error, result);
+
+            var isLiked = -1;
+            var likes   = result.likes;
+            for(var i = 0, length = likes.length; i <length; i++){
+                if(likes[i].id === user.id){
+                    isLiked = i;
+                    i = length;
+                }
+            }
+
+            if(isLiked !== -1){
+                likes.splice(isLiked, 1);
+            }else{
+                likes.push(user);
+            }
+
+            pool.query(`UPDATE ${tableName} SET likes = ? WHERE id = ?`, [likes, id], (err, rs) => {
+                return fn(err, rs);
+            })
+        })
+    }
+
     findById(id, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id], (error, result) => {
             if(error || result.length <= 0) return fn('Not exists', null);
