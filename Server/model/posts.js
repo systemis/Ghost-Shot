@@ -42,6 +42,19 @@ class postsDM{
         }while(bool)
     }
 
+    addComment(id, comment, fn){
+        this.findById(id, (error, result) => {
+            if(error) return fn(error, result);
+
+            var comments = result.comments;
+            comments.push(comment);
+            comments = JSON.stringify(comments);
+            pool.query(`UPDATE ${tableName} SET comments = ? WHERE id = ?`, [comments, id], (err, rs) => {
+                return fn(err, rs);
+            })
+        })
+    }
+
     findById(id, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id], (error, result) => {
             if(error || result.length <= 0) return fn('Not exists', null);
