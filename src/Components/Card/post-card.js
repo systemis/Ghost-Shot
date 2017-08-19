@@ -3,6 +3,7 @@ import {connect}            from 'react-redux';
 import UserListField        from '../Fields/users-list-field.js';
 import PostValueCard        from './Components/post-value-card.js';
 import CommentRow           from './Components/comment-row.js';
+import postMG               from '../../js/posts.js';
 import './postcard-style.css';
 
 class PostCard extends Component {
@@ -30,6 +31,12 @@ class PostCard extends Component {
     postComment(e){
         e.preventDefault();
         console.log('Posting comment');
+        const comment = document.getElementById(`post-comment-field-${this.props.postInfo.id}`).value;
+        postMG.addNewComment(this.props.postInfo.id, comment, (error, result) => {
+            console.log(error);
+            console.log(result);
+        })
+        
         return false;
     }
 
@@ -105,6 +112,7 @@ class PostCard extends Component {
                         <input 
                             type="text"
                             className="post-comment-field"
+                            id={`post-comment-field-${this.props.postInfo.id}`}
                             placeholder="Thêm bình luận"/>
                     </form>
                 </div>
