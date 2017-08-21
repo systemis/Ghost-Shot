@@ -52,4 +52,6 @@ server.listen(PORT, () => {
     //     console.log(error);
     //     console.log(result);
     // })
+    // userDM .dropTable((error, result) => console.log(error));
+    // postsDM.dropTable((error, result) => console.log(error));
 })

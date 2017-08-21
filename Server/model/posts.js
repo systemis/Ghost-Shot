@@ -74,8 +74,10 @@ class postsDM{
                 likes.push(user);
             }
 
+            likes = JSON.stringify(likes);
             pool.query(`UPDATE ${tableName} SET likes = ? WHERE id = ?`, [likes, id], (err, rs) => {
-                return fn(err, rs);
+                if(err)return fn(err, rs);
+                return fn(null, JSON.parse(likes));
             })
         })
     }

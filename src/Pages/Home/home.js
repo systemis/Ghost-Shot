@@ -17,7 +17,7 @@ class HomePage extends Component {
                     id: '92043229',
                     user: {id: '999', username: 'systemis', avatar: exam},
                     status: 'Hello new day !', 
-                    likes: [111, 112], 
+                    likes: [{id: 111}, {id: 112}],
                     comments: [
                         {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                         {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
@@ -30,7 +30,7 @@ class HomePage extends Component {
                     id: '92029',
                     user: {id: '999', username: 'systemis', avatar: exam},
                     status: 'Hello new day !', 
-                    likes: [111, 112], 
+                    likes: [{id: 111}, {id: 112}],
                     comments: [
                         {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                         {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
@@ -44,7 +44,7 @@ class HomePage extends Component {
                     id: '204322329',
                     user: {id: '999', username: 'systemis', avatar: exam},
                     status: 'Hello new day !', 
-                    likes: [111, 112], 
+                    likes: [{id: 111}, {id: 112}],
                     comments: [
                         {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
                         {id: 111, user: {username: 'systemis'}, comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},

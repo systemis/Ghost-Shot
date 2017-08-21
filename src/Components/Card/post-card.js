@@ -10,11 +10,11 @@ class PostCard extends Component {
     constructor(props){
         super(props);
         this.state = {
+            isLike: false,
+            likes: [],
             comments: [],
             countToShowComment: 3
         }
-
-        // this.scroll = this.scroll.bind(this);
     }
 
     scroll(){
@@ -33,7 +33,14 @@ class PostCard extends Component {
     }
 
     likePost(){
-        console.log(`someone just have liked post`);
+        var old   = this.state.isLike;
+        postMG.likeOrUnLike(this.props.postInfo.id, (error, result) => {
+            if(error) return;
+
+            console.log(result);
+            this.setState({isLike: !old});
+            this.setState({likes: result});
+        })
     }
 
     postComment(e){
@@ -64,13 +71,14 @@ class PostCard extends Component {
         return false;
     }
 
-    
     componentWillMount() {
+        console.log(this.props.postInfo.likes);
         this.setState({comments: this.props.postInfo.comments});
+        this.setState({likes: this.props.postInfo.likes});
     }
 
     render() {
-        const moreCommentBtn = () => {
+        var moreCommentBtn = () => {
             if(this.state.countToShowComment < this.props.postInfo.comments.length){
                 return(
                     <button
@@ -84,6 +92,11 @@ class PostCard extends Component {
                     </button>
                 )
             }
+        }
+
+        var styleForLikeBtn = {color: 'black'};
+        if(this.state.isLike){
+            styleForLikeBtn.color = 'red';
         }
 
         return (
@@ -107,8 +120,10 @@ class PostCard extends Component {
                 </div>
                 <div className="show-tools">
                     <ul className='tools-manager-post-card'>
-                        <li onClick={this.likePost}>
-                            <i className="fa fa-heart"></i>
+                        <li onClick={this.likePost.bind(this)}>
+                            <i 
+                                style={styleForLikeBtn}
+                                className="fa fa-heart"></i>
                         </li>
                     </ul>
                 </div>
@@ -116,7 +131,7 @@ class PostCard extends Component {
                     <button 
                         className='show-user-like-btn'
                         onClick={this.showUserLiked.bind(this)}> 
-                            {this.props.postInfo.likes.length} like 
+                            {this.state.likes.length} like 
                     </button>
                 </div>
                 {moreCommentBtn()}
@@ -155,10 +170,22 @@ class PostCard extends Component {
 
     componentDidMount() {
         this.scroll();
+        this.props.postInfo.likes.map((user, index) => {
+            if(user.id === this.props.clientInfo.id){
+                this.setState({isLike: true});
+        }});
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log('new comment');
+        if(nextProps.clientInfo !== this.props.clientInfo || 
+            nextProps.postInfo.id !== this.props.postInfo.id){
+                nextState.likes.map((user, index) => {
+                    if(user.id === nextProps.clientInfo.id){
+                        this.setState({isLike: true});
+                }
+            })
+        }
+
         this.render();
         this.scroll();
         return true;        
