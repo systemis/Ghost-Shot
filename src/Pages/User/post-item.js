@@ -27,16 +27,16 @@ class PostItem extends Component {
     }
 
     showPost(){
-        console.log('Show post');
+        var classNameId = `post-card-w-id-${this.props.post.id}`;
         this.props.dispatch({
             type: 'CHANGE_DIALOG', 
-            value: {
-                type: 'post',
-                component:
-                     <PostCard
-                            id={this.props.post.id} 
-                            postInfo={this.props.post}
-                            isShowInDialog={true}/>
+            value: { type: 'post', bundle: {type: `POST_ID`, idDom: classNameId}, component:
+            <PostCard
+                id={this.props.post.id} 
+                postInfo={this.props.post}
+                isShowInDialog={true}
+                id={classNameId}
+                className={`in-dialog`}/>
             }
         })
     }

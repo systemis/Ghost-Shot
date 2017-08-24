@@ -13,6 +13,10 @@
         margin-bottom: 100px;
     }
 
+    &.in-dialog{
+        @include flex();
+    }
+
     & .show-user-info{
         padding-top: 10px;
         padding-left: 7px;
@@ -102,7 +106,6 @@
             }
         }
     }
-
 
     & .more-comment-btn{
         margin-left: 7px;

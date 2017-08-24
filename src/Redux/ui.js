@@ -4,7 +4,7 @@ const dialogReducer = (state = '', action) => {
             if(!action.value){
                 document.getElementById('dialog-field').classList.remove('show');
             }
-            
+    
             return action.value;
         default:    
             return state;

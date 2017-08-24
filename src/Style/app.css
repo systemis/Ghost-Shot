@@ -29,7 +29,8 @@ body {
       position: fixed;
       top: 0;
       right: 0;
-      left: 0; }
+      left: 0;
+      bottom: 0; }
     #App #dialog-field .exit-btn {
       background: transparent;
       float: right;
@@ -43,12 +44,10 @@ body {
     #App #dialog-field .child {
       position: relative;
       max-width: 600px;
-      margin: 0 auto;
-      padding-top: 200px; }
+      height: 100%;
+      margin: 0 auto; }
       @media screen and (max-height: 768px) {
         #App #dialog-field .child {
-          margin-top: 35px;
-          padding-top: 0;
           padding-right: 5px;
           padding-left: 5px; } }
       #App #dialog-field .child .users-list-field {

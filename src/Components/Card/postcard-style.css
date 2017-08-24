@@ -6,6 +6,9 @@
   margin-bottom: 70px; }
   .post-card:last-child {
     margin-bottom: 100px; }
+  .post-card.in-dialog {
+    margin: 0;
+    padding: 0; }
   .post-card .show-user-info {
     padding-top: 10px;
     padding-left: 7px;

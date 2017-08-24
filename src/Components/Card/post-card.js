@@ -27,6 +27,7 @@ class PostCard extends Component {
             type: 'CHANGE_DIALOG',
             value: {
                 type: 'user_list',
+                bundle: null,
                 component: <UserListField data={this.props.postInfo.likes}/>
             }
         })
@@ -37,7 +38,6 @@ class PostCard extends Component {
         postMG.likeOrUnLike(this.props.postInfo.id, (error, result) => {
             if(error) return;
 
-            console.log(result);
             this.setState({isLike: !old});
             this.setState({likes: result});
         })
@@ -72,7 +72,6 @@ class PostCard extends Component {
     }
 
     componentWillMount() {
-        console.log(this.props.postInfo.likes);
         this.setState({comments: this.props.postInfo.comments});
         this.setState({likes: this.props.postInfo.likes});
     }
@@ -100,7 +99,9 @@ class PostCard extends Component {
         }
 
         return (
-            <div className="post-card">
+            <div 
+                className={`post-card ${this.props.className}`}
+                id={this.props.id}>
                 <div className="show-user-info">
                     <img 
                         src={this.props.postInfo.user.avatar} 
@@ -174,6 +175,21 @@ class PostCard extends Component {
             if(user.id === this.props.clientInfo.id){
                 this.setState({isLike: true});
         }});
+
+        if(this.props.className === 'in-dialog'){
+            var newHeight = () => {
+                var childGroup = document.getElementById(`child-group-dialog`);
+                var postCard   = document.getElementById(this.props.id);
+            
+                if(!postCard) return;
+                var height = (childGroup.clientHeight - postCard.clientHeight)/2+ 'px';
+                console.log(height);
+                childGroup.style.paddingTop = height;
+            }
+
+            newHeight();
+            this.props.dispatch({type: `ADD_CALLBACK_RESIZE_SCREEN`, value: newHeight});
+        }
     }
 
     shouldComponentUpdate(nextProps, nextState) {
