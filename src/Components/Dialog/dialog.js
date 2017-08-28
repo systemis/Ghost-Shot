@@ -26,20 +26,6 @@ class DialogField extends Component {
             console.log(height);
             childGroup.style.paddingTop = height;
         }
-
-        // do{
-        //     console.log(document.getElementById(id));
-        //     if(document.getElementById(id)){
-        //         newHeight();     
-        //         this.props.dispatch({type: `ADD_CALLBACK_RESIZE_SCREEN`, value: newHeight});
-        //     }
-        // }while(document.getElementById(id) === null);
-
-        // setTimeout(() => {
-        //     console.log(document.getElementById(id));
-        //     newHeight();
-        //     this.props.dispatch({type: `ADD_CALLBACK_RESIZE_SCREEN`, value: newHeight});
-        // }, 3000);
     }
 
     compriseToHandlerWithBundle(){
