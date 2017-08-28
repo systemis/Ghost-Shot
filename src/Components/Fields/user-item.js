@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
+import userMG               from '../../js/user.js';
 
 class UserItem extends Component {
+    follow(e){
+        userMG.follow(this.props.data.username, (error, result) => {
+            console.log(error);
+            console.log(result);
+        })
+    }
+
     render() {
         return (
             <div className="user-item-users-list-field row">
@@ -12,7 +20,7 @@ class UserItem extends Component {
                 </div>
                 
                 <div className="show-btn-follow">
-                    <button className="btn-follow-user">
+                    <button className="btn-follow-user" onClick={this.follow.bind(this)}>
                         Follow
                     </button>
                 </div>

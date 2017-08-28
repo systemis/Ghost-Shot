@@ -108,6 +108,21 @@ class userDM{
         });
     }
 
+    follow(username, follower, fn){
+        const followA = followers => {
+            follower.push(follower);
+            followers = JSON.stringify(followers);
+            pool.query(`UPDATE ${tableName} SET follower = ? WHERE username = ?`, [followers, username], (error, result) => {
+                fn(error, result);
+            })
+        }
+
+        this.findUserByName(username, (error, result) => {
+            if(error) return fn(error, null);
+            followA(result.username);
+        })
+    }
+
     login(username, password, fn){
         this.findUserByName(username, (err, result) => {
             if(err) return fn('User not already exists', null);

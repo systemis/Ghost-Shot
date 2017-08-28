@@ -22,6 +22,14 @@ class userMG{
         })
     }
 
+    follow(username, fn){
+        $.ajax({
+            url: `/user/follow/${username}`, type: `POST`, 
+            success: data => fn(data.err, data.result),
+            error: err => fn(JSON.stringify(err), null)
+        })
+    }
+
     isEdit(id, fn){
         $.ajax({
             url: `/user/isEdit/${id}`, type: `POST`,

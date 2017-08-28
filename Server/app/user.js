@@ -23,4 +23,16 @@ module.exports = app => {
             res.send({err: error, result: result});
         })
     })
+
+    app.post(`/user/follow/:username`, (req, res) => {
+        if(!req.isAuthenticated()) return res.send({err: 'Not login', result: null});
+        const username = req.params.username;
+        const follower = {
+            id: req.user.id,
+            username: req.user.username, 
+            avatar: req.user.avatar
+        }
+
+        userDM.follow(username, follower, (error, result) => res.send({err: error, result: result}));
+    })
 }
