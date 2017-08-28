@@ -3,6 +3,7 @@ import {connect}            from 'react-redux';
 import UserListField        from '../Fields/users-list-field.js';
 import PostValueCard        from './Components/post-value-card.js';
 import CommentRow           from './Components/comment-row.js';
+import userMG               from '../../js/user.js';
 import postMG               from '../../js/posts.js';
 import './postcard-style.css';
 
@@ -37,35 +38,53 @@ class PostCard extends Component {
         })
     }
 
-    likePost(){
-        var old   = this.state.isLike;
-        postMG.likeOrUnLike(this.props.postInfo.id, (error, result) => {
-            if(error) return;
+    whenLogin(callBack){
+        userMG.getClientInfo((error, result) => {
+            if(error) {
+                alert(`Bạn chưa đăng nhập, hãy đăng nhập để tiếp tục !`)
+                return window.location.href = '/sign-in';
+            }
 
-            this.setState({isLike: !old});
-            this.setState({likes: result});
+            callBack();
         })
+    }
+
+    likeOrUnlikePost(){
+        const like = () => {
+            var old   = this.state.isLike;
+            postMG.likeOrUnLike(this.props.postInfo.id, (error, result) => {
+                if(error) return;
+
+                this.setState({isLike: !old});
+                this.setState({likes: result});
+            })
+        }
+
+        this.whenLogin(like.bind(this));
     }
 
     postComment(e){
         e.preventDefault();
-        const field   = document.getElementById(`post-comment-field-${this.props.postInfo.id}`);
-        const comment = field.value;
-        postMG.addNewComment(this.props.postInfo.id, comment, (error, comment) => {
-            if(error) {
-                alert(`Có lỗi xảy ra: ${error}, vui long thử lại sau !`);
-                return window.location.reload();
-            }
+        const newCommnet = () => {
+            const field   = document.getElementById(`post-comment-field-${this.props.postInfo.id}`);
+            const comment = field.value;
+            postMG.addNewComment(this.props.postInfo.id, comment, (error, comment) => {
+                if(error) {
+                    alert(`Có lỗi xảy ra: ${error}, vui long thử lại sau !`);
+                    return window.location.reload();
+                }
 
-            var old = this.state.comments;
-            old.push(comment);
-            
-            this.setState({comments: old});
-            this.scroll();
-            
-            field.value = '';
-        })
-        
+                var old = this.state.comments;
+                old.push(comment);
+                
+                this.setState({comments: old});
+                this.scroll();
+                
+                field.value = '';
+            })
+        }
+
+        this.whenLogin(newCommnet.bind(this));
         return false;
     }
 
@@ -138,7 +157,7 @@ class PostCard extends Component {
                 </div>
                 <div 
                     className="show-image"
-                    onDoubleClick={this.likePost.bind(this)}>
+                    onDoubleClick={this.likeOrUnlikePost.bind(this)}>
                     <PostValueCard 
                         postId={this.props.postInfo.id}
                         isShowInDialog={this.props.isShowInDialog}
@@ -146,7 +165,7 @@ class PostCard extends Component {
                 </div>
                 <div className="show-tools">
                     <ul className='tools-manager-post-card'>
-                        <li onClick={this.likePost.bind(this)}>
+                        <li onClick={this.likeOrUnlikePost.bind(this)}>
                             <i 
                                 style={styleForLikeBtn}
                                 className="fa fa-heart"></i>
