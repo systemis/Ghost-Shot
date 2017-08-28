@@ -50,7 +50,8 @@ class postsDM{
             comments.push(comment);
             comments = JSON.stringify(comments);
             pool.query(`UPDATE ${tableName} SET comments = ? WHERE id = ?`, [comments, id], (err, rs) => {
-                return fn(err, rs);
+                if(err) return fn(err, null);
+                return fn(err, comment);
             })
         })
     }

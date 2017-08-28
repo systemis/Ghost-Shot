@@ -51,22 +51,14 @@ class PostCard extends Component {
         e.preventDefault();
         const field   = document.getElementById(`post-comment-field-${this.props.postInfo.id}`);
         const comment = field.value;
-        postMG.addNewComment(this.props.postInfo.id, comment, (error, result) => {
+        postMG.addNewComment(this.props.postInfo.id, comment, (error, comment) => {
             if(error) {
                 alert(`Có lỗi xảy ra: ${error}, vui long thử lại sau !`);
                 return window.location.reload();
             }
 
             var old = this.state.comments;
-            old.push({
-                comment: comment, 
-                user: {
-                    id: this.props.clientInfo.id, 
-                    username: this.props.clientInfo.username, 
-                    avatar: this.props.clientInfo.avatar
-                }
-            })
-
+            old.push(comment);
             this.setState({comments: old});
             field.value = '';
         })

@@ -81,7 +81,7 @@ class UserInfoPage extends Component {
     showFollowing(){
         console.log('Show following');
     }
-    
+
     componentWillMount() {
         if(window.location.href.indexOf('/user/') !== -1){
             const userName = this.props.match.params.username;
