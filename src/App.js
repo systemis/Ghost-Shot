@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {connect}    from 'react-redux';
 import $            from 'jquery';
 import userMG       from './js/user.js';
+import RootRoute    from './root.js';
 import HomePage     from './Pages/Home/home.js';
 import SignInPage   from './Pages/Login/sign-in.js';
 import SignUpPage   from './Pages/Login/sign-up.js';
@@ -58,10 +59,11 @@ class App extends Component {
       <div id="App">
         <Router>
           <div id="main-layout">
-            <Route path='/home'    component={HomePage} />
-            <Route path='/user/:username' component={UserInfoPage} />
+            <Route path='/' exact    component={RootRoute} />
+            <Route path='/home'      component={HomePage} />
             <Route path='/sign-in'   component={SignInPage} />
             <Route path='/sign-up'   component={SignUpPage} />
+            <Route path='/user/:username' component={UserInfoPage} />
             <Footer />
           </div>
         </Router>

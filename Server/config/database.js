@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+
 module.exports = mysql.createConnection({
     connectionLimit: 1000,
     host: 'localhost',
