@@ -38,6 +38,7 @@ class PostCard extends Component {
         })
     }
 
+    // TO DO something for someone post when user loged in app 
     whenLogin(callBack){
         userMG.getClientInfo((error, result) => {
             if(error) {
@@ -235,15 +236,6 @@ class PostCard extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        // if(nextProps.clientInfo !== this.props.clientInfo || 
-        //     nextProps.postInfo.id !== this.props.postInfo.id){
-        //         nextState.likes.map((user, index) => {
-        //             if(user.id === nextProps.clientInfo.id){
-        //                 this.setState({isLike: true});
-        //         }
-        //     })
-        // }
-
         this.scroll();
         return true;        
     }
