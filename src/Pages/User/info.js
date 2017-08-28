@@ -59,16 +59,13 @@ class UserInfoPage extends Component {
     }
 
     getPostsInfo(postsId){
-        const addNewPost = post => {
-            var odl = [...this.state.posts];
-            odl.push(post);
-            this.setState({posts: odl});
-        }
-
+        var posts = [];
         postsId.map((id, index) => {
             postsMG.findPostById(id, (error, result) => {
-                if(!error){
-                    addNewPost(result);
+                if(error) return index += 1;
+                posts.push(result);
+                if(index === postsId.length - 1){
+                    this.setState({posts: posts});
                 }
             })
         })
@@ -90,6 +87,7 @@ class UserInfoPage extends Component {
                     return console.log(`Error when get user info by userName: ${err}`);
                 }
 
+                console.log(result);
                 this.props.dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: result});
             })
         }
@@ -174,7 +172,7 @@ class UserInfoPage extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if(nextProps.info && nextProps.info !== this.props.info){
+        if(nextProps.info.id !== this.props.info.id){
             this.getPostsInfo(nextProps.info.posts);
         }
 

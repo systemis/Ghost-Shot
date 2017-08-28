@@ -22,9 +22,9 @@ class userMG{
         })
     }
 
-    follow(username, fn){
+    followOrUnfollow(username, fn){
         $.ajax({
-            url: `/user/follow/${username}`, type: `POST`, 
+            url: `/user/followOrUnfollow/${username}`, type: `POST`, 
             success: data => fn(data.err, data.result),
             error: err => fn(JSON.stringify(err), null)
         })

@@ -108,18 +108,40 @@ class userDM{
         });
     }
 
-    follow(username, follower, fn){
-        const followA = followers => {
-            follower.push(follower);
-            followers = JSON.stringify(followers);
-            pool.query(`UPDATE ${tableName} SET follower = ? WHERE username = ?`, [followers, username], (error, result) => {
-                fn(error, result);
+    followOrUnfollow(usFollower, usBeFollow, fn){
+        var setFOF = (fofChoice, fof, forDH, username, cb) => {
+            var isAdd = -1;
+            for(var i = 0, length = fof.length; i < length; i++) {
+                if(fof[i] === forDH){
+                    isAdd = i;
+                    i = length;
+                }
+            }
+
+            if(isAdd !== -1){
+                fof.splice(isAdd, 1);
+            }else{
+                fof.push(forDH);
+            }
+
+            fof = JSON.stringify(fof);
+            pool.query(`UPDATE ${tableName} SET ${fofChoice} = ? WHERE username = ?`, [fof, username], (error, result) => {
+                if(error) return fn(error, null);
+                
+                cb(JSON.parse(fof));
             })
         }
-
-        this.findUserByName(username, (error, result) => {
+        
+        this.findUserByName(usBeFollow, (error, result) => {
             if(error) return fn(error, null);
-            followA(result.username);
+            
+            setFOF('follower', result.follower, usFollower, usBeFollow, fof1 => {
+            })
+            this.findUserByName(usFollower, (err, rs) => {
+                setFOF('following', rs.following, usBeFollow, usFollower, fof2 => {
+                    fn(null, fof2);
+                }); 
+            });
         })
     }
 

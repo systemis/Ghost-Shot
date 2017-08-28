@@ -54,4 +54,9 @@ server.listen(PORT, () => {
     // })
     // userDM .dropTable((error, result) => console.log(error));
     // postsDM.dropTable((error, result) => console.log(error));
+
+    // userDM.followOrUnfollow('Jobs Pham', 'systemis', (error, result) => {
+    //     console.log(error);
+    //     console.log(result);
+    // })
 })

@@ -24,15 +24,11 @@ module.exports = app => {
         })
     })
 
-    app.post(`/user/follow/:username`, (req, res) => {
+    app.post(`/user/followOrUnfollow/:username`, (req, res) => {
         if(!req.isAuthenticated()) return res.send({err: 'Not login', result: null});
         const username = req.params.username;
-        const follower = {
-            id: req.user.id,
-            username: req.user.username, 
-            avatar: req.user.avatar
-        }
+        const follower = req.user.username;
 
-        userDM.follow(username, follower, (error, result) => res.send({err: error, result: result}));
+        userDM.followOrUnfollow(follower, username, (error, result) => res.send({err: error, result: result}));
     })
 }
