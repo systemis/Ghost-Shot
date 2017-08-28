@@ -18,7 +18,7 @@ class PostCard extends Component {
     }
 
     scroll(){
-        const field = document.getElementById(`show-comments-group-${this.props.postInfo.id}`);
+        const field     = document.getElementById(`show-comments-group-${this.props.postInfo.id}`);
         field.scrollTop = field.scrollHeight;
     }
 
@@ -45,7 +45,6 @@ class PostCard extends Component {
 
     postComment(e){
         e.preventDefault();
-        
         const field   = document.getElementById(`post-comment-field-${this.props.postInfo.id}`);
         const comment = field.value;
         postMG.addNewComment(this.props.postInfo.id, comment, (error, result) => {
@@ -113,7 +112,9 @@ class PostCard extends Component {
                         {this.props.postInfo.user.username}
                     </a>
                 </div>
-                <div className="show-image">
+                <div 
+                    className="show-image"
+                    onDoubleClick={this.likePost.bind(this)}>
                     <PostValueCard 
                         postId={this.props.postInfo.id}
                         isShowInDialog={this.props.isShowInDialog}
@@ -183,7 +184,6 @@ class PostCard extends Component {
             
                 if(!postCard) return;
                 var height = (childGroup.clientHeight - postCard.clientHeight)/2+ 'px';
-                console.log(height);
                 childGroup.style.paddingTop = height;
             }
 
