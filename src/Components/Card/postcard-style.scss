@@ -94,7 +94,7 @@
     }
 
     & .show-like-count{
-        padding-left: 7px;
+        padding-left: 0;
         padding-top: 10px;
         & button{
             border: none;
@@ -105,6 +105,11 @@
                 color: darkgray;
             }
         }
+ 
+       @media screen and (max-width: 768px) {
+           font-size: 14px;
+           padding-top: 4px;
+       }
     }
 
     & .more-comment-btn{
@@ -137,6 +142,11 @@
             & .show-comment{
                 padding-left: 4px;
                 font-size: 16px;
+            }
+
+            @media screen and (max-width: 768px) {
+                & .show-username {font-size: 15px;}
+                & .show-comment {font-size: 14px;}
             }
         }
     }
