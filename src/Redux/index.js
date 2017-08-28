@@ -15,8 +15,8 @@ const reducer = redux.combineReducers({
     screenVersion: screenVersionReducer,
     dialogInfo: uiReducers.dialogReducer,
     callbacksResizeScreen: uiReducers.callbacksResizeScreenReducer,
-    clientInfo: userReducers.clientInfoReducers,
-    userSelectedInfo: userReducers.usserSelectedInfoReducer
+    clientInfo: userReducers.clientInfoReducer,
+    userSelectedInfo: userReducers.userSelectedInfoReducer
 })
 
 const store = redux.createStore(reducer);

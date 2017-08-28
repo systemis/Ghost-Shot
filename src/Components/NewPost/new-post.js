@@ -24,7 +24,6 @@ class PostGroup extends Component {
         var photos = [...this.state.photo];
         if(photos.length >= 1 && photos[photos.length - 1] === ''){
             photos.splice(photos.length - 1, 1);
-            console.log('photos');
         }
         
         this.setState({photo: [...photos, link]});
@@ -48,8 +47,6 @@ class PostGroup extends Component {
         }
 
         postsMG.newPost(status, photos, (error, result) => {
-            console.log(result);
-            console.log(error);
             if(!error){
                 window.location.reload();
             }
@@ -144,7 +141,6 @@ class PostGroup extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log(nextState.photo);
         return true;
     }
 }

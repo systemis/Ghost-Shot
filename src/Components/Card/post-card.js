@@ -216,16 +216,15 @@ class PostCard extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if(nextProps.clientInfo !== this.props.clientInfo || 
-            nextProps.postInfo.id !== this.props.postInfo.id){
-                nextState.likes.map((user, index) => {
-                    if(user.id === nextProps.clientInfo.id){
-                        this.setState({isLike: true});
-                }
-            })
-        }
+        // if(nextProps.clientInfo !== this.props.clientInfo || 
+        //     nextProps.postInfo.id !== this.props.postInfo.id){
+        //         nextState.likes.map((user, index) => {
+        //             if(user.id === nextProps.clientInfo.id){
+        //                 this.setState({isLike: true});
+        //         }
+        //     })
+        // }
 
-        this.render();
         this.scroll();
         return true;        
     }
@@ -234,6 +233,6 @@ class PostCard extends Component {
 export default connect(state => {
     return {
         screenVersion: state.screenVersion,
-        clientInfo: state.userSelectedInfo,
+        clientInfo: state.clientInfo,
     }
 })(PostCard);

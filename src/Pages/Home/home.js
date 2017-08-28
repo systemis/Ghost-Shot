@@ -56,24 +56,6 @@ class HomePage extends Component {
         }
     }
 
-    getClientInfo(){    
-        const {dispatch} = this.props;
-        userMG.getClientInfo((err, result) => {
-            if(err) {
-                dispatch({type: `CHANGE_CLIENT_INFO`, value: ''});
-                dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: ''});
-                return;
-            }
-
-            dispatch({type: `CHANGE_CLIENT_INFO`, value: result});
-            dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: result});
-        })
-    }
-
-    componentWillMount() {
-        this.getClientInfo();
-    }
-
     render() {
         return (
             <div className="home-page">
@@ -82,9 +64,9 @@ class HomePage extends Component {
                     <div className="show-posts">
                         {this.state.posts.map((post, index) => {
                             return <PostCard 
-                                        key={index} 
-                                        postInfo={post} 
-                                        isShowinDialog={false}/>
+                                    key={index} 
+                                    postInfo={post} 
+                                    isShowinDialog={false}/>
                         })}
                     </div>
                 </div>

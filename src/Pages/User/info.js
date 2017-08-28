@@ -185,6 +185,7 @@ class UserInfoPage extends Component {
 export default connect(state => {
     return {
         screenVersion: state.screenVersion,
+        clientInfo: state.clientInfo,
         info: state.userSelectedInfo
     }
 })(UserInfoPage);

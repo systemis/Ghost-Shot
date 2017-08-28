@@ -23,7 +23,7 @@ class UsersListField extends Component {
                 <div className="header">
                     Lượt thích 
                 </div>
-                {this.state.usersInfo.map((value, index) => {
+                {this.props.data.map((value, index) => {
                     return <UserItem key={index} data={value} />
                 })}
             </div>

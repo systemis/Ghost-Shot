@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {connect}    from 'react-redux';
 import $            from 'jquery';
+import userMG       from './js/user.js';
 import HomePage     from './Pages/Home/home.js';
 import SignInPage   from './Pages/Login/sign-in.js';
 import SignUpPage   from './Pages/Login/sign-up.js';
@@ -31,6 +32,25 @@ class App extends Component {
     this.props.callbacksResizeScreen.map((cb, index) => {
       cb();
     })
+  }
+
+  getClientInfo(){    
+      const {dispatch} = this.props;
+      userMG.getClientInfo((err, result) => {
+        if(err) {
+            dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: ''});
+            dispatch({type: `CHANGE_CLIENT_INFO`, value: ''});
+            return;
+        }
+
+        dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: result});
+        dispatch({type: `CHANGE_CLIENT_INFO`, value: result});
+      })
+  }
+
+  
+  componentWillMount() {
+    this.getClientInfo();    
   }
 
   render() {
@@ -63,6 +83,7 @@ class App extends Component {
 export default connect(state => {
   return {
     screenVersion: state.screenVersion,
-    callbacksResizeScreen: state.callbacksResizeScreen
+    callbacksResizeScreen: state.callbacksResizeScreen,
+    clientInfo: state.clientInfo,
   }
 })(App);
