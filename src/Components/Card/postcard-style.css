@@ -9,20 +9,38 @@
   .post-card.in-dialog {
     margin: 0;
     padding: 0; }
-  .post-card .show-user-info {
-    padding-top: 10px;
-    padding-left: 7px;
-    padding-bottom: 10px; }
-    .post-card .show-user-info .show-user-avatar {
-      border-radius: 50%;
-      width: 50px; }
-    .post-card .show-user-info .show-user-username {
-      color: black;
-      text-decoration: none;
-      padding-left: 15px; }
-      .post-card .show-user-info .show-user-username:hover {
-        color: gray;
-        text-decoration: none; }
+    .post-card.in-dialog .header .show-user-info {
+      float: left;
+      width: 90%;
+      height: 50px;
+      overflow: scroll; }
+    .post-card.in-dialog .header .show-exit-btn {
+      float: left;
+      width: 10%;
+      line-height: 50px;
+      text-align: center; }
+      .post-card.in-dialog .header .show-exit-btn button {
+        outline: none;
+        border: none;
+        background: transparent;
+        font-size: 16px; }
+  .post-card .header {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 10px;
+    padding-top: 10px; }
+    .post-card .header .show-user-info {
+      padding-left: 7px; }
+      .post-card .header .show-user-info .show-user-avatar {
+        border-radius: 50%;
+        width: 50px; }
+      .post-card .header .show-user-info .show-user-username {
+        color: black;
+        text-decoration: none;
+        padding-left: 15px; }
+        .post-card .header .show-user-info .show-user-username:hover {
+          color: gray;
+          text-decoration: none; }
   .post-card .show-image .show-image-post {
     width: 100%;
     background-repeat: no-repeat;

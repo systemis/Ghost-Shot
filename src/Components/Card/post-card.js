@@ -17,6 +17,10 @@ class PostCard extends Component {
         }
     }
 
+    exitGroup(){
+        this.props.dispatch({type: 'CHANGE_DIALOG', value: ''});
+    }
+
     scroll(){
         const field     = document.getElementById(`show-comments-group-${this.props.postInfo.id}`);
         field.scrollTop = field.scrollHeight;
@@ -92,6 +96,17 @@ class PostCard extends Component {
             }
         }
 
+        var exitGroup = () => {
+            if(this.props.className !== 'in-dialog') return;
+            return (
+                <div className="show-exit-btn">
+                    <button onClick={this.exitGroup.bind(this)}>
+                        <span className="fa fa-times"></span>
+                    </button>
+                </div>
+            )
+        }
+
         var styleForLikeBtn = {color: 'black'};
         if(this.state.isLike){
             styleForLikeBtn.color = 'red';
@@ -101,16 +116,19 @@ class PostCard extends Component {
             <div 
                 className={`post-card ${this.props.className}`}
                 id={this.props.id}>
-                <div className="show-user-info">
-                    <img 
-                        src={this.props.postInfo.user.avatar} 
-                        alt="user avatar" 
-                        className="show-user-avatar"/>
-                    <a 
-                        href={`/${this.props.postInfo.user.username}`}
-                        className="show-user-username">
-                        {this.props.postInfo.user.username}
-                    </a>
+                <div className="header row">
+                    <div className="show-user-info">
+                        <img 
+                            src={this.props.postInfo.user.avatar} 
+                            alt="user avatar" 
+                            className="show-user-avatar"/>
+                        <a 
+                            href={`/${this.props.postInfo.user.username}`}
+                            className="show-user-username">
+                            {this.props.postInfo.user.username}
+                        </a>
+                    </div>
+                    {exitGroup()}
                 </div>
                 <div 
                     className="show-image"
