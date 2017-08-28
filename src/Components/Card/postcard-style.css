@@ -27,7 +27,8 @@
     margin: 0;
     padding: 0;
     padding-bottom: 10px;
-    padding-top: 10px; }
+    padding-top: 10px;
+    border-bottom: 1px solid #eeeeee; }
     .post-card .header .show-user-info {
       padding-left: 7px; }
       .post-card .header .show-user-info .show-user-avatar {

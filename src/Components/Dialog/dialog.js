@@ -16,43 +16,13 @@ class DialogField extends Component {
         document.getElementById('main-layout') .clientHeight + 90 + 'px';
     }
 
-    setPaddingForChildGroup(id){
-        var newHeight = () => {
-            var childGroup = document.getElementById(`child-group-dialog`);
-            var postCard   = document.getElementById(id);
-        
-            if(!postCard) return;
-            var height = (childGroup.clientHeight - postCard.clientHeight)/2+ 'px';
-            console.log(height);
-            childGroup.style.paddingTop = height;
-        }
-    }
-
-    compriseToHandlerWithBundle(){
-        const dialogInfo = this.props.dialogInfo
-        const bundle     = dialogInfo.bundle;
-        
-        if(!bundle) return;
-        switch(bundle.type){
-            case `POST_ID`:
-                return this.setPaddingForChildGroup(bundle.idDom);
-            default: 
-                return;
-        }
-    }
-
     mainLayout(){
         if(!this.props.dialogInfo){return ;}
 
         return this.props.dialogInfo.component;
     }
 
-    componentWillMount(){
-        
-    }
-
     render() {
-        if(this.props.dialogInfo) this.compriseToHandlerWithBundle();
         return (
             <div id="dialog-field">
                 <div className="layout">
