@@ -29,6 +29,9 @@ module.exports = app => {
         const username = req.params.username;
         const follower = req.user.username;
 
-        userDM.followOrUnfollow(follower, username, (error, result) => res.send({err: error, result: result}));
+        userDM.followOrUnfollow(follower, username, (error, result) => {
+            req.user.following = result
+            res.send({err: error, result: result})
+        });
     })
 }

@@ -137,12 +137,13 @@ class userDM{
             
             setFOF('follower', result.follower, usFollower, usBeFollow, fof1 => {
             })
-            this.findUserByName(usFollower, (err, rs) => {
-                setFOF('following', rs.following, usBeFollow, usFollower, fof2 => {
-                    fn(null, fof2);
-                }); 
-            });
         })
+        
+        this.findUserByName(usFollower, (err, rs) => {
+            setFOF('following', rs.following, usBeFollow, usFollower,  fof2 => {
+                return fn(null, fof2);
+            }); 
+        });
     }
 
     login(username, password, fn){
