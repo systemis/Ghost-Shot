@@ -59,7 +59,10 @@ class PostCard extends Component {
 
             var old = this.state.comments;
             old.push(comment);
+            
             this.setState({comments: old});
+            this.scroll();
+            
             field.value = '';
         })
         
@@ -97,6 +100,17 @@ class PostCard extends Component {
                     </button>
                 </div>
             )
+        }
+
+        var commentsList = () => {
+            var comments = [];
+            var indexST  = this.state.comments.length - 1 - this.state.countToShowComment;
+            if(indexST < 0) indexST = 0;
+            for(var i = indexST; i < this.state.comments.length; i++) {
+                comments.push(this.state.comments[i]);
+            }
+            
+            return comments;
         }
 
         var styleForLikeBtn = {color: 'black'};
@@ -154,14 +168,13 @@ class PostCard extends Component {
                             comment: this.props.postInfo.status,
                             user: {
                                 username: this.props.postInfo.user.username, 
-                            },
-                        }
-                    } />
-                    {this.state.comments.map((comment, index) => {
-                        if(index >= this.state.countToShowComment){ return; }
+                            },}} 
+                        />
+                    
+                    {commentsList().map((comment, index) => {
                         return (
                             <CommentRow comment={comment} key={index} />
-                        )
+                        ) 
                     })}
                 </div>
                 <div className="show-post-comment-field">
