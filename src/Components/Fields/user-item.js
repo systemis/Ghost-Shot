@@ -8,39 +8,78 @@ class UserItem extends Component {
     constructor(props){
         super(props);
         this.state = {
-            fof: -1
+            fof: -1,
+            clFollowing: [], 
+            info: '',
         }
     }
 
-    followOrUnfollow(e){
+    getUserInfo(){
+        userMG.findUserByName(this.props.data.username, (error, result) => {
+            if(error) return ;
+            this.setState({info: result});
+        })
+    }
+
+    followOrUnfollow(cb){
         userMG.followOrUnfollow(this.props.data.username, (error, result) => {
-            console.log(error);
-            console.log(result);
+            cb(result);
         })
     }
 
     btnFOF(){
-        if(this.props.data.id === this.props.clientInfo.id) return ;
+        var bundleProperty = {};
+        var clientUs       = this.props.clientInfo.username;
+        var userUS         = this.props.data.username;
 
+        if(userUS === clientUs) { return ; }
+        if(this.state.clFollowing.indexOf(userUS) >= 0){
+            bundleProperty.text = 'UnFollow';
+        }else{
+            bundleProperty.text = 'Follow';
+        }
+        
+        bundleProperty.cb = following => {
+            var clInfo = this.props.clientInfo;
+            clInfo.following = following;
+            
+            this.setState({clFollowing: following});
+            this.props.dispatch({type: `CHANGE_CLIENT_INFO`, value: clInfo});
+        }
+
+        return (
+            <button 
+                className="btn-follow-user" 
+                onClick={() => this.followOrUnfollow(bundleProperty.cb.bind(this))}>
+                    {bundleProperty.text}
+            </button>
+        )
+    }
+
+    componentWillMount() {
+        this.setState({clFollowing: this.props.clientInfo.following});
+        this.getUserInfo();        
     }
 
     render() {
         return (
             <div className="user-item-users-list-field row">
                 <div className="show-avatar">
-                    <img src={this.props.data.avatar} alt="User avatar"/>
+                    <img src={this.state.info.avatar} alt="User avatar"/>
                 </div>
                 <div className="show-username">
-                    <p>{this.props.data.username}</p>
+                    <p>{this.state.info.username}</p>
                 </div>
                 
                 <div className="show-btn-follow">
-                    <button className="btn-follow-user" onClick={this.followOrUnfollow.bind(this)}>
-                        Follow
-                    </button>
+                    {this.btnFOF()}
                 </div>
             </div>
         );
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return true;
     }
 }
 

@@ -12,8 +12,8 @@ class userDM{
         const existsNamelError = () => fn('Username already exists!', null);
         const newUser = id => {
             bundle.id = id;
-            bundle.follower  = '[]';
-            bundle.following = '[]';
+            bundle.follower  = `[]`;
+            bundle.following = `[]`;
             bundle.posts     = `[]`;
             pool.query(`INSERT INTO ${tableName} SET ?`, bundle, (err, result) => {
                 console.log('Error when new user with auth local: ' + err);
@@ -36,8 +36,8 @@ class userDM{
     findOrCreate(bundle, fn){
         const newUser = id => {
             bundle.id = id;
-            bundle.follower  = '[]';
-            bundle.following = '[]';
+            bundle.follower  = `[]`;
+            bundle.following = `[]`;
             bundle.posts     = `[]`;
             pool.query(`INSERT INTO ${tableName} SET ?`, bundle, (err, result) => {
                 if(err) {

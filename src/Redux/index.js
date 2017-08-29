@@ -21,7 +21,7 @@ const reducer = redux.combineReducers({
 
 const store = redux.createStore(reducer);
 store.subscribe(() => {
-    console.log(store.getState().screenVersion);
+    console.log(store.getState().clientInfo);
 })
 
 export default store;
