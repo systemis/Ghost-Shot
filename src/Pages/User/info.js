@@ -20,6 +20,8 @@ class UserInfoPage extends Component {
 
         this.state = {
             isExists: false, 
+            clFollowing: [],
+            userFollower: [],
             posts: [],
             info:{
                 username:  username(),
@@ -79,6 +81,52 @@ class UserInfoPage extends Component {
         console.log('Show following');
     }
 
+
+    followOrUnfollow(e){
+        userMG.followOrUnfollow(this.props.info.username, (error, following) => {
+            var userFollower = this.state.userFollower;
+            var clFollowing  = this.state.clFollowing;
+
+            if(following.length > clFollowing.length){
+                userFollower.push(this.props.clientInfo.username);
+            }else{
+                userFollower.splice(clFollowing.indexOf(this.props.clientInfo.username, 1));
+            }
+            
+            clFollowing = following;
+            this.setState({clFollowing: following});
+            this.setState({userFollower: userFollower});
+        })
+    }
+
+    followBtn(){
+        var text      = 'follow';
+        var clientUS  = this.props.clientInfo.username;
+        var userUS    = this.props.info.username;
+        var following = this.state.clFollowing;
+
+        if(!clientUS) return ;
+        if(clientUS === userUS) return ;
+        if(following.indexOf(userUS) >= 0) text = 'UnFollow';
+        
+        return (
+             <span className="btn-follow-user">
+                <button onClick={this.followOrUnfollow.bind(this)}> 
+                        {text}
+                </button>
+            </span>
+        )
+    }
+
+    editBtn(){
+        userMG.isEdit(this.props.info.id, isEdit => {
+            if(!isEdit){
+                return document.getElementById('show-edit-btn').innerHTML = ''
+            } 
+            document.getElementById('show-edit-btn').innerHTML = '<i class="fa fa-pencil"></i>'
+        })
+    }
+
     componentWillMount() {
         if(window.location.href.indexOf('/user/') !== -1){
             const userName = this.props.match.params.username;
@@ -94,19 +142,12 @@ class UserInfoPage extends Component {
     }
 
     render() {
-        // if(this.props.info.id === '0'){
-        //     return (
-        //         <div className="show-label-not-exists-user">
-        //             <h1 style={{textAlign: 'center', lineHeight: '100vh'}}>User not exists</h1>
-        //         </div>
-        //     )
-        // }
-
-        const editBtn = () => {
-            userMG.isEdit(this.props.info.id, isEdit => {
-                if(!isEdit) return;
-                document.getElementById('show-edit-btn').innerHTML = '<i class="fa fa-pencil"></i>'
-            })
+        if(this.props.info.id === '0'){
+            return (
+                <div className="show-label-not-exists-user">
+                    <h1 style={{textAlign: 'center', lineHeight: '100vh'}}>User not exists</h1>
+                </div>
+            )
         }
 
         return (
@@ -121,9 +162,12 @@ class UserInfoPage extends Component {
                                 <div className="row">
                                     <ul className="tools-manager">
                                         <li className="show-username">
-                                            {this.props.info.username}
+                                            <span className="show-name"> 
+                                                {this.props.info.username} 
+                                            </span>
+                                            {this.followBtn()}
                                             <span id="show-edit-btn">
-                                                {editBtn()}
+                                                {this.editBtn()}
                                             </span>
                                         </li>
                                     </ul>        
@@ -142,7 +186,7 @@ class UserInfoPage extends Component {
                                         <li onClick={this.showFollowers}>
                                             <button>
                                                 <strong>
-                                                    {this.props.info.follower.length}
+                                                    {this.state.userFollower.length}
                                                 </strong> Follower
                                             </button>
                                         </li>
@@ -172,8 +216,13 @@ class UserInfoPage extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
+        if(nextProps.clientInfo.id !== this.props.clientInfo.id){
+            this.setState({clFollowing: nextProps.clientInfo.following});
+        }
+
         if(nextProps.info.id !== this.props.info.id){
             this.getPostsInfo(nextProps.info.posts);
+            this.setState({userFollower: nextProps.info.follower});
         }
 
         return true;

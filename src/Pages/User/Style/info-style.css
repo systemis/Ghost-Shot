@@ -26,11 +26,22 @@
           list-style-type: none; }
           .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li {
             float: left; }
-            .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username {
+            .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username .show-name {
               font-size: 30px; }
-              .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username #show-edit-btn .fa {
-                font-size: 25px;
-                padding-left: 10px; }
+            .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username .btn-follow-user button {
+              font-size: 20px;
+              padding: 0 30px;
+              margin-left: 20px;
+              border-radius: 0;
+              border: none;
+              flex: 1;
+              background: white;
+              color: black;
+              border: 1px solid #eeeeee;
+              outline: none; }
+            .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username #show-edit-btn .fa {
+              font-size: 25px;
+              padding-left: 10px; }
       .user-info-page .layout .show-info .show-user-info .show-about-env {
         width: 100%;
         margin-top: 15px; }

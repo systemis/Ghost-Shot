@@ -33,7 +33,7 @@ class PostCard extends Component {
             value: {
                 type: 'user_list',
                 bundle: null,
-                component: <UserListField data={this.props.postInfo.likes}/>
+                component: <UserListField data={this.state.likes}/>
             }
         })
     }

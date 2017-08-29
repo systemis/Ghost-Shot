@@ -39,7 +39,25 @@
                         & li {
                             float: left;
                             &.show-username{
-                                font-size: 30px;
+                                & .show-name {
+                                    font-size: 30px;
+                                }
+
+                                & .btn-follow-user {
+                                    & button {
+                                        font-size: 20px;
+                                        padding: 0 30px;
+                                        margin-left: 20px;
+                                        border-radius: 0;
+                                        border: none;
+                                        flex: 1;
+                                        background: white;
+                                        color: black;
+                                        border: 1px solid #eeeeee;
+                                        outline: none;
+                                    }
+                                }
+
                                 & #show-edit-btn{
                                     & .fa{
                                         font-size: 25px;
