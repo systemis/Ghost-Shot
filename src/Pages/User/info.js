@@ -3,9 +3,6 @@ import {connect}            from 'react-redux';
 import PostItem             from './post-item.js';
 import userMG               from '../../js/user.js';
 import postsMG              from '../../js/posts.js';
-import image                from '../../image/ex-avatar.png';
-import ex1                  from '../../image/ex-w-1.png';
-import ex2                  from '../../image/ex-w-2.png';
 import './Style/info-style.css';
 class UserInfoPage extends Component {
     constructor(props){
@@ -24,38 +21,38 @@ class UserInfoPage extends Component {
             userFollower: [],
             posts: [],
             info:{
-                username:  username(),
-                follower: [11, 12],
-                following: [22, 23],
-                avatar: '',
-                posts: [{
-                    id: 'exavs',
-                    value: ex1
-                }, {
-                    id: 'exasss',
-                    value: ex1
-                }, {
-                    id: 'exadsdsss',
-                    value: ex2
-                }, {
-                    id: 'exaso77ss',
-                    value: ex2
-                }, {
-                    id: 'exdsasss',
-                    value: ex2
-                }, {
-                    id: 'exdasdadsdsdsss',
-                    value: ex2
-                }, {
-                    id: 'exdasdaaasss',
-                    value: ex2
-                }, {
-                    id: 'exdasdasa3ss',
-                    value: ex2
-                }, {
-                    id: 'exdasdassdss',
-                    value: ex2
-                }],
+                // username:  username(),
+                // follower: [11, 12],
+                // following: [22, 23],
+                // avatar: '',
+                // posts: [{
+                //     id: 'exavs',
+                //     value: ex1
+                // }, {
+                //     id: 'exasss',
+                //     value: ex1
+                // }, {
+                //     id: 'exadsdsss',
+                //     value: ex2
+                // }, {
+                //     id: 'exaso77ss',
+                //     value: ex2
+                // }, {
+                //     id: 'exdsasss',
+                //     value: ex2
+                // }, {
+                //     id: 'exdasdadsdsdsss',
+                //     value: ex2
+                // }, {
+                //     id: 'exdasdaaasss',
+                //     value: ex2
+                // }, {
+                //     id: 'exdasdasa3ss',
+                //     value: ex2
+                // }, {
+                //     id: 'exdasdassdss',
+                //     value: ex2
+                // }],
             }
         }
     }
@@ -108,7 +105,7 @@ class UserInfoPage extends Component {
         })
     }
 
-    followBtn(){
+    btnFOF(){
         var text      = 'follow';
         var clientUS  = this.props.clientInfo.username;
         var userUS    = this.props.info.username;
@@ -174,7 +171,7 @@ class UserInfoPage extends Component {
                                             <span className="show-name"> 
                                                 {this.props.info.username} 
                                             </span>
-                                            {this.followBtn()}
+                                            {this.btnFOF()}
                                             <span id="show-edit-btn">
                                                 {this.editBtn()}
                                             </span>

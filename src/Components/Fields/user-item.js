@@ -34,9 +34,12 @@ class UserItem extends Component {
         var clientUs        = this.props.clientInfo.username;
         var userUS          = this.props.data.username;
         var clientFollowing = this.state.clFollowing;
+
+        // Return null if not login 
+        if(!clientUs) return;
         
         // Return null if client is user being opened
-        if(userUS === clientUs) { return ; }
+        if(userUS === clientUs) return;
         
         // Return unfollow if client followed user
         if(clientFollowing.indexOf(userUS) >= 0){ 
