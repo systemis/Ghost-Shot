@@ -81,21 +81,30 @@ class UserInfoPage extends Component {
         console.log('Show following');
     }
 
+    // nextCLF: next client following 
+    updateUserFollower(nextCLF){
+        var userInfo     = {...this.props.info};
+        var clFollowing  = this.state.clFollowing;
+        var userFollower = userInfo.follower;
+
+        if(nextCLF.length > clFollowing.length){
+            userFollower.push(this.props.clientInfo.username);
+        }else{
+            userFollower.splice(clFollowing.indexOf(this.props.clientInfo.username, 1));
+        }
+
+        userInfo.follower    = userFollower;
+        this.setState({userFollower: userFollower});
+        this.props.dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: userInfo});
+    }
 
     followOrUnfollow(e){
         userMG.followOrUnfollow(this.props.info.username, (error, following) => {
-            var userFollower = this.state.userFollower;
-            var clFollowing  = this.state.clFollowing;
+            if(error) return ;
+            var clInfo = {...this.props.clientInfo};
+            clInfo.following = following;
 
-            if(following.length > clFollowing.length){
-                userFollower.push(this.props.clientInfo.username);
-            }else{
-                userFollower.splice(clFollowing.indexOf(this.props.clientInfo.username, 1));
-            }
-            
-            clFollowing = following;
-            this.setState({clFollowing: following});
-            this.setState({userFollower: userFollower});
+            this.props.dispatch({type: `CHANGE_CLIENT_INFO`, value: clInfo});
         })
     }
 
@@ -215,18 +224,29 @@ class UserInfoPage extends Component {
         );
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if(nextProps.clientInfo.id !== this.props.clientInfo.id){
-            this.setState({clFollowing: nextProps.clientInfo.following});
-        }
-
+    shouldComponentUpdate(nextProps, nextState){
+        // Do other something        
         if(nextProps.info.id !== this.props.info.id){
             this.getPostsInfo(nextProps.info.posts);
             this.setState({userFollower: nextProps.info.follower});
         }
 
+        // Do something with client info 
+        if(!nextProps.clientInfo.id) return true;
+        if(nextProps.clientInfo.id !== this.props.clientInfo.id){
+            this.setState({clFollowing: nextProps.clientInfo.following});
+        }
+
+        if(nextProps.clientInfo.following.length !== this.props.clientInfo.following.length){
+            console.log('Chnage');
+            
+            this.updateUserFollower(nextProps.clientInfo.following);
+            this.setState({clFollowing: nextProps.clientInfo.following});
+        }
+
         return true;
     }
+    
 }
 
 export default connect(state => {

@@ -6,8 +6,8 @@ class UserItem extends Component {
     constructor(props){
         super(props);
         this.state = {
-            clFollowing: [], 
-            info: '',
+            clFollowing: [], // client following 
+            info: '', // Details info of user is openning by client 
         }
     }
 
@@ -20,9 +20,10 @@ class UserItem extends Component {
 
     followOrUnfollow(e){
         userMG.followOrUnfollow(this.props.data.username, (error, following) => {
-            var clInfo = this.props.clientInfo;
+            if(error) return ;
+            var clInfo = {...this.props.clientInfo};
             clInfo.following = following;
-            
+
             this.setState({clFollowing: following});
             this.props.dispatch({type: `CHANGE_CLIENT_INFO`, value: clInfo});
         })
@@ -34,10 +35,13 @@ class UserItem extends Component {
         var userUS          = this.props.data.username;
         var clientFollowing = this.state.clFollowing;
         
+        // Return null if client is user being opened
         if(userUS === clientUs) { return ; }
-        if(clientFollowing.indexOf(userUS) >= 0){
+        
+        // Return unfollow if client followed user
+        if(clientFollowing.indexOf(userUS) >= 0){ 
             bundleProperty.text = 'UnFollow';
-        }else{
+        }else{ 
             bundleProperty.text = 'Follow';
         }
         
