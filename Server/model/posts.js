@@ -1,5 +1,6 @@
 const pool   = require('../config/database.js');
 const userDM = require('./user.js');
+const SBW    = require('../lib/search-by-word.js');
 const tableName = `PostsData`
 class postsDM{
     constructor(){
@@ -101,16 +102,19 @@ class postsDM{
         pool.query(`SELECT * FROM ${tableName}`, (error, result) => {
             if(error || result.length <= 0) return fn('Not data', null);
             
-            var rs = [];
-            for(var i = 0, length = result.length; i < length; i++){
-                if(result[i].status.indexOf(status) >= 0){
-                    rs.push(result[i]);
-                }
+            // Return to number st index of array
+            SBW.search(result, status);
+            
+            // var rs = [];
+            // for(var i = 0, length = result.length; i < length; i++){
+            //     if(result[i].status.indexOf(status) >= 0){
+            //         rs.push(result[i]);
+            //     }
 
-                if(i === length - 1){
-                    return fn(null, rs);
-                }
-            }
+            //     if(i === length - 1){
+            //         return fn(null, rs);
+            //     }
+            // }
         })
     }
 

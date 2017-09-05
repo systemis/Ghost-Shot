@@ -264,7 +264,6 @@ class UserInfoPage extends Component {
         if(nextProps.clientInfo.following.length !== this.props.clientInfo.following.length){
             this.setState({clFollowing: nextProps.clientInfo.following});
             if(nextProps.clientInfo.id !== nextProps.info.id) {
-                console.log('Update');
                 this.updateUserFollower(nextProps.clientInfo.following);
             }
         }
