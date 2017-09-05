@@ -134,7 +134,6 @@ class userDM{
         
         this.findUserByName(usBeFollow, (error, result) => {
             if(error) return fn(error, null);
-            
             setFOF('follower', result.follower, usFollower, usBeFollow, fof1 => {
             })
         })

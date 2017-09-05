@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect}            from 'react-redux';
+import UserListField        from '../../Components/Fields/users-list-field.js';
 import PostItem             from './post-item.js';
 import userMG               from '../../js/user.js';
 import postsMG              from '../../js/posts.js';
@@ -71,11 +72,29 @@ class UserInfoPage extends Component {
     }
 
     showFollowers(){
-        console.log('Show follower');
+        const followers = this.props.info.follower;
+        if(followers.length <= 0) return ;
+        this.props.dispatch({
+            type: `CHANGE_DIALOG`,
+            value: {
+                type: `user_list`,
+                bundle: null,
+                component: <UserListField data={followers} />
+            }
+        })
     }
 
     showFollowing(){
-        console.log('Show following');
+        const following = this.props.info.following;
+        if(following.length <= 0) return ;
+        this.props.dispatch({
+            type: `CHANGE_DIALOG`,
+            value: {
+                type: `user_list`,
+                bundle: null,
+                component: <UserListField data={following} />
+            }
+        })
     }
 
     // nextCLF: next client following 
@@ -155,7 +174,15 @@ class UserInfoPage extends Component {
                 </div>
             )
         }
-
+        
+        const showFollowing = () => {
+            if(this.props.info.id !== this.props.clientInfo.id ){
+                return this.props.info.following.length ;
+            }else{
+                return this.props.clientInfo.following.length
+            }
+        }
+        
         return (
             <div className={`user-info-page mobile`}>
                 <div className="layout">
@@ -189,17 +216,17 @@ class UserInfoPage extends Component {
                                                 </strong> Posts
                                             </button>
                                         </li>
-                                        <li onClick={this.showFollowers}>
+                                        <li onClick={this.showFollowers.bind(this)}>
                                             <button>
                                                 <strong>
                                                     {this.state.userFollower.length}
                                                 </strong> Follower
                                             </button>
                                         </li>
-                                        <li onClick={this.showFollowing}>
+                                        <li onClick={this.showFollowing.bind(this)}>
                                             <button>
                                                 <strong>
-                                                    {this.props.info.following.length}
+                                                    {showFollowing()}
                                                 </strong> Following
                                             </button>
                                         </li>
@@ -235,15 +262,15 @@ class UserInfoPage extends Component {
         }
 
         if(nextProps.clientInfo.following.length !== this.props.clientInfo.following.length){
-            console.log('Chnage');
-            
-            this.updateUserFollower(nextProps.clientInfo.following);
             this.setState({clFollowing: nextProps.clientInfo.following});
+            if(nextProps.clientInfo.id !== nextProps.info.id) {
+                console.log('Update');
+                this.updateUserFollower(nextProps.clientInfo.following);
+            }
         }
 
         return true;
     }
-    
 }
 
 export default connect(state => {

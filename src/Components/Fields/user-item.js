@@ -6,20 +6,21 @@ class UserItem extends Component {
     constructor(props){
         super(props);
         this.state = {
+            username: ``,
             clFollowing: [], // client following 
             info: '', // Details info of user is openning by client 
         }
     }
 
     getUserInfo(){
-        userMG.findUserByName(this.props.data.username, (error, result) => {
+        userMG.findUserByName(this.state.username, (error, result) => {
             if(error) return ;
             this.setState({info: result});
         })
     }
 
     followOrUnfollow(e){
-        userMG.followOrUnfollow(this.props.data.username, (error, following) => {
+        userMG.followOrUnfollow(this.state.username, (error, following) => {
             if(error) return ;
             var clInfo = {...this.props.clientInfo};
             clInfo.following = following;
@@ -32,7 +33,7 @@ class UserItem extends Component {
     btnFOF(){
         var bundleProperty  = {};
         var clientUs        = this.props.clientInfo.username;
-        var userUS          = this.props.data.username;
+        var userUS          = this.state.username;
         var clientFollowing = this.state.clFollowing;
 
         // Return null if not login 
@@ -59,7 +60,7 @@ class UserItem extends Component {
 
     componentWillMount() {
         this.setState({clFollowing: this.props.clientInfo.following});
-        this.getUserInfo();        
+        this.setState({username: this.state.username || this.props.data});
     }
 
     render() {
@@ -77,6 +78,10 @@ class UserItem extends Component {
                 </div>
             </div>
         );
+    }
+
+    componentDidMount() {
+        this.getUserInfo();        
     }
 
     shouldComponentUpdate(nextProps, nextState) {

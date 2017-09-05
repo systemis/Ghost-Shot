@@ -25,7 +25,10 @@ module.exports = app => {
     })
 
     app.post(`/user/follow-or-unfollow/:username`, (req, res) => {
-        if(!req.isAuthenticated()) return res.send({err: 'Not login', result: null});
+        if(!req.isAuthenticated()) {
+            return res.send({err: 'Not login', result: null});
+        }
+
         const username = req.params.username;
         const follower = req.user.username;
 

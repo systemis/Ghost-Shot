@@ -28,12 +28,14 @@ class PostCard extends Component {
     }
 
     showUserLiked(){
+        const usersLiked = this.state.likes;
+        if(usersLiked.length <= 0) return ;
         this.props.dispatch({
             type: 'CHANGE_DIALOG',
             value: {
                 type: 'user_list',
                 bundle: null,
-                component: <UserListField data={this.state.likes}/>
+                component: <UserListField data={usersLiked}/>
             }
         })
     }
