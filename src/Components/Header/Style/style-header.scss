@@ -91,6 +91,59 @@
                     font-size: 14px;
                     text-align: center;
                 }
+
+                & .skdk{
+                    border: solid 1px #e6e6e6;
+                    -webkit-box-shadow: 0 0 5px 1px rgba(0,0,0,.0975);
+                    box-shadow: 0 0 5px 1px rgba(0,0,0,.0975);
+                    height: 14px;
+                    left: 0;
+                    margin: auto;
+                    right: 0;
+                    top: 145%;
+                    -webkit-transform: rotate(45deg);
+                    transform: rotate(45deg);
+                    width: 14px;
+                    z-index: 1;
+                    position: absolute;
+                }
+
+                & .show-result-field{
+                    position: absolute;
+                    max-height: 300px;
+                    background: #fff;
+                    right: 0;
+                    left: 0;
+                    top: 130%;
+                    overflow: scroll;
+                    border: 1px solid #e6e6e6;
+                    border-radius: 3px;
+                    & .user-item{
+                        margin: 0;
+                        padding: 0;
+                        line-height: 2;
+                        border-bottom: 1px solid #e6e6e6;
+                        &:hover{
+                            background: #e6e6e6;
+
+                        }
+                        & .col{
+                            padding: 14px 7px ;
+                            margin: 0;
+                        }
+
+                        & .show-user-avatar{
+                            & img {
+                            width: 100%;
+                            border-radius: 50%;
+                            }
+                        }
+
+                        & .show-user-name{
+
+                        }
+                    }
+                }
             }
         }
 

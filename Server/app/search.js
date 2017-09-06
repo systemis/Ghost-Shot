@@ -75,21 +75,20 @@ module.exports = app => {
             following: ['Tony']
         };
 
+        var hastashAreSearched   = [];
         var peopleAreSearched    = [];
         var locationsAreSearched = [];
-        var otherAreSearched     = [];
 
         for(var i = 0, length = ckSearch.length; i < length; i++){
-            console.log(ckSearch);
-            switch(ckSearch[i].type){
-                case `PEOPLE`: 
-                    peopleAreSearched.push(ckSearch[i]);
+            switch(ckSearch[i].substr(0, 1)){
+                case `#`: 
+                    hastashAreSearched8.push(ckSearch[i]);
                     break;
-                case `LOCATION`:
+                case `!`:
                     locationsAreSearched.push(ckSearch[i]);
                     break;
                 default:
-                    otherAreSearched.push(ckSearch[i]);
+                    peopleAreSearched.push(ckSearch[i]);
                     break;
             }
         }
