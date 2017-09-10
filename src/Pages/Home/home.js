@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect}            from 'react-redux';
 import PostCard             from '../../Components/Card/post-card.js';
+import appMG                from '../../js/app.js';
 import UserInfoField        from '../User/info.js';
 import userMG               from '../../js/user.js';
 import exam  from '../../image/logo.png';
@@ -72,6 +73,12 @@ class HomePage extends Component {
                 </div>
             </div>
         );
+    }
+
+    componentDidMount() {
+        appMG.getNewFeed(2, (error, result) => {
+            console.log(result);
+        })
     }
 }
 

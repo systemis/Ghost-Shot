@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import NewPostGroup         from '../NewPost/new-post.js';
 import {connect}            from 'react-redux';
-import appMG                from '../../js/app.js';
+import NewPostGroup         from '../../NewPost/new-post.js';
+import appMG                from '../../../js/app.js';
 // import ex from '../../image/logo.png';
 import $  from 'jquery';
 class ToolsComponent extends Component {

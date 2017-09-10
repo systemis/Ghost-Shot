@@ -33,6 +33,13 @@ class userDM{
         })
     }
 
+    getAll(fn){
+        pool.query(`SELECT * FROM ${tableName}`, (error, result) => {
+            console.log(result);
+            return fn(error, result);
+        })
+    }
+
     findOrCreate(bundle, fn){
         const newUser = id => {
             bundle.id = id;
@@ -78,6 +85,8 @@ class userDM{
     }
 
 
+    // -------------------------> Find signle account 
+
     findUserById(id, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id], (err, result) => {
             if(result.length <= 0) return fn('Not exists', null);
@@ -106,6 +115,29 @@ class userDM{
             result[0].posts     = JSON.parse(result[0].posts);
             return fn(err, result[0]);
         });
+    }
+
+    // ----------------------------> Not signle - for many account 
+    findUsersByName(keyWord, fn){
+        var data  = [];
+        var index = 0;
+        this.getAll((error, result) => {
+            if(error || result.length < 0) {
+                return fn({error: null, result: []});
+            }
+
+            for(var item in result){
+                index++;
+                console.log(item);
+                if(item.username.indexOf(keyWord) >= 0){
+                    data.push(item);
+                }
+
+                if(index === result.length - 1){
+                    return fn({error: null, result: data});
+                }
+            }
+        })
     }
 
     followOrUnfollow(usFollower, usBeFollow, fn){

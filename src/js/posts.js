@@ -14,7 +14,7 @@ class postsMG{
             data: {
                 status: status,
                 photos: photos,
-                date: new Date().toLocaleString()
+                date: new Date()
             },
             success: data => {
                 if(!data.err){

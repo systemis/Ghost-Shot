@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Search               from './search.js';
-import Tools                from './tools';
+import Search               from './Components/search.js';
+import Tools                from './Components/tools';
 import logo from '../../image/logo.png';
 import './Style/style-header.css';
 

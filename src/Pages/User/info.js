@@ -161,6 +161,7 @@ class UserInfoPage extends Component {
                 }
 
                 console.log(result);
+                this.setState({userFollower: result.follower});
                 this.props.dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: result});
             })
         }
