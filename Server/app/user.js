@@ -4,8 +4,10 @@ module.exports = app => {
     app.post(`/client/info/get`, (req, res) => {
         if(!req.isAuthenticated()) return res.send({err: 'Not login', result: null});
         newFeedMG.get(req, res, (error, posts) => {
-            console.log(posts);
-            res.send({err: null, result: req.user});
+            var info = req.user; 
+            info.post = posts;
+            
+            res.send({err: null, result: info});
         })
     })
 
