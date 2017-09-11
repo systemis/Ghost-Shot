@@ -1,12 +1,16 @@
 const userDM    = require('../model/user.js');
 const newFeedMG = require('./new-feed.js');
 module.exports = app => {
+    app.post(`/get-more/new-feed/:position`, (req, res) => {
+    })
+
     app.post(`/client/info/get`, (req, res) => {
         if(!req.isAuthenticated()) return res.send({err: 'Not login', result: null});
-        newFeedMG.get(req, res, (error, posts) => {
+        newFeedMG.get(req, res, 3, (error, posts) => {
             var info = req.user; 
-            info.post = posts;
+            info.newfeed = posts;
             
+            console.log(posts);
             res.send({err: null, result: info});
         })
     })

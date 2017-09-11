@@ -19,12 +19,12 @@ class NewFeedManager{
         cb();
     }
     
-    get(req, res, cb){
+    get(req, res, position, cb){
         if(!req.isAuthenticated()) return cb(null, []);
         
         var clientInfo  = req.user; 
         var clientId    = clientInfo.id;
-        var followings  = clientInfo.following; //['systemis', 'numberjonhpham'];
+        var followings  = clientInfo.following; 
         var posts       = [];
 
         if(followings.length <= 0) return cb(null, []);
@@ -36,14 +36,12 @@ class NewFeedManager{
                     result.posts.map((post, index2) => {
                         postDM.findById(post, (err, rs) => {
                             if(!err){
-                                // console.log(result.posts);
                                 posts.push(rs);
                             }
     
-                            // console.log(rs);
                             if(index === followings.length - 1 && index2 === result.posts.length - 1){
-                                console.log(posts);
                                 this.sortByDate(posts, () => {
+                                    posts.splice(position, posts.length);
                                     cb(null, posts);
                                 });
                             }
@@ -51,8 +49,8 @@ class NewFeedManager{
                     })
                     
                     if(result.posts.length < 0 && index === followings.length - 1) {
-                        console.log(`Sort by date task 2`);
                         this.sortByDate(posts, () => {
+                            post.splice(position, posts.length);
                             cb(null, posts);
                         });
                     }
