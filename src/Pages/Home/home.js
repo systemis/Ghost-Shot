@@ -57,6 +57,13 @@ class HomePage extends Component {
         }
     }
 
+    componentWillMount() {
+        appMG.getNewFeed(2, (error, result) => {
+            console.log(error);
+            console.log(result);
+        })
+    }
+
     render() {
         return (
             <div className="home-page">
@@ -73,12 +80,6 @@ class HomePage extends Component {
                 </div>
             </div>
         );
-    }
-
-    componentDidMount() {
-        appMG.getNewFeed(2, (error, result) => {
-            console.log(result);
-        })
     }
 }
 

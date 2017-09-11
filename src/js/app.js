@@ -12,7 +12,10 @@ class appMG{
     getNewFeed(position, cb){
         $.ajax({
             url: `/new-feed/${position}`, type: `POST`,
-            success: data => cb(data.error, data.result),
+            success: data => {
+                console.log(data);
+                cb(data.error, data.result) 
+            },
             error: err => cb(JSON.stringify(err), null)
         })
     }

@@ -1,9 +1,12 @@
-const userDM = require('../model/user.js');
+const userDM    = require('../model/user.js');
+const newFeedMG = require('./new-feed.js');
 module.exports = app => {
     app.post(`/client/info/get`, (req, res) => {
         if(!req.isAuthenticated()) return res.send({err: 'Not login', result: null});
-        const clientId     = req.user.id;
-        res.send({err: null, result: req.user});
+        newFeedMG.get(req, res, (error, posts) => {
+            console.log(posts);
+            res.send({err: null, result: req.user});
+        })
     })
 
     app.post(`/user/isEdit/:userId`, (req, res) => {
