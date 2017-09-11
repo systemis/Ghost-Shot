@@ -58,10 +58,7 @@ class HomePage extends Component {
     }
 
     componentWillMount() {
-        appMG.getNewFeed(2, (error, result) => {
-            console.log(error);
-            console.log(result);
-        })
+        this.setState({posts: this.props.clientInfo.newfeed || []});
     }
 
     render() {
@@ -81,10 +78,18 @@ class HomePage extends Component {
             </div>
         );
     }
+
+    shouldComponentUpdate(nextProps, nextState) {    
+        console.log(nextProps.clientInfo);
+        console.log(nextProps.clientInfo.newfeed);
+        this.setState({posts: nextProps.clientInfo.newfeed});
+        return true;
+    }
 }
 
 export default connect(state => {
     return{
-        screenVersion: state.screenVersion
+        screenVersion: state.screenVersion,
+        clientInfo: state.clientInfo,
     }
 })(HomePage);

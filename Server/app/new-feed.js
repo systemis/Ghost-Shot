@@ -24,11 +24,13 @@ class NewFeedManager{
         
         var clientInfo  = req.user; 
         var clientId    = clientInfo.id;
-        var followings  = clientInfo.following; 
+        var followings  = [...clientInfo.following, clientInfo.username]; 
         var posts       = [];
 
-        if(followings.length <= 0) return cb(null, []);
+        if(followings.length <= 1) return cb(null, []);
         
+        console.log(followings);
+
         // Get all posts of followings;
         followings.map((following, index) => {
             userDM.findUserByName(following, (error, result) => {
@@ -41,7 +43,11 @@ class NewFeedManager{
     
                             if(index === followings.length - 1 && index2 === result.posts.length - 1){
                                 this.sortByDate(posts, () => {
-                                    posts.splice(position, posts.length);
+                                    var data = [];
+                                    posts.map((value, index) => {
+                                        if(index < position) data.push(value);
+                                    })
+                                    
                                     cb(null, posts);
                                 });
                             }
