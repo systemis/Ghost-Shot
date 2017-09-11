@@ -64,4 +64,23 @@ server.listen(PORT, () => {
     //     console.log(error);
     //     console.log(result);
     // })
+
+    // console.log('Sun Sep 10 2017 11:34:30 GMT+0700 (+07)' < 'Sun Sep 10 2017 11:40:44 GMT+0700 (+07)');
+
+    // var posts = [4, 5, 2, 1, 3, -2, 0, 28, 32, 29, 84, 32, 992, 23, 82, 77983, 32647678, 327678324, 43876821, 43782, 73285467, 4376, 232, 345, 9212, 3726663, 66637, 48878231, 4239197364, 8, 7];
+    // var length = posts.length;
+    // for(var i = 0; i < length - 1; i++){
+    //     for(var j = length - 1; j > i; j--){
+    //         if(posts[j] < posts[j - 1]){
+    //             var tg   = posts[j];
+    //             posts[j] = posts[j - 1];
+    //             posts[j - 1] = tg;
+    //         }
+    //     }
+
+    //     if(i === length - 2){
+    //         console.log('Return ');
+    //         console.log(posts);
+    //     }
+    // }
 })

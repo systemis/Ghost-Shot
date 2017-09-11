@@ -9,7 +9,7 @@ module.exports = app => {
         const bundle = {
             status: post.status,
             photos: post.photos,
-            date: post.date,
+            date: new Date().toLocaleString(),
             user: {
                 id: user.id,
                 username: user.username,
