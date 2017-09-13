@@ -60,7 +60,8 @@
                 background: white; }
                 .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username #show-edit-btn .menu-drop-settings li {
                   padding: 10px 5px;
-                  border-bottom: 1px solid #eee; }
+                  border-bottom: 1px solid #eee;
+                  float: none; }
                   .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username #show-edit-btn .menu-drop-settings li a {
                     display: block;
                     color: black;

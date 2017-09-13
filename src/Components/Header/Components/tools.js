@@ -32,15 +32,19 @@ class ToolsComponent extends Component {
                 <ul className="tools-mananger">
                     <li>
                         <i  
-                            id="btn-show-notifacation-dialog"
-                            className="fa fa-heart"
-                            style={{display: 'none'}}>
-                                <span className="show-notifi-count"> 1 </span>
+                        id="btn-show-notifacation-dialog"
+                        className="fa fa-heart"
+                        style={{display: 'none'}}>
+                            <span className="show-notifi-count"> 1 </span>
                         </i>
                     </li>
                     <li>
-                        <a href="/explore">
-                            <i className="fa fa-compass" aria-hidden="true" />
+                        <a 
+                        href={`/user/${this.props.clientInfo.username}`}
+                        id="btn-goto-client-info-page"
+                        style={{display: 'none'}}>
+                            <i  className="fa fa-user"
+                                aria-hidden="true" />
                         </a>
                     </li>
                     <li>
@@ -64,8 +68,11 @@ class ToolsComponent extends Component {
             
             var btnNewPost = document.getElementById('btn-create-new-post-dialog');
             var btnShowNTF = document.getElementById('btn-show-notifacation-dialog')
+            var btnShowIFP = document.getElementById('btn-goto-client-info-page')
+            
             btnNewPost.style.display = 'initial';
             btnShowNTF.style.display = 'initial';
+            btnShowIFP.style.display = 'initial';
             
             btnShowNTF.addEventListener('click', () => {
                 this.onClickHeart();
@@ -86,6 +93,7 @@ class ToolsComponent extends Component {
 
 export default connect(state => {
     return{
-        dialogInfo: state.dialogInfo
+        dialogInfo: state.dialogInfo,
+        clientInfo: state.clientInfo
     }
 })(ToolsComponent);
