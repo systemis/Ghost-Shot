@@ -39,9 +39,38 @@
               color: black;
               border: 1px solid #eeeeee;
               outline: none; }
-            .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username #show-edit-btn .fa {
-              font-size: 25px;
-              padding-left: 10px; }
+            .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username #show-edit-btn {
+              position: relative;
+              background: transparent;
+              border: none;
+              outline: none; }
+              .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username #show-edit-btn .fa {
+                position: relative;
+                font-size: 25px;
+                padding-left: 10px; }
+              .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username #show-edit-btn .menu-drop-settings {
+                display: none;
+                position: absolute;
+                list-style-type: none;
+                right: -8px;
+                width: 195px;
+                font-size: 18px;
+                margin-top: 10px;
+                border: 1px solid #eeeeee;
+                background: white; }
+                .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username #show-edit-btn .menu-drop-settings li {
+                  padding: 10px 5px;
+                  border-bottom: 1px solid #eee; }
+                  .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username #show-edit-btn .menu-drop-settings li a {
+                    display: block;
+                    color: black;
+                    text-decoration: none;
+                    display: block;
+                    outline: none; }
+                    .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username #show-edit-btn .menu-drop-settings li a:hover {
+                      text-decoration: none; }
+                  .user-info-page .layout .show-info .show-user-info .show-user-name.show-btn-edit .tools-manager li.show-username #show-edit-btn .menu-drop-settings li:hover {
+                    background: #fafafa; }
       .user-info-page .layout .show-info .show-user-info .show-about-env {
         width: 100%;
         margin-top: 15px; }

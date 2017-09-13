@@ -107,6 +107,12 @@ module.exports = (app) => {
         })
     })
 
+    app.get(`/logout`, (req, res) => {
+        if(!req.isAuthenticated()) return res.redirect('/');
+        req.logout();
+        return res.redirect('/')
+    })
+
     app.post('/sign-in', passport.authenticate('local', dhAuth));
 
     app.get('/login/fb', passport.authenticate('facebook', {scope: ['email']}));

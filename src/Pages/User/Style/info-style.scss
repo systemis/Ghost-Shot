@@ -59,9 +59,43 @@
                                 }
 
                                 & #show-edit-btn{
+                                    position: relative;
+                                    background: transparent;
+                                    border: none;
+                                    outline: none;
                                     & .fa{
+                                        position: relative;
                                         font-size: 25px;
                                         padding-left: 10px;
+                                    }
+
+                                    & .menu-drop-settings {
+                                        display: none;
+                                        position: absolute;
+                                        list-style-type: none;
+                                        right: -8px;
+                                        width: 195px;
+                                        font-size: 18px;
+                                        margin-top: 10px;
+                                        border: 1px solid #eeeeee;
+                                        background: white;
+                                        & li{
+                                            padding: 10px 5px;
+                                            border-bottom: 1px solid #eee;
+                                            & a{
+                                                display: block;
+                                                color: black;
+                                                text-decoration: none;
+                                                display: block;
+                                                outline: none;
+                                                &:hover{
+                                                    text-decoration: none;
+                                                }
+                                            }
+                                            &:hover{
+                                                background: #fafafa;
+                                            }
+                                        }
                                     }
                                 }
                             }

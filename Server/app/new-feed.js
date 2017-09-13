@@ -27,10 +27,8 @@ class NewFeedManager{
         var followings  = [...clientInfo.following, clientInfo.username]; 
         var posts       = [];
 
-        if(followings.length <= 1) return cb(null, []);
+        if(followings.length <= 0) return cb(null, []);
         
-        console.log(followings);
-
         // Get all posts of followings;
         followings.map((following, index) => {
             userDM.findUserByName(following, (error, result) => {

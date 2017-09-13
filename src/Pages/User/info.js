@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect}            from 'react-redux';
+import $                    from 'jquery';
 import UserListField        from '../../Components/Fields/users-list-field.js';
 import PostItem             from './post-item.js';
 import userMG               from '../../js/user.js';
@@ -144,11 +145,36 @@ class UserInfoPage extends Component {
     }
 
     editBtn(){
+        if(!this.props.clientInfo.id || this.props.clientInfo.id !== this.props.info.id) return ;
+        return (
+            <button id="show-edit-btn">
+                <i  className="fa fa-cog" 
+                    aria-hidden="true"
+                    onClick={() => {
+                        var menu = 'drop-menu-tosettings-info-dh';
+                        $(`#${menu}`).toggle('hiden');
+                        
+                    }}>
+                    <ul 
+                        className="menu-drop-settings"
+                        id="drop-menu-tosettings-info-dh">
+                        <li> 
+                            <a href="/settings"> Settings </a> 
+                        </li>
+                        <li> 
+                            <a href="/logout"> Logout </a> 
+                        </li>
+                        </ul>
+                </i>
+            </button>
+        )
+        
         userMG.isEdit(this.props.info.id, isEdit => {
             if(!isEdit){
-                return document.getElementById('show-edit-btn').innerHTML = ''
-            } 
-            document.getElementById('show-edit-btn').innerHTML = '<i class="fa fa-pencil"></i>'
+                document.getElementById('show-edit-btn').innerHTML = ''
+            }else{
+                document.getElementById('show-edit-btn').innerHTML = '<i class="fa fa-cog" aria-hidden="true"></i>'
+            }
         })
     }
 
@@ -160,7 +186,6 @@ class UserInfoPage extends Component {
                     return console.log(`Error when get user info by userName: ${err}`);
                 }
 
-                console.log(result);
                 this.setState({userFollower: result.follower});
                 this.props.dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: result});
             })
@@ -200,9 +225,7 @@ class UserInfoPage extends Component {
                                                 {this.props.info.username} 
                                             </span>
                                             {this.btnFOF()}
-                                            <span id="show-edit-btn">
-                                                {this.editBtn()}
-                                            </span>
+                                            {this.editBtn()}
                                         </li>
                                     </ul>        
                                 </div>
