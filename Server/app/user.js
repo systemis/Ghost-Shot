@@ -6,7 +6,7 @@ module.exports = app => {
 
     app.post(`/client/info/get`, (req, res) => {
         if(!req.isAuthenticated()) return res.send({err: 'Not login', result: null});
-        newFeedMG.get(req, res, 3, (error, posts) => {
+        newFeedMG.get(req, 3, (error, posts) => {
             var info = req.user; 
             info.newfeed = posts;
             

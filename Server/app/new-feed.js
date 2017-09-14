@@ -19,7 +19,7 @@ class NewFeedManager{
         cb();
     }
     
-    get(req, res, position, cb){
+    get(req, position, cb){
         if(!req.isAuthenticated()) return cb(null, []);
         
         var clientInfo  = req.user; 
@@ -52,8 +52,8 @@ class NewFeedManager{
                         });
                     })
                     
+                    // Handling when user did not have any post
                     if(result.posts.length <= 0 && index === followings.length - 1) {
-                        // console.log('Dex');
                         if(posts.length <= 0) return cb(null, []);
                         this.sortByDate(posts, () => {
                             post.splice(position, posts.length);

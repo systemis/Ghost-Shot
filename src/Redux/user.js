@@ -1,3 +1,4 @@
+//default value 
 const infoState = {
     id: '0',
     username: '',
@@ -6,6 +7,7 @@ const infoState = {
     follower: [],
     following: [],
     description: '',
+    newfeed: [],
     posts: []
 }
 
