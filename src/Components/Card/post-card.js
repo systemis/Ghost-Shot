@@ -140,7 +140,6 @@ class PostCard extends Component {
             styleForLikeBtn.color = 'red';
         }
 
-        console.log(this.props);
         return (
             <div 
                 className={`post-card`}
@@ -152,7 +151,7 @@ class PostCard extends Component {
                             alt="user avatar" 
                             className="show-user-avatar"/>
                         <a 
-                            href={`/${this.props.postInfo.user.username}`}
+                            href={`/user/${this.props.postInfo.user.username}`}
                             className="show-user-username">
                             {this.props.postInfo.user.username}
                         </a>

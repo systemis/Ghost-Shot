@@ -59,7 +59,7 @@
         padding-right: 4em; } }
   @media screen and (min-height: 1024px) {
     .sign-in-page .child-group, .sign-up-page .child-group {
-      margin-top: 30%; } }
+      margin-top: 100px; } }
   @media screen and (max-height: 768px) {
     .sign-in-page .child-group, .sign-up-page .child-group {
       margin-top: 60px; } }

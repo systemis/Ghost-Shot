@@ -3,7 +3,7 @@
         width: 70%;
         float: right;
         & .show-posts{
-            max-width: 700px;
+            max-width: 660px;
             padding-top: 20px;
             margin: 0 auto;
 
@@ -16,17 +16,35 @@
     & .user-info-page.mobile{
         float: left;
         width: 25%;
+        height: 650px;
         margin: 0;
         position: fixed;
-        height: 100%;
         overflow: scroll;
         padding-bottom: 30px;
         padding-top: 20px;
+        padding-left: 35px;
+        & .layout{
+            float: none;
+            background: white;
+            border: 1px solid #eee;
+            width: 100%;
+            & .show-posts.row {
+                margin: 0;
+                padding: 5px 5px;
+                overflow: scroll;
+            }
+        }
+
         & .show-info{
             & .show-user-avatar, & .show-user-info{
                 float: none;
                 width: 100%;
                 text-align: center;
+                
+                & img {
+                    width: 50%;
+                }
+
                 & ul{
                     & li{
                         width: 100%;
