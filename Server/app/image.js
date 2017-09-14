@@ -18,8 +18,6 @@ module.exports = app => {
     const uploadImage = multer({storage: storage}).single('image');
 
     app.post(`/upload/image/imgur`, (req, res) => {
-        console.log(req.body);
-
         uploadImage(req, res, err => {
             if(err) {
                 console.log(err);

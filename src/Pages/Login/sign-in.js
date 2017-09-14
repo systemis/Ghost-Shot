@@ -31,7 +31,7 @@ class SignInPage extends Component {
                                 <input 
                                     name="password"
                                     className="password-field"
-                                    type="text" 
+                                    type="password" 
                                     placeholder="Type password here ..."/>
                             </div>
                             <div className="footer">
