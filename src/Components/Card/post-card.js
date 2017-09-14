@@ -140,10 +140,11 @@ class PostCard extends Component {
             styleForLikeBtn.color = 'red';
         }
 
+        console.log(this.props);
         return (
             <div 
-                className={`post-card ${this.props.className}`}
-                id={this.props.id}>
+                className={`post-card`}
+                id={this.props.postInfo.id}>
                 <div className="header row">
                     <div className="show-user-info">
                         <img 

@@ -6,8 +6,11 @@
             max-width: 700px;
             padding-top: 20px;
             margin: 0 auto;
-        }
 
+            @media screen and (max-width: 1200px) and (min-width: 768px){
+                max-width: 600px;
+            }
+        }
     }
     
     & .user-info-page.mobile{
