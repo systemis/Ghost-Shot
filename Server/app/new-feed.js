@@ -41,10 +41,10 @@ class NewFeedManager{
     
                             if(index === followings.length - 1 && index2 === result.posts.length - 1){
                                 this.sortByDate(posts, () => {
-                                    var data = [];
-                                    posts.map((value, index) => {
-                                        if(index < position) data.push(value);
-                                    })
+                                    // var data = [];
+                                    // posts.map((value, index) => {
+                                    //     if(index < position) data.push(value);
+                                    // })
                                     
                                     cb(null, posts);
                                 });
@@ -56,7 +56,7 @@ class NewFeedManager{
                     if(result.posts.length <= 0 && index === followings.length - 1) {
                         if(posts.length <= 0) return cb(null, []);
                         this.sortByDate(posts, () => {
-                            post.splice(position, posts.length);
+                            // post.splice(position, posts.length);
                             cb(null, posts);
                         });
                     }
