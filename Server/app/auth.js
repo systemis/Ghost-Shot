@@ -24,6 +24,7 @@ module.exports = (app) => {
         })
     }))
 
+    // Login with facebook 
     passport.use(new passportFb.Strategy(
         {
             clientID: '506130339729926',
@@ -46,6 +47,7 @@ module.exports = (app) => {
         }
     ))
 
+    // Login with twitter 
     passport.use(new passportTwtiiter.Strategy(
         {
             consumerKey: 'JEwImG5MD0KEORcqFQgrQvcbU',
@@ -59,13 +61,14 @@ module.exports = (app) => {
                 username: profile.screen_name,
                 avatar: `https://twitter.com/${profile.screen_name}/profile_image?size=original`
             };
-
+            
             userDM.findOrCreate(ps, (err, result) => {
                 return done(null, result);
             })
         }
     ))
-
+    
+    // Login with github 
     passport.use(new passportGithub(
         {
             clientID: 'c2adbee4e8bacb7fa9d0',

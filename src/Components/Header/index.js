@@ -12,7 +12,7 @@ class Header extends Component {
                     <div className="logo-group">
                         <a className="child" href="/">
                             <img src={logo} alt="App logo" />
-                            <span href="/"> Exchange instargram </span>
+                            <span href="/"> Ghost Shot </span>
                         </a>
                     </div>
                     <Search />
