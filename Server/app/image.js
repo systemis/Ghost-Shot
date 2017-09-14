@@ -4,7 +4,7 @@ module.exports = app => {
     const path   = require('path');
     const fs     = require('fs');
 
-    var filename;
+    var   filename;
     const storage = multer.diskStorage({
         destination: (req, file, cb) => {
             cb(null, path.resolve(__dirname, './'));

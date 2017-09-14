@@ -19,7 +19,7 @@ class NewFeedManager{
         cb();
     }
     
-    get(req, position, cb){
+    get(req, cb){
         if(!req.isAuthenticated()) return cb(null, []);
         
         var clientInfo  = req.user; 
