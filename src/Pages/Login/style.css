@@ -12,7 +12,7 @@
     width: 100%; }
     .sign-in-page .child-group .login-normal .main-layout, .sign-up-page .child-group .login-normal .main-layout {
       padding-top: 15px; }
-      .sign-in-page .child-group .login-normal .main-layout input[type=text], .sign-up-page .child-group .login-normal .main-layout input[type=text] {
+      .sign-in-page .child-group .login-normal .main-layout input[type=text], .sign-in-page .child-group .login-normal .main-layout input[type=password], .sign-up-page .child-group .login-normal .main-layout input[type=text], .sign-up-page .child-group .login-normal .main-layout input[type=password] {
         width: 100%;
         margin-bottom: 10px;
         padding-top: 20px;

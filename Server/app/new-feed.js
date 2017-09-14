@@ -52,7 +52,9 @@ class NewFeedManager{
                         });
                     })
                     
-                    if(result.posts.length < 0 && index === followings.length - 1) {
+                    if(result.posts.length <= 0 && index === followings.length - 1) {
+                        // console.log('Dex');
+                        if(posts.length <= 0) return cb(null, []);
                         this.sortByDate(posts, () => {
                             post.splice(position, posts.length);
                             cb(null, posts);

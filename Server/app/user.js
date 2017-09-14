@@ -10,7 +10,6 @@ module.exports = app => {
             var info = req.user; 
             info.newfeed = posts;
             
-            console.log(posts);
             res.send({err: null, result: info});
         })
     })

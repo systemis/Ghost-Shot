@@ -16,9 +16,11 @@ module.exports = (app) => {
 
     passport.use(new passportLocal.Strategy((username, password, done) => {
         userDM.login(username, password, (err, result) => {
-            console.log(result);
-            if(err) return done(err, null);
-            done(null, result);
+            if(err){
+                return done(err, null);
+            }
+            
+            return done(null, result);
         })
     }))
 

@@ -16,7 +16,7 @@
             width: 100%;
             & .main-layout{
                 padding-top: 15px;
-                & input[type=text]{
+                & input[type=text], & input[type=password]{
                     width: 100%;
                     margin-bottom: 10px;
                     padding-top: 20px;

@@ -9,6 +9,7 @@ const path           = require('path');
 const http           = require('http');
 const userDM         = require('./Server/model/user.js');
 const postsDM        = require('./Server/model/posts.js');
+const newFeedMG      = require('./Server/app/new-feed.js');
 const app            = express();
 
 
@@ -34,4 +35,8 @@ const server = http.Server(app);
 const PORT   = process.env.PORT || 3200;
 server.listen(PORT, () => {
     console.log(`Server is listening on ${PORT}`);
+    // newFeedMG.get({user: {id: 222, username: 'systemis1', following: []}}, {}, 3, (error, result) => {
+    //     console.log(error);
+    //     console.log(result);
+    // })
 })
