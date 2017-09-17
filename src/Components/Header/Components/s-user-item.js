@@ -8,9 +8,11 @@ class SearchUserItem extends Component {
 
     onClick(e){
         var searchInputValue  = document.getElementById('input-search-app').value;
-        var usWasFined        = this.props.info;
+        var userSelected      = this.props.info;
 
         console.log(this.props.info.username);
+
+        searchCookie.setCookie(userSelected);
 
         return true;
     }

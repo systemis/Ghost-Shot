@@ -26,6 +26,8 @@ class SearchComponent extends Component {
         }else{
             appMG.search(search_value, (error, result) => {
                 if(error) return console.log(error);
+
+                console.log(searchCookie.getCookie());
                 this.setState({search_value: result});
             })
         }
