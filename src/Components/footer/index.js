@@ -9,7 +9,7 @@ class Footer extends Component {
                     Copyright  2017
                 </span>
                 <span className="developer">
-                    Design and development by <a href="https://systemis-blog.herokuapp.com/">Systemis</a>
+                    Design and development by <a href="https://systemis.herokuapp.com/">Systemis</a>
                 </span>
             </div>
         );

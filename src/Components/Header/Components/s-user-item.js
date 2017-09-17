@@ -7,11 +7,12 @@ class SearchUserItem extends Component {
     }
 
     onClick(e){
-        e.preventDefault();
         var searchInputValue  = document.getElementById('input-search-app').value;
-        var usWasFined        = this.props.data;
+        var usWasFined        = this.props.info;
 
-        searchCookie.setCookie({keyWord: searchInputValue, info: usWasFined});
+        console.log(this.props.info.username);
+
+        return true;
     }
 
     render() {

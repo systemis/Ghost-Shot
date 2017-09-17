@@ -115,8 +115,9 @@ class PostCard extends Component {
 
         var exitGroup = () => {
             if(this.props.className !== 'in-dialog') return;
+            
             return (
-                <div className="show-exit-btn">
+                <div className="show-exit-btn" style={{float: 'left', width: `10%`}}>
                     <button onClick={this.exitGroup.bind(this)}>
                         <span className="fa fa-times"></span>
                     </button>
@@ -142,8 +143,8 @@ class PostCard extends Component {
 
         return (
             <div 
-                className={`post-card`}
-                id={this.props.postInfo.id}>
+                className={`post-card ${this.props.className}`}
+                id={`postCard-${this.props.postInfo.id}`}>
                 <div className="header row">
                     <div className="show-user-info">
                         <img 
@@ -225,15 +226,17 @@ class PostCard extends Component {
         if(this.props.className === 'in-dialog'){
             var newHeight = () => {
                 var childGroup = document.getElementById(`child-group-dialog`);
-                var postCard   = document.getElementById(this.props.id);
-            
+                var postCard   = document.getElementById(`postCard-${this.props.postInfo.id}`);
+                
+                // Catch error when postCard did not load 
                 if(!postCard) return;
+                
                 var height = (childGroup.clientHeight - postCard.clientHeight)/2+ 'px';
                 childGroup.style.paddingTop = height;
             }
 
             newHeight();
-            this.props.dispatch({type: `ADD_CALLBACK_RESIZE_SCREEN`, value: newHeight});
+            this.props.dispatch({type: `ADD_CALLBACK_RESIZE_SCREEN`, value: newHeight.bind(this)});
         }
     }
 
