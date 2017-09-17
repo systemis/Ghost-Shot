@@ -7,21 +7,8 @@ module.exports = app => {
         if(clientInfo){
             userPrioritize.push(clientInfo.username);
             userPrioritize = userPrioritize.concat(clientInfo.following);
-
-            console.log(userPrioritize);
         }   
 
-        // Find by client's followings
-        // userPrioritize.map((username, index) => {
-        //     if(username.indexOf('word') >= 0){
-        //         userDM.findUserByName(username, (error, result) => {
-        //             if(!errot && result.length > 0){
-        //                 searchResult.push(result);
-        //             }
-        //         })
-        //     }
-        // })
-        
         userDM.findUsersByName(word, (error, result) => {
             searchResult = searchResult.concat(result);
             
@@ -30,7 +17,7 @@ module.exports = app => {
                     item.prv = 1;
                 }
 
-                if(clientInfo.username === item.username){
+                if(clientInfo && clientInfo.username === item.username){
                     item.prv = 2;
                 }
             })

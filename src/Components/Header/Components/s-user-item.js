@@ -16,7 +16,7 @@ class SearchUserItem extends Component {
 
     render() {
         return (
-            <a href={'/user/systemis' + this.props.info.username} 
+            <a href={'/user/' + this.props.info.username} 
                 onClick={this.onClick.bind(this)}>
                 <div className="row user-item">
                     <div className="show-user-avatar col-md-3 col-sm-3 col">
