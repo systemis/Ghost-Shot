@@ -36,7 +36,7 @@ class PostValue extends Component {
                         style={{backgroundImage: `url(${postData[indexValue]})`}}
                         alt="Image value" 
                         className="show-image-post"
-                        id={`sh-show-value-${this.props.postId}-${indexValue}`}/>
+                        id={`sh-show-value-${this.props.postId}-${indexValue}-${this.props.inDialog}`}/>
                     <span 
                         className="fa fa-chevron-circle-right btn-right-image" 
                         onClick={() => changeIndex(-1)}/>
@@ -48,14 +48,14 @@ class PostValue extends Component {
                     style={{backgroundImage: `url(${postData[0]})`}}
                     alt="Image value" 
                     className="show-image-post"
-                    id={`sh-show-value-${this.props.postId}-${0}`}/>
+                    id={`sh-show-value-${this.props.postId}-${0}-${this.props.inDialog}`}/>
             )
         }
     }
 
     componentDidMount() {
         const changeSize = () => {
-            const sh = document.getElementById(`sh-show-value-${this.props.postId}-${this.state.indexValue}`);
+            const sh = document.getElementById(`sh-show-value-${this.props.postId}-${this.state.indexValue}-${this.props.inDialog}`);
             sh.style.height = `${sh.clientWidth - 18}px`;
             if(this.props.isShowInDialog){
                 sh.style.height = `${sh.clientWidth - 168}px`;
@@ -63,7 +63,7 @@ class PostValue extends Component {
         }
         
         changeSize();
-        this.props.dispatch({type: `ADD_CALLBACK_RESIZE_SCREEN`, value: changeSize});
+        this.props.dispatch({type: `ADD_CALLBACK_RESIZE_SCREEN`, value: changeSize.bind(this)});
     }
 }
 

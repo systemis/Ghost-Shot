@@ -143,7 +143,7 @@ class PostCard extends Component {
 
         return (
             <div 
-                className={`post-card ${this.props.className}`}
+                className={`post-card ${this.props.className || ''}`}
                 id={`postCard-${this.props.postInfo.id}`}>
                 <div className="header row">
                     <div className="show-user-info">
@@ -163,6 +163,7 @@ class PostCard extends Component {
                     className="show-image"
                     onDoubleClick={this.likeOrUnlikePost.bind(this)}>
                     <PostValueCard 
+                        inDialog={this.props.className || ''}
                         postId={this.props.postInfo.id}
                         isShowInDialog={this.props.isShowInDialog}
                         images={this.props.postInfo.photos} />
