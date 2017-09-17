@@ -33,6 +33,7 @@ class NewFeedManager{
         followings.map((following, index) => {
             userDM.findUserByName(following, (error, result) => {
                 if(!error){
+                    // Finding single post of folling 
                     result.posts.map((post, index2) => {
                         postDM.findById(post, (err, rs) => {
                             if(!err){

@@ -15,8 +15,6 @@ const clientInfoReducer = (state = infoState, action) => {
     switch(action.type){
         case `CHANGE_CLIENT_INFO`:
             if(!action.value) return state;
-            
-            console.log(action.value.following);
             return action.value;
         default:
             return state;

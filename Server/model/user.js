@@ -35,7 +35,6 @@ class userDM{
 
     getAll(fn){
         pool.query(`SELECT * FROM ${tableName}`, (error, result) => {
-            console.log(result);
             return fn(error, result);
         })
     }
@@ -120,23 +119,25 @@ class userDM{
     // ----------------------------> Not signle - for many account 
     findUsersByName(keyWord, fn){
         var data  = [];
-        var index = 0;
         this.getAll((error, result) => {
             if(error || result.length < 0) {
                 return fn({error: null, result: []});
             }
 
-            for(var item in result){
-                index++;
-                console.log(item);
+            result.map((item, index) => {
                 if(item.username.indexOf(keyWord) >= 0){
+                    item.following = JSON.parse(item.following);
+                    item.follower  = JSON.parse(item.follower);
+                    item.posts     = JSON.parse(item.posts);
+                
                     data.push(item);
                 }
-
+    
                 if(index === result.length - 1){
-                    return fn({error: null, result: data});
+                    console.log(`Get users by keyword ${data.length}`);
+                    return fn(null, data);
                 }
-            }
+            })
         })
     }
 

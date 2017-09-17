@@ -64,8 +64,6 @@ module.exports = app => {
         }
 
         postsDM.likeOrUnLike(postId, user, (error, result) => {
-            console.log(error);
-            console.log(result);
             res.send({err: error, result: result});
         })
     })

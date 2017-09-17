@@ -22,13 +22,10 @@ class appMG{
 
     search(keyWord, cb){
         const cookie = searchCookie.getCookie();
-        console.log(cookie);
         $.ajax({
-            url: `/search/${keyWord}`, type: `POST`,
-            data: {cookie: JSON.stringify(cookie)},
-            success: data => {
-                cb(data.error, data.result);
-            },
+            url: `/search`, type: `POST`,
+            data: {word: keyWord},
+            success: data => cb(null, data),
             error: err => cb(JSON.stringify(err), null)
         })
     }

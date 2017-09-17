@@ -7,7 +7,8 @@ class SearchComponent extends Component {
     constructor(props){
         super(props);
         this.state = {
-            rs_search: []
+            rs_search: [],
+            search_value: []
         }
     }
     
@@ -22,11 +23,9 @@ class SearchComponent extends Component {
             field.style.textAlign = 'center';
         }else{
             appMG.search(search_value, (error, result) => {
-                error && console.log(error);
-                console.log(result);
+                if(error) return console.log(error);
+                this.setState({search_value: [result]});
             })
-
-            this.setState({search_value: [search_value]});
         }
     }
     
@@ -45,8 +44,8 @@ class SearchComponent extends Component {
                             className="show-result-field" 
                             id="div-sh-rs-search"
                             style={{display: 'none'}}>
-                            {this.state.rs_search.map((item, index) => {
-                                console.log(index);
+                            {this.state.search_value.map((item, index) => {
+                                console.log(item);
                                 if(index == 0) {
                                     const rsDiv = document.getElementById('div-sh-rs-search');
                                     rsDiv.style.display = 'block';
@@ -60,13 +59,7 @@ class SearchComponent extends Component {
         );
     }
 
-    componentDidMount() {
-        // Test api 
-        // this.setState({rs_search: ['div']});
-    }
-
     shouldComponentUpdate(nextProps, nextState) {
-        console.log(nextState);
         return true;
     }
 }

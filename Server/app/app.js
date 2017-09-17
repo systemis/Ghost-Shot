@@ -4,6 +4,6 @@ module.exports = app => {
     })
 
     app.post(`/get/info-app`, (req, res) => {
-        res.send('Xin chao den voi app photo cua systemis ');
+        res.send('Wellcome to GhostShot, it is a social network about photo. Systemis FAQ !');
     })
 }
