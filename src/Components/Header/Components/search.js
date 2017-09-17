@@ -21,10 +21,12 @@ class SearchComponent extends Component {
         
         if(!search_value){
             field.style.textAlign = 'center';
+            document.getElementById('div-sh-rs-search').style.display = 'none';
+            this.setState({search_value: []});
         }else{
             appMG.search(search_value, (error, result) => {
                 if(error) return console.log(error);
-                this.setState({search_value: [result]});
+                this.setState({search_value: result});
             })
         }
     }
@@ -44,13 +46,13 @@ class SearchComponent extends Component {
                             className="show-result-field" 
                             id="div-sh-rs-search"
                             style={{display: 'none'}}>
-                            {this.state.search_value.map((item, index) => {
-                                console.log(item);
+                            {this.state.search_value.map((info, index) => {
+                                console.log(index);
                                 if(index == 0) {
                                     const rsDiv = document.getElementById('div-sh-rs-search');
                                     rsDiv.style.display = 'block';
                                 }
-                                return <SearchUserItem key={index} />
+                                return <SearchUserItem info={info} key={index} />
                             })}
                         </div>
                     </p>
@@ -60,6 +62,7 @@ class SearchComponent extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
+        console.log(nextState.search_value);
         return true;
     }
 }

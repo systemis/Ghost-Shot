@@ -25,7 +25,7 @@ class appMG{
         $.ajax({
             url: `/search`, type: `POST`,
             data: {word: keyWord},
-            success: data => cb(null, data),
+            success: data => cb(data.error, data.result),
             error: err => cb(JSON.stringify(err), null)
         })
     }

@@ -23,7 +23,7 @@ module.exports = app => {
         userDM.findUsersByName(word, (error, result) => {
             searchResult = searchResult.concat(result);
             console.log(searchResult);
-            res.send(searchResult);
+            res.send({error: null, result: searchResult});
         })
     }
 

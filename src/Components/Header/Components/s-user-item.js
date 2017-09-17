@@ -16,13 +16,16 @@ class SearchUserItem extends Component {
 
     render() {
         return (
-            <a href='/user/systemis' onClick={this.onClick.bind(this)}>
+            <a href={'/user/systemis' + this.props.info.username} 
+                onClick={this.onClick.bind(this)}>
                 <div className="row user-item">
                     <div className="show-user-avatar col-md-3 col-sm-3 col">
-                        <img src='https://instagram.fhan2-2.fna.fbcdn.net/t51.2885-19/s320x320/20214694_118717355423031_3296597273256919040_a.jpg' alt="User avatar"/>
+                        <img 
+                            src={this.props.info.avatar} 
+                            alt="User avatar"/>
                     </div>
                     <div className="show-user-name col-md-9 col-sm-9 col">
-                        Info
+                        {this.props.info.username}
                     </div>
                 </div>
             </a>
