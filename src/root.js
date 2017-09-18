@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import userMG               from './js/user.js';
 
 class RootRoute extends Component {
+    // Handlung to go route by authenticated !
     handling(){
         userMG.getClientInfo((error, result) => {
             if(error){
