@@ -6,6 +6,7 @@ import PostItem             from './post-item.js';
 import userMG               from '../../js/user.js';
 import postsMG              from '../../js/posts.js';
 import './Style/info-style.css';
+
 class UserInfoPage extends Component {
     constructor(props){
         super(props);
@@ -22,40 +23,7 @@ class UserInfoPage extends Component {
             clFollowing: [],
             userFollower: [],
             posts: [],
-            info:{
-                // username:  username(),
-                // follower: [11, 12],
-                // following: [22, 23],
-                // avatar: '',
-                // posts: [{
-                //     id: 'exavs',
-                //     value: ex1
-                // }, {
-                //     id: 'exasss',
-                //     value: ex1
-                // }, {
-                //     id: 'exadsdsss',
-                //     value: ex2
-                // }, {
-                //     id: 'exaso77ss',
-                //     value: ex2
-                // }, {
-                //     id: 'exdsasss',
-                //     value: ex2
-                // }, {
-                //     id: 'exdasdadsdsdsss',
-                //     value: ex2
-                // }, {
-                //     id: 'exdasdaaasss',
-                //     value: ex2
-                // }, {
-                //     id: 'exdasdasa3ss',
-                //     value: ex2
-                // }, {
-                //     id: 'exdasdassdss',
-                //     value: ex2
-                // }],
-            }
+            info:{}
         }
     }
 

@@ -7,7 +7,7 @@ class PostPhotoGroup extends Component {
     newHeight(){    
         const dhupLoadImage  = document.getElementById('dh-upload-image');
         const photoPostGroup = document.getElementById('photo-post-group');
-        console.log(photoPostGroup.clientWidth)
+
         photoPostGroup.style.height     = photoPostGroup.clientWidth + 4 + 'px';
         dhupLoadImage .style.lineHeight = photoPostGroup.clientWidth + 4 + 'px';
     }
@@ -49,11 +49,6 @@ class PostPhotoGroup extends Component {
             type: `ADD_CALLBACK_RESIZE_SCREEN`, 
             value: this.newHeight.bind(this)
         });
-    }
-    
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log(nextProps.photo);
-        return true;
     }
 }
 

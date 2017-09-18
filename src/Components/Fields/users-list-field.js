@@ -13,10 +13,6 @@ class UsersListField extends Component {
         }
     }
 
-    componentWillMount(){
-        console.log(this.props.data);
-    }
-
     render() {
         return (
             <div className="users-list-field">

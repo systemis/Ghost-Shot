@@ -15,6 +15,7 @@ class UserItem extends Component {
     getUserInfo(){
         userMG.findUserByName(this.state.username, (error, result) => {
             if(error) return ;
+
             this.setState({info: result});
         })
     }
@@ -60,7 +61,7 @@ class UserItem extends Component {
 
     componentWillMount() {
         this.setState({clFollowing: this.props.clientInfo.following});
-        this.setState({username: this.state.username || this.props.data});
+        this.setState({username: this.props.data.username || this.props.data});
     }
 
     render() {
