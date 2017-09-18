@@ -101,7 +101,18 @@
     position: relative;
     width: 100%;
     margin-top: 20px;
-    margin-bottom: 100px; }
+    margin-bottom: 100px;
+    max-height: 180px; }
+  .user-info-page .layout .show-showmore-btn {
+    text-align: center;
+    padding-top: 25px; }
+    .user-info-page .layout .show-showmore-btn a {
+      padding: 0.5em 1em;
+      background: red;
+      color: white; }
+      .user-info-page .layout .show-showmore-btn a:hover {
+        text-decoration: none;
+        background: black; }
 
 .post-item-mini {
   padding: 0;

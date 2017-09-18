@@ -209,6 +209,19 @@ class UserInfoPage extends Component {
             }
         }
         
+        const btnShowInfo = () => {
+            if(window.location.href.indexOf('/user/') !== -1) return;
+            return (
+                <div className="show-showmore-btn">
+                    <a 
+                        href={`/user/${this.props.info.username}`}
+                        className="showmore-info-btn">
+                        Show more 
+                    </a>
+                </div>
+            )
+        }
+
         return (
             <div className={`user-info-page mobile`}>
                 <div className="layout">
@@ -262,11 +275,15 @@ class UserInfoPage extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="show-posts row">
+                    <div 
+                        className="show-posts row">
                         {this.state.posts.map((post, index) => {
-                            return <PostItem post={post} key={index} />
+                            if(index < 6) {
+                                return <PostItem post={post} key={index} />
+                            }
                         })}
                     </div>
+                    {btnShowInfo()}
                 </div>
             </div>
         );

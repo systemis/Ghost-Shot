@@ -228,7 +228,7 @@ class PostCard extends Component {
     }
 
     componentDidMount() {
-        // this.scroll();
+        this.scroll();
         this.props.postInfo.likes.map((user, index) => {
             if(user.id === this.props.clientInfo.id){
                 this.setState({isLike: true});
