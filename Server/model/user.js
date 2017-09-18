@@ -125,7 +125,7 @@ class userDM{
             }
 
             result.map((item, index) => {
-                if(item.username.indexOf(keyWord) >= 0){
+                if(item.username.toLowerCase().indexOf(keyWord.toLowerCase()) >= 0){
                     item.following = JSON.parse(item.following);
                     item.follower  = JSON.parse(item.follower);
                     item.posts     = JSON.parse(item.posts);

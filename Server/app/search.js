@@ -5,13 +5,12 @@ module.exports = app => {
     const findPeople = (word, clientInfo, searchResult, res) => {
         var userPrioritize = [];
         if(clientInfo){
-            userPrioritize.push(clientInfo.username);
+            userPrioritize.push(clientInfo.username.toLowerCase());
             userPrioritize = userPrioritize.concat(clientInfo.following);
         }   
 
         userDM.findUsersByName(word, (error, result) => {
             searchResult = searchResult.concat(result);
-            
             searchResult.map((item, index) => {
                 if(userPrioritize.indexOf(item.username) >= 0){
                     item.prv = 1;
