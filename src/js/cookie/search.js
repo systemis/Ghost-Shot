@@ -10,9 +10,18 @@ class SearchCookie{
     }
 
     setCookie(value){ 
-        
-        this.search_value_list.push(value);
-        window.localStorage.setItem(`search_value_list`, JSON.stringify(this.search_value_list));
+        var index = 0;
+        this.search_value_list.map((item, indexItem) => {
+            if(item.username.indexOf(value.username) >= 0){
+                index = 1;
+            }
+        })
+
+        if(index === 0) {
+            this.search_value_list.push(value);
+            console.log('Add history success !');
+            window.localStorage.setItem(`search_value_list`, JSON.stringify(this.search_value_list));
+        }
     }
 
     getCookie(){
