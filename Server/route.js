@@ -15,6 +15,7 @@ module.exports = app => {
     app.get('/home', routeK1);
     
     app.get('/user/:username', routeK0);
+    app.get('/post/:postId', routeK0);
     
     app.get('/sign-in', routeK2);
     app.get('/sign-up', routeK2);

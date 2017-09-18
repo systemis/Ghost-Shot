@@ -8,7 +8,8 @@ import HomePage     from './Pages/Home/home.js';
 import SignInPage   from './Pages/Login/sign-in.js';
 import SignUpPage   from './Pages/Login/sign-up.js';
 import UserInfoPage from './Pages/User/info.js';
-import DialogField from  './Components/Dialog/dialog.js';
+import PostShow     from './Pages/PostShow/post-show.js';
+import DialogField  from  './Components/Dialog/dialog.js';
 import Header       from './Components/Header/index.js';
 import Footer       from './Components/footer/index.js';
 import './Style/app.css';
@@ -59,10 +60,11 @@ class App extends Component {
       <div id="App">
         <Router>
           <div id="main-layout">
-            <Route path='/' exact    component={RootRoute} />
-            <Route path='/home'      component={HomePage} />
+            <Route path='/' exact    component={RootRoute}  />
+            <Route path='/home'      component={HomePage}   />
             <Route path='/sign-in'   component={SignInPage} />
             <Route path='/sign-up'   component={SignUpPage} />
+            <Route path='/post/:postId'  component={PostShow}   />
             <Route path='/user/:username' component={UserInfoPage} />
             <Footer />
           </div>

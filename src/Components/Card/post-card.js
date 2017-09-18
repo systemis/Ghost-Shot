@@ -97,7 +97,8 @@ class PostCard extends Component {
     }
 
     render() {
-        var moreCommentBtn = () => {
+        // Custom to show more comment button 
+        const moreCommentBtn = () => {
             if(this.state.countToShowComment < this.props.postInfo.comments.length){
                 return(
                     <button
@@ -113,7 +114,8 @@ class PostCard extends Component {
             }
         }
 
-        var exitGroup = () => {
+        // Custom to show exit group if posts is showed in dialog 
+        const exitGroup = () => {
             if(this.props.className !== 'in-dialog') return;
             
             return (
@@ -125,7 +127,8 @@ class PostCard extends Component {
             )
         }
 
-        var commentsList = () => {
+        // Comment list of post
+        const commentsList = () => {
             var comments = [];
             var indexST  = this.state.comments.length - 1 - this.state.countToShowComment;
             if(indexST < 0) indexST = 0;
@@ -136,9 +139,17 @@ class PostCard extends Component {
             return comments;
         }
 
-        var styleForLikeBtn = {color: 'black'};
-        if(this.state.isLike){
-            styleForLikeBtn.color = 'red';
+        // Set color for like btn. Red if liked or black if did not like 
+        const styleForLikeBtn = () => {
+            if(this.state.isLike){
+                return {
+                    color: 'red'
+                }
+            }
+
+            return {
+                color: 'black'
+            }
         }
 
         return (
@@ -165,14 +176,13 @@ class PostCard extends Component {
                     <PostValueCard 
                         inDialog={this.props.className || ''}
                         postId={this.props.postInfo.id}
-                        isShowInDialog={this.props.isShowInDialog}
                         images={this.props.postInfo.photos} />
                 </div>
                 <div className="show-tools">
                     <ul className='tools-manager-post-card'>
                         <li onClick={this.likeOrUnlikePost.bind(this)}>
                             <i 
-                                style={styleForLikeBtn}
+                                style={styleForLikeBtn()}
                                 className="fa fa-heart"></i>
                         </li>
                     </ul>
@@ -218,7 +228,7 @@ class PostCard extends Component {
     }
 
     componentDidMount() {
-        this.scroll();
+        // this.scroll();
         this.props.postInfo.likes.map((user, index) => {
             if(user.id === this.props.clientInfo.id){
                 this.setState({isLike: true});
@@ -238,6 +248,10 @@ class PostCard extends Component {
 
             newHeight();
             this.props.dispatch({type: `ADD_CALLBACK_RESIZE_SCREEN`, value: newHeight.bind(this)});
+        }
+
+        if(this.props.className === 'in-page'){
+
         }
     }
 

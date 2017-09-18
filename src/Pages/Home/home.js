@@ -42,9 +42,9 @@ class HomePage extends Component {
                     <div className="show-posts">
                         {this.state.posts.map((post, index) => {
                             return <PostCard 
+                                    className='in-dialog'
                                     key={index} 
-                                    postInfo={post} 
-                                    isShowinDialog={false}/>
+                                    postInfo={post} />
                         })}
                     </div>
                 </div>

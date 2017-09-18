@@ -34,7 +34,6 @@ class PostItem extends Component {
             <PostCard
                 id={this.props.post.id} 
                 postInfo={this.props.post}
-                isShowInDialog={true}
                 id={classNameId}
                 className={`in-dialog`}/>
             }
@@ -66,8 +65,8 @@ class PostItem extends Component {
 
     componentDidMount() {
         const changeSize = () => {
-            const showValueField = document.getElementById(`show-value-post-${this.props.post.id}`);
-            showValueField.style.height          = `${document.getElementsByClassName('post-item-mini')[0].clientWidth}px`;
+            const showValueField        = document.getElementById(`show-value-post-${this.props.post.id}`);
+            showValueField.style.height = `${document.getElementsByClassName('post-item-mini')[0].clientWidth}px`;
         }
 
         changeSize();
