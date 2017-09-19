@@ -12,22 +12,15 @@ class SearchComponent extends Component {
         }
     }
 
-    findInServer(word){
+    findInServer(word, nvSearchValue){
         if(!word) return console.log(`Key word not underfind ${word}`);
         
-        const nvSearchValue = this.state.search_value;
         appMG.search(word, (error, data) => {
             if(error) return console.log(error);
 
             // console.log(searchCookie.getCookie());
-            data.map((item, index) => {
-                nvSearchValue.forEach((value, idx, arr) => {
-                    if(item.username === value.username){
-                        data.splice(index, 1);
-                    }
-                })
-            })
-            
+            data = data.concat(nvSearchValue);
+            console.log(data);
             this.setState({search_value: data});
         })
     }
@@ -37,21 +30,18 @@ class SearchComponent extends Component {
         var data = [];
         
         // Find in history
-        history.map((item, index) => {
-            if(item.username.indexOf(word) >= 0){
+        history.forEach((item, index, arr) => {
+            if(item.username.toLowerCase().indexOf(word.toLowerCase()) >= 0){
                 item.prv = 2;
                 data.push(item);
             }   
         })
 
-        console.log(history);
-        console.log(data);
-
         // Set now search result before request to server 
         this.setState({search_value: data});
         
         // request to server to finding 
-        this.findInServer(word);
+        this.findInServer(word, data);
     }
 
     onSearch(){
@@ -102,20 +92,25 @@ class SearchComponent extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         if(this.state.search_value.length !== nextState.search_value.length){
             var data = nextState.search_value;
-            
+
             // Sort by priortive 
             for(var i = 0, length = data.length; i < length; i++){
                 for(var j = length - 1; j > i; j--){
                     let prv1 = data[j].prv || 0;
-                    let prv2 = data[j - 1].prv || 0
-                    
+                    let prv2 = data[j - 1].prv || 0;
                     if(prv1 > prv2){
-                        console.log(data[j]);
-                        console.log(data[j - 1]);
-                    
                         let pg  = data[j];
                         data[j] = data[j - 1];
                         data[j - 1] = pg;
+                    }
+                }
+            }
+            
+            for(var i = 0, length = data.length; i < length; i++){
+                for(var j = i + 1; j < length; j++){
+                    if(data[i].username === data[j].username){
+                        data.splice(j, 1);
+                        length -= 1;
                     }
                 }
             }
