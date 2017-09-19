@@ -19,7 +19,6 @@ class SearchCookie{
 
         if(index === 0) {
             this.search_value_list.push(value);
-            console.log('Add history success !');
             window.localStorage.setItem(`search_value_list`, JSON.stringify(this.search_value_list));
         }
     }
