@@ -44,6 +44,7 @@ class SearchComponent extends Component {
             }   
         })
 
+        console.log(history);
         console.log(data);
 
         // Set now search result before request to server 
