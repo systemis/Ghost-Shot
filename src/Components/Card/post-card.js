@@ -155,7 +155,7 @@ class PostCard extends Component {
         return (
             <div 
                 className={`post-card ${this.props.className || ''}`}
-                id={`postCard-${this.props.postInfo.id}`}>
+                id={`postCard-${this.props.postInfo.id}-${this.props.className || ''}`}>
                 <div className="header row">
                     <div className="show-user-info">
                         <img 
@@ -237,7 +237,7 @@ class PostCard extends Component {
         if(this.props.className === 'in-dialog'){
             var newHeight = () => {
                 var childGroup = document.getElementById(`child-group-dialog`);
-                var postCard   = document.getElementById(`postCard-${this.props.postInfo.id}`);
+                var postCard   = document.getElementById(`postCard-${this.props.postInfo.id}-${this.props.className || ''}`);
                 
                 // Catch error when postCard did not load 
                 if(!postCard) return;
