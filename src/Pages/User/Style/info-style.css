@@ -149,7 +149,10 @@
           height: 100%;
           position: absolute;
           display: none;
-          text-align: center; }
+          text-align: center;
+          top: 0;
+          padding-top: 50%;
+          background: rgba(0, 0, 0, 0.75); }
           .post-item-mini .child .show-value .dh-btn .show-env p {
             color: white;
             line-height: 100%; }

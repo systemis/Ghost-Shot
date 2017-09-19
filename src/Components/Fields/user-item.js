@@ -71,7 +71,9 @@ class UserItem extends Component {
                     <img src={this.state.info.avatar} alt="User avatar"/>
                 </div>
                 <div className="show-username">
-                    <p>{this.state.info.username}</p>
+                    <a href={`/user/${this.state.info.username}`}>
+                        {this.state.info.username}
+                    </a>
                 </div>
                 
                 <div className="show-btn-follow">

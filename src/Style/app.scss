@@ -100,8 +100,13 @@ body{
                     & .show-username{
                         float: left;
                         width: 70%;
-                        & p{
+                        & a{
                             font-size: 20px;
+                            color: black;
+                            &:hover{
+                                text-decoration: none;
+                                color: gray;
+                            }
                         }
                     }
 

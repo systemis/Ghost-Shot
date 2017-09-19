@@ -199,6 +199,9 @@
                     position: absolute;
                     display: none;
                     text-align: center;
+                    top: 0;
+                    padding-top: 50%;
+                    background: rgba(0,0,0,.75);
                     & p{
                         color: white;
                         line-height: 100%;

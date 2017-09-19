@@ -77,8 +77,12 @@ body {
           #App #dialog-field .child .users-list-field .user-item-users-list-field .show-username {
             float: left;
             width: 70%; }
-            #App #dialog-field .child .users-list-field .user-item-users-list-field .show-username p {
-              font-size: 20px; }
+            #App #dialog-field .child .users-list-field .user-item-users-list-field .show-username a {
+              font-size: 20px;
+              color: black; }
+              #App #dialog-field .child .users-list-field .user-item-users-list-field .show-username a:hover {
+                text-decoration: none;
+                color: gray; }
           #App #dialog-field .child .users-list-field .user-item-users-list-field .show-btn-follow {
             float: left;
             width: 20%; }
