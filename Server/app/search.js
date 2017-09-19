@@ -47,7 +47,6 @@ module.exports = app => {
         const clientInfo     = req.user;
         var   searchResult   = [];
 
-        console.log(word);
         switch(word.substr(0, 1)){
             case '#':
                 return findHastash(word, clientInfo, searchResult, res);

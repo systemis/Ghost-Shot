@@ -44,6 +44,8 @@ class SearchComponent extends Component {
             }   
         })
 
+        console.log(data);
+
         // Set now search result before request to server 
         this.setState({search_value: data});
         

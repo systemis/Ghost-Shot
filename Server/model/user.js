@@ -129,7 +129,10 @@ class userDM{
                     item.following = JSON.parse(item.following);
                     item.follower  = JSON.parse(item.follower);
                     item.posts     = JSON.parse(item.posts);
-                
+                    
+                    // Don not show password in list 
+                    delete item['password'];
+    
                     data.push(item);
                 }
     
