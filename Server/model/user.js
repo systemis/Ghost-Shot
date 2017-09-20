@@ -88,7 +88,6 @@ class userDM{
     }
 
     addNewNotification(username, notifi, fn){
-        console.log(notifi);
         this.findUserByName(username, (error, result) => {
             if(error) return fn(error, null);
 

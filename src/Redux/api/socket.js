@@ -18,7 +18,6 @@ class socketMG{
 
     onNewNotification(id, cb){
         socket.on(`ON_NOTIFICATION/${id}`, data => {
-            console.log(data);
             cb(data);
         })
     }

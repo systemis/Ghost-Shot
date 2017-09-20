@@ -25,6 +25,7 @@ class Socket{
                         return;
                     }
                     
+                    console.log(data.sendUser.id);
                     this.socket.sockets.emit(`ON_NOTIFICATION/${data.receiveUser.username}`, data);
                 })
             })

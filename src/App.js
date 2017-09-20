@@ -15,6 +15,7 @@ import Header       from './Components/Header/index.js';
 import Footer       from './Components/footer/index.js';
 import './Style/app.css';
 
+var index = 0;
 class App extends Component {
   constructor(props){
     super(props);
@@ -82,11 +83,14 @@ class App extends Component {
   }
   
   shouldComponentUpdate(nextProps, nextState) {
-    if(nextProps.clientInfo.username) {
-      this.props.socket.test();
-      this.props.socket.onNewNotification(this.props.clientInfo.username, data => {
-  
+    if(nextProps.clientInfo.id !== this.props.clientInfo && nextProps.clientInfo.username) {
+      if(index !== 0) return;
+      console.log(nextProps.clientInfo.username)
+      this.props.socket.onNewNotification(nextProps.clientInfo.username, data => {
+        console.log(data);
       })
+
+      index +=1;
     }  
     return true;
   }

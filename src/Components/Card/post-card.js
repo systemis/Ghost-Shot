@@ -64,7 +64,7 @@ class PostCard extends Component {
                         sendUser: this.props.clientInfo,
                         receiveUser: this.props.postInfo.user
                     }
-
+                    
                     this.props.socket.sendNotification(notification);
                 }
 
