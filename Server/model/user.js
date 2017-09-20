@@ -87,14 +87,14 @@ class userDM{
         })
     }
 
-    addNewNotification(id, notifi, fn){
+    addNewNotification(username, notifi, fn){
         console.log(notifi);
-        this.findUserById(id, (error, result) => {
+        this.findUserByName(username, (error, result) => {
             if(error) return fn(error, null);
 
-            var notifications = JSON.parse(result.notifications);
+            var notifications = result.notifications;
             notifications.push(notifi);
-            pool.query(`UPDATE ${tableName} SET notifications = ? WHERE id = ?`, [notifications, id], (err, rs) => {
+            pool.query(`UPDATE ${tableName} SET notifications = ? WHERE username = ?`, [JSON.stringify(notifications), username], (err, rs) => {
                 return fn(err, rs);
             })
         })
@@ -109,6 +109,7 @@ class userDM{
             result[0].follower  = JSON.parse(result[0].follower);
             result[0].following = JSON.parse(result[0].following);
             result[0].posts     = JSON.parse(result[0].posts);
+            result[0].notifications = JSON.parse(result[0].notifications);
             
             return fn(err, result[0]);
         });
@@ -120,6 +121,7 @@ class userDM{
             result[0].follower  = JSON.parse(result[0].follower);
             result[0].following = JSON.parse(result[0].following);
             result[0].posts     = JSON.parse(result[0].posts);
+            result[0].notifications = JSON.parse(result[0].notifications);
             return fn(err, result[0]);
         });
     }
@@ -131,6 +133,7 @@ class userDM{
             result[0].follower  = JSON.parse(result[0].follower);
             result[0].following = JSON.parse(result[0].following);
             result[0].posts     = JSON.parse(result[0].posts);
+            result[0].notifications = JSON.parse(result[0].notifications);
             return fn(err, result[0]);
         });
     }

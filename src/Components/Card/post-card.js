@@ -61,15 +61,8 @@ class PostCard extends Component {
                 if(!old === true){
                     const notification = {
                         type: `LIKE`,
-                        sendUser: {
-                            username: this.props.clientInfo.username,
-                            id: this.props.clientInfo.id,
-                        },
-
-                        receiveUser: {
-                            username: this.props.postInfo.user.username,
-                            id: this.props.postInfo.user.id,
-                        }
+                        sendUser: this.props.clientInfo,
+                        receiveUser: this.props.postInfo.user
                     }
 
                     this.props.socket.sendNotification(notification);

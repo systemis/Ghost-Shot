@@ -78,10 +78,16 @@ class App extends Component {
 
   componentDidMount() {
     window.onresize = this.reSizeScreenWidthListener.bind(this);
-    this.props.socket.test();
-  }
 
+  }
+  
   shouldComponentUpdate(nextProps, nextState) {
+    if(nextProps.clientInfo.username) {
+      this.props.socket.test();
+      this.props.socket.onNewNotification(this.props.clientInfo.username, data => {
+  
+      })
+    }  
     return true;
   }
 }

@@ -13,8 +13,14 @@ class socketMG{
     }   
 
     sendNotification(data){
-        console.log(`Sending a notification`);
         socket.emit(`SEND_NOTIFICATION`, data);
+    }
+
+    onNewNotification(id, cb){
+        socket.on(`ON_NOTIFICATION/${id}`, data => {
+            console.log(data);
+            cb(data);
+        })
     }
 }
 
