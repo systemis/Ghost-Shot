@@ -7,24 +7,13 @@ import userMG               from '../../js/user.js';
 import './Style/style-home.css';
 
 class HomePage extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            posts: []
-        }
-    }
-
-    componentWillMount() {
-        this.setState({posts: this.props.clientInfo.newfeed || []});
-    }
-
     render() {
         return (
             <div className="home-page">
                 <UserInfoField clientInfo={true}/>
                 <div className="layout">
                     <div className="show-posts">
-                        {this.state.posts.map((post, index) => {
+                        {this.props.clientInfo.newfeed.map((post, index) => {
                             return <PostCard 
                                     key={index} 
                                     postInfo={post} />
@@ -36,7 +25,6 @@ class HomePage extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {    
-        this.setState({posts: nextProps.clientInfo.newfeed});
         return true;
     }
 }

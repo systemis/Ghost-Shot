@@ -58,6 +58,23 @@ class PostCard extends Component {
             postMG.likeOrUnLike(this.props.postInfo.id, (error, result) => {
                 if(error) return;
 
+                if(!old === true){
+                    const notification = {
+                        type: `LIKE`,
+                        sendUser: {
+                            username: this.props.clientInfo.username,
+                            id: this.props.clientInfo.id,
+                        },
+
+                        receiveUser: {
+                            username: this.props.postInfo.user.username,
+                            id: this.props.postInfo.user.id,
+                        }
+                    }
+
+                    this.props.socket.sendNotification(notification);
+                }
+
                 this.setState({isLike: !old});
                 this.setState({likes: result});
             })
@@ -193,7 +210,7 @@ class PostCard extends Component {
                         onClick={this.showUserLiked.bind(this)}> 
                             {this.state.likes.length} like 
                     </button>
-                </div>
+                </div> 
                 {moreCommentBtn()}
                 <div 
                     className="show-comments"
@@ -265,5 +282,6 @@ export default connect(state => {
     return {
         screenVersion: state.screenVersion,
         clientInfo: state.clientInfo,
+        socket: state.socket
     }
 })(PostCard);

@@ -26,44 +26,54 @@ class NewFeedManager{
         var clientId    = clientInfo.id;
         var followings  = [...clientInfo.following, clientInfo.username]; 
         var posts       = [];
-
+        
         if(followings.length <= 0) return cb(null, []);
         
         // Get all posts of followings;
-        followings.map((following, index) => {
-            userDM.findUserByName(following, (error, result) => {
-                if(!error){
-                    // Finding single post of folling 
-                    result.posts.map((post, index2) => {
-                        postDM.findById(post, (err, rs) => {
-                            if(!err){
-                                posts.push(rs);
-                            }
-    
-                            if(index === followings.length - 1 && index2 === result.posts.length - 1){
-                                this.sortByDate(posts, () => {
-                                    // var data = [];
-                                    // posts.map((value, index) => {
-                                    //     if(index < position) data.push(value);
-                                    // })
-                                    
-                                    cb(null, posts);
-                                });
-                            }
-                        });
-                    })
-                    
-                    // Handling when user did not have any post
-                    if(result.posts.length <= 0 && index === followings.length - 1) {
-                        if(posts.length <= 0) return cb(null, []);
-                        this.sortByDate(posts, () => {
-                            // post.splice(position, posts.length);
-                            cb(null, posts);
-                        });
-                    }
-                }
-            })
+        followings.forEach((following, index, arr) => {
         })
+        
+        var index = 0;
+        var get = () => {
+            if(index >= followings.length){
+                if(posts.length <= 0) {
+                    return cb(null, []);
+                }
+        
+                this.sortByDate(posts, () => {
+                    // post.splice(position, posts.length);
+                    return cb(null, posts);
+                });
+            }else{
+                const following = followings[index];
+                userDM.findUserByName(following, (error, result) => {
+                    if(!error){
+                        result.posts.forEach((post, index2, arr2) => {
+                            postDM.findById(post, (err, rs) => {
+                                if(!err){
+                                    posts.push(rs);
+                                }
+    
+                                if(index2 === result.posts.length - 1){
+                                    index++;
+                                    get();
+                                }
+                            });
+                        })
+    
+                        if(result.posts.length <= 0){
+                            index++;
+                            get();
+                        }
+                    }else{
+                        index++;
+                        get();
+                    }
+                })
+            }
+        }
+
+        get();
     }
 }
 

@@ -2,7 +2,7 @@ const pool = require('../config/database.js');
 const tableName = 'UserData';
 class userDM{
     constructor(){
-        pool.query('CREATE TABLE IF NOT EXISTS`'+tableName+'` ( `id` VARCHAR(200) NOT NULL , `email` TEXT NULL , `username` TEXT NULL , `password` TEXT NULL , `phone` TEXT NULL , `avatar` TEXT NOT NULL, `follower` TEXT NULL, `following` TEXT NULL , `posts` TEXT NULL, `description` TEXT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci', (err, result) => {
+        pool.query('CREATE TABLE IF NOT EXISTS`'+tableName+'` ( `id` VARCHAR(200) NOT NULL , `email` TEXT NULL , `username` TEXT NULL , `password` TEXT NULL , `phone` TEXT NULL , `avatar` TEXT NOT NULL, `follower` TEXT NULL, `following` TEXT NULL , `posts` TEXT NULL, `description` TEXT NULL, `notifications` TEXT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci', (err, result) => {
             console.log(`Error when create table ${tableName}: ${err}`);
         })
     }
@@ -15,6 +15,8 @@ class userDM{
             bundle.follower  = `[]`;
             bundle.following = `[]`;
             bundle.posts     = `[]`;
+            bundle.notifications = `[]`;
+            
             pool.query(`INSERT INTO ${tableName} SET ?`, bundle, (err, result) => {
                 console.log('Error when new user with auth local: ' + err);
                 fn(err, result);
@@ -45,6 +47,8 @@ class userDM{
             bundle.follower  = `[]`;
             bundle.following = `[]`;
             bundle.posts     = `[]`;
+            bundle.notifications = `[]`;
+            
             pool.query(`INSERT INTO ${tableName} SET ?`, bundle, (err, result) => {
                 if(err) {
                     console.log(err);
@@ -83,6 +87,19 @@ class userDM{
         })
     }
 
+    addNewNotification(id, notifi, fn){
+        console.log(notifi);
+        this.findUserById(id, (error, result) => {
+            if(error) return fn(error, null);
+
+            var notifications = JSON.parse(result.notifications);
+            notifications.push(notifi);
+            pool.query(`UPDATE ${tableName} SET notifications = ? WHERE id = ?`, [notifications, id], (err, rs) => {
+                return fn(err, rs);
+            })
+        })
+    }
+
 
     // -------------------------> Find signle account 
 
@@ -92,6 +109,7 @@ class userDM{
             result[0].follower  = JSON.parse(result[0].follower);
             result[0].following = JSON.parse(result[0].following);
             result[0].posts     = JSON.parse(result[0].posts);
+            
             return fn(err, result[0]);
         });
     }
@@ -107,6 +125,7 @@ class userDM{
     }
 
     findUserByName(username, fn){
+        console.log(username);
         pool.query(`SELECT * FROM ${tableName} WHERE username = ?`, [username], (err, result) => {
             if(err || result.length <= 0) return fn('Not exists', null);
             result[0].follower  = JSON.parse(result[0].follower);

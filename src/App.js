@@ -78,6 +78,7 @@ class App extends Component {
 
   componentDidMount() {
     window.onresize = this.reSizeScreenWidthListener.bind(this);
+    this.props.socket.test();
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -90,5 +91,6 @@ export default connect(state => {
     screenVersion: state.screenVersion,
     callbacksResizeScreen: state.callbacksResizeScreen,
     clientInfo: state.clientInfo,
+    socket: state.socket
   }
 })(App);

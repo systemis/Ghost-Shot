@@ -10,7 +10,9 @@ const http           = require('http');
 const userDM         = require('./Server/model/user.js');
 const postsDM        = require('./Server/model/posts.js');
 const newFeedMG      = require('./Server/app/new-feed.js');
+const socketMG       = require('./Server/app/socket/index.js');
 const app            = express();
+const server         = http.Server(app);
 
 
 app.use(express.static('build'));
@@ -31,10 +33,16 @@ require('./Server/app/user.js')(app);
 require('./Server/app/search.js')(app);
 require('./Server/route.js')(app);
 
-const server = http.Server(app);
+// custom socket here .
+new socketMG(server);
+
 const PORT   = process.env.PORT || 3200;
 server.listen(PORT, () => {
     console.log(`Server is listening on ${PORT}`);
+
+    // userDM.dropTable((error, result) => console.log(result));
+    // postsDM.dropTable((error, result) => console.log(result));
+
     // newFeedMG.get({user: {id: 222, username: 'systemis1', following: []}}, {}, 3, (error, result) => {
     //     console.log(error);
     //     console.log(result);

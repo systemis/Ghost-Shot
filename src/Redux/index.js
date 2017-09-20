@@ -1,6 +1,7 @@
 var redux        = require('redux');
 var uiReducers   = require('./ui.js');
 var userReducers = require('./user.js');
+var socketMG     = require('./api/socket.js');
 
 const screenVersionReducer = (state = 'desktop', action) => {
     switch(action.type){
@@ -16,7 +17,10 @@ const reducer = redux.combineReducers({
     dialogInfo: uiReducers.dialogReducer,
     callbacksResizeScreen: uiReducers.callbacksResizeScreenReducer,
     clientInfo: userReducers.clientInfoReducer,
-    userSelectedInfo: userReducers.userSelectedInfoReducer
+    userSelectedInfo: userReducers.userSelectedInfoReducer,
+
+    // For api here 
+    socket: () => socketMG
 })
 
 const store = redux.createStore(reducer);
