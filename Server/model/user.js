@@ -93,9 +93,16 @@ class userDM{
 
             var notifications = result.notifications;
             notifications.push(notifi);
+
             pool.query(`UPDATE ${tableName} SET notifications = ? WHERE username = ?`, [JSON.stringify(notifications), username], (err, rs) => {
                 return fn(err, rs);
             })
+        })
+    }
+
+    removeField(username, namefield, value, fn){
+        pool.query(`UPDATE ${tableName} SET ${namefield} = ? WHERE username = ?`, [value, username], (error, result) => {
+            fn(error, result);
         })
     }
 
@@ -126,7 +133,6 @@ class userDM{
     }
 
     findUserByName(username, fn){
-        console.log(username);
         pool.query(`SELECT * FROM ${tableName} WHERE username = ?`, [username], (err, result) => {
             if(err || result.length <= 0) return fn('Not exists', null);
             result[0].follower  = JSON.parse(result[0].follower);

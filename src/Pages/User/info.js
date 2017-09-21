@@ -87,7 +87,21 @@ class UserInfoPage extends Component {
         userMG.followOrUnfollow(this.props.info.username, (error, following) => {
             if(error) return ;
             var clInfo = {...this.props.clientInfo};
+            var oldFollowings = clInfo.following;
             clInfo.following = following;
+
+            console.log(oldFollowings);
+            console.log(following);
+
+            if(following.length > oldFollowings.length){
+                const notification = {
+                    sendUser: this.props.clientInfo,
+                    receiveUser: this.props.info,
+                    type: `FOLLOW`
+                }
+
+                this.props.socket.sendNotification(notification);
+            }
 
             this.props.dispatch({type: `CHANGE_CLIENT_INFO`, value: clInfo});
         })
@@ -285,6 +299,7 @@ export default connect(state => {
     return {
         screenVersion: state.screenVersion,
         clientInfo: state.clientInfo,
-        info: state.userSelectedInfo
+        info: state.userSelectedInfo,
+        socket: state.socket
     }
 })(UserInfoPage);

@@ -43,6 +43,11 @@ server.listen(PORT, () => {
     // userDM.dropTable((error, result) => console.log(result));
     // postsDM.dropTable((error, result) => console.log(result));
 
+    // userDM.removeField('Thịnh Phạm', 'notifications', '[]', (error, result) => {
+    //     console.log(error);
+    //     console.log(result);
+    // })
+
     // newFeedMG.get({user: {id: 222, username: 'systemis1', following: []}}, {}, 3, (error, result) => {
     //     console.log(error);
     //     console.log(result);

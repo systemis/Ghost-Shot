@@ -13,6 +13,8 @@ class socketMG{
     }   
 
     sendNotification(data){
+        console.log(data.type);
+        
         socket.emit(`SEND_NOTIFICATION`, data);
     }
 

@@ -9,12 +9,15 @@ class Socket{
             
             socket.on(`SEND_NOTIFICATION`, data => {
                 data.date = new Date().toLocaleDateString();
+                data.seen = false;
+                
                 switch(data.type){
                     case `LIKE`:
                         data.message = `${data.sendUser.username} have liked your post`
                         break;
                     case `FOLLOW`:
                         data.message = `${data.sendUser.username} have followed you.`
+                        break;
                     default: 
                         data.message = `${data.sendUser.username} have send you a notification.`
                 }

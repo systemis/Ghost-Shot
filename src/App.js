@@ -85,9 +85,14 @@ class App extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     if(nextProps.clientInfo.id !== this.props.clientInfo && nextProps.clientInfo.username) {
       if(index !== 0) return;
-      console.log(nextProps.clientInfo.username)
       this.props.socket.onNewNotification(nextProps.clientInfo.username, data => {
         console.log(data);
+        var clientInfo = nextProps.clientInfo;
+        clientInfo.notifications.push(data);
+        this.props.dispatch({
+          type: `CHANGE_CLIENT_INFO`,
+          value: {...clientInfo}
+        })
       })
 
       index +=1;

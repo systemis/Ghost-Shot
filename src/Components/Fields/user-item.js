@@ -24,7 +24,18 @@ class UserItem extends Component {
         userMG.followOrUnfollow(this.state.username, (error, following) => {
             if(error) return ;
             var clInfo = {...this.props.clientInfo};
-            clInfo.following = following;
+            var oldFollowings = clInfo.following;
+            clInfo.following  = following;
+
+            if(following.length > oldFollowings.length){
+                const notification = {
+                    sendUser: this.props.clientInfo,
+                    receiveUser: this.state.info,
+                    type: `FOLLOW`
+                }
+
+                this.props.socket.sendNotification(notification);
+            }
 
             this.setState({clFollowing: following});
             this.props.dispatch({type: `CHANGE_CLIENT_INFO`, value: clInfo});
@@ -94,6 +105,7 @@ class UserItem extends Component {
 
 export default connect(state => {
     return {
-        clientInfo: state.clientInfo
+        clientInfo: state.clientInfo,
+        socket: state.socket
     }
 })(UserItem);

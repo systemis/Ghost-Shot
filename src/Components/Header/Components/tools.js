@@ -12,6 +12,19 @@ class ToolsComponent extends Component {
         this.showDialogNewPost = this.showDialogNewPost.bind(this);
     }
 
+    showNewNotification(){
+        var notifications = this.props.clientInfo.notifications || [];
+        var valueReturn   = '';
+        notifications.forEach((item, index, arr) => {
+            if(!item.seen){
+                if(!valueReturn) valueReturn = 0;
+                valueReturn ++;
+            }
+        })
+
+        return valueReturn;
+    }
+
     showDialogNewPost(){
         this.props.dispatch({
             type: `CHANGE_DIALOG`,
@@ -35,7 +48,9 @@ class ToolsComponent extends Component {
                         id="btn-show-notifacation-dialog"
                         className="fa fa-heart"
                         style={{display: 'none'}}>
-                            <span className="show-notifi-count"> 1 </span>
+                            <span className="show-notifi-count"> 
+                                {this.showNewNotification() || ''}
+                            </span>
                         </i>
                     </li>
                     <li>
@@ -83,13 +98,12 @@ class ToolsComponent extends Component {
             })
         })
     }
-}
 
-// <li className="show-client-avatar">
-//                         <a href="/systemis">
-//                             <img src={ex} alt="User avatar"/>
-//                         </a>
-//                     </li>
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log(nextProps.clientInfo.notifications)   
+        return true;     
+    }
+}
 
 export default connect(state => {
     return{

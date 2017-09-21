@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect}            from 'react-redux';
 import Search               from './Components/search.js';
 import Tools                from './Components/tools';
 import logo from '../../image/logo.png';
@@ -21,6 +22,20 @@ class Header extends Component {
             </div>
         );
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log(nextProps.clientInfo)
+        return true;        
+    }
+    
+    shouldComponentUpdate(nextProps, nextState){
+        console.log(nextProps.clientInfo)
+        return true;        
+    }
 }
 
-export default Header;
+export default connect(state => {
+    return {
+        clientInfo: state.clientInfo
+    }
+})(Header);
