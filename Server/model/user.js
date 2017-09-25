@@ -209,6 +209,12 @@ class userDM{
         });
     }
 
+    updateNotification(username, notifications, fn){
+        pool.query(`UPDATE ${tableName} SET notifications = ? WHERE username = ?`, [JSON.stringify(notifications), username], (error, result) => {
+            fn(error, result);
+        })
+    }
+
     login(username, password, fn){
         this.findUserByName(username, (err, result) => {
             if(err) return fn('User not already exists', null);

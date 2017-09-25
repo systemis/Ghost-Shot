@@ -47,6 +47,14 @@ class userMG{
             error: err => fn(JSON.stringify(err), null)
         })
     }
+
+    updateNotification(notifications, fn){
+        $.ajax({
+            url: `/update-notifications/`, type: `POST`, data: {notifications},
+            success: data  => fn(data.error, data.result),
+            error:   error => fn(JSON.stringify(error), null)
+        })
+    }
 }
 
 export default new userMG();

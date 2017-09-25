@@ -3,6 +3,7 @@ import {connect}            from 'react-redux';
 import NewPostGroup         from '../../NewPost/new-post.js';
 import NotificationItem     from './notification-item.js';
 import appMG                from '../../../js/app.js';
+import userMG               from '../../../js/user.js';
 // import ex from '../../image/logo.png';
 import $  from 'jquery';
 class ToolsComponent extends Component {
@@ -38,6 +39,19 @@ class ToolsComponent extends Component {
 
     onClickHeart(){
         $("#notifis-group").toggle('hiden');
+        var clientInfo    = this.props.clientInfo;
+        var notifications = clientInfo.notifications || [];
+        notifications.forEach((item, index, arr) => {
+            if(!item.seen){
+                item.seen = true;
+            }
+        })
+
+        this.props.dispatch({type: `CHANGE_CLIENT_INFO`, value: {...clientInfo}});
+        userMG.updateNotification(notifications, (error, result) => {
+            console.log(error);
+            console.log(result);
+        })
     }
 
     render() {
@@ -111,7 +125,7 @@ class ToolsComponent extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        // console.log(nextProps.clientInfo.notifications)   
+        console.log(nextProps.clientInfo.notifications)   
         return true;     
     }
 }

@@ -45,4 +45,19 @@ module.exports = app => {
             res.send({err: error, result: result})
         });
     })
+
+    app.post(`/update-notifications/`, (req, res) => {
+        if(!req.isAuthenticated()) return res.send({error: `NOT LOGIN`, result: null});
+        
+        const username      = req.user.username;
+        const notifications = req.body.notifications;
+
+        console.log(req.body);
+        userDM.updateNotification(username, notifications, (error, result) => {
+            var info = req.user; 
+            info.notifications = notifications;
+
+            res.send({error: error, result: result});
+        })        
+    });
 }
