@@ -52,7 +52,6 @@ module.exports = app => {
         const username      = req.user.username;
         const notifications = req.body.notifications;
 
-        console.log(req.body);
         userDM.updateNotification(username, notifications, (error, result) => {
             var info = req.user; 
             info.notifications = notifications;
