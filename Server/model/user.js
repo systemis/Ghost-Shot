@@ -144,6 +144,7 @@ class userDM{
     }
 
     // ----------------------------> Not signle - for many account 
+
     findUsersByName(keyWord, fn){
         var data  = [];
         this.getAll((error, result) => {
@@ -201,8 +202,8 @@ class userDM{
             })
         })
         
-        this.findUserByName(usFollower, (err, rs) => {
-            setFOF('following', rs.following, usBeFollow, usFollower,  fof2 => {
+        this.findUserByName(usFollower, (error, result) => {
+            setFOF('following', result.following, usBeFollow, usFollower,  fof2 => {
                 return fn(null, fof2);
             }); 
         });

@@ -8,7 +8,8 @@ const infoState = {
     following: [],
     description: '',
     newfeed: [],
-    posts: []
+    posts: [],
+    notifications: []
 }
 
 const clientInfoReducer = (state = infoState, action) => {

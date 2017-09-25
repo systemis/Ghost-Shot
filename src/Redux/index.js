@@ -27,4 +27,4 @@ const store = redux.createStore(reducer);
 store.subscribe(() => {
 })
 
-export default store;
+module.exports = store;

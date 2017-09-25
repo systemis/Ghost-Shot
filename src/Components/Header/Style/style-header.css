@@ -155,12 +155,23 @@
       display: none;
       position: absolute;
       top: 77px;
-      width: 430px;
+      min-width: 430px;
+      max-width: 500px;
       height: 200px;
       left: -150px;
       border-radius: 5px;
       border: 1px solid #eeeeee;
-      background: #ffffff; }
+      background: #ffffff;
+      overflow: scroll; }
+      .header-group .tools-group #notifis-group .notification-item {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee; }
+        .header-group .tools-group #notifis-group .notification-item .row {
+          margin: 0;
+          padding: 0; }
+        .header-group .tools-group #notifis-group .notification-item .show-image img {
+          width: 100%;
+          border-radius: 50%; }
     @media screen and (max-width: 768px) {
       .header-group .tools-group {
         width: 30%; } }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect}            from 'react-redux';
 import NewPostGroup         from '../../NewPost/new-post.js';
+import NotificationItem     from './notification-item.js';
 import appMG                from '../../../js/app.js';
 // import ex from '../../image/logo.png';
 import $  from 'jquery';
@@ -71,7 +72,17 @@ class ToolsComponent extends Component {
                     </li>
                 </ul>
                 <div id='notifis-group'>
-                    
+                    {this.props.clientInfo.notifications.map((notification, index) => {
+                        index = this.props.clientInfo.notifications.length - 1 - index;
+                        notification = this.props.clientInfo.notifications[index];
+                        return <NotificationItem 
+                                key={index}
+                                id={index}
+                                info={{
+                                    image: notification.sendUser.avatar,
+                                    message: notification.message
+                                }} />
+                    })}
                 </div>
             </div>
         );
@@ -100,7 +111,7 @@ class ToolsComponent extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log(nextProps.clientInfo.notifications)   
+        // console.log(nextProps.clientInfo.notifications)   
         return true;     
     }
 }

@@ -3,7 +3,6 @@ class Socket{
     constructor(server){
         this.socket = require('socket.io')(server);
         this.socket.on('connect', socket => {
-            console.log(`Connect socket server success !`);
             socket.on('testing', data => {
             })
             
@@ -13,13 +12,13 @@ class Socket{
                 
                 switch(data.type){
                     case `LIKE`:
-                        data.message = `${data.sendUser.username} have liked your post`
+                        data.message = `<a href='/user/${data.sendUser.username}'> ${data.sendUser.username} </a> have liked your post`
                         break;
                     case `FOLLOW`:
-                        data.message = `${data.sendUser.username} have followed you.`
+                        data.message = `<a href='/user/${data.sendUser.username}'> ${data.sendUser.username} </a> have followed you.`
                         break;
                     default: 
-                        data.message = `${data.sendUser.username} have send you a notification.`
+                        data.message = `<a href='/user/${data.sendUser.username}'> ${data.sendUser.username} </a> have send you a notification.`
                 }
                 
                 if(data.sendUser.username === data.receiveUser.username) return;
