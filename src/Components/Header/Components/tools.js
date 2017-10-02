@@ -39,17 +39,23 @@ class ToolsComponent extends Component {
 
     onClickHeart(){
         $("#notifis-group").toggle('hiden');
+        var hasChanged    = -1;
         var clientInfo    = this.props.clientInfo;
         var notifications = clientInfo.notifications || [];
         notifications.forEach((item, index, arr) => {
             if(!item.seen){
                 item.seen = true;
+                hasChanged = index;
             }
         })
         
         this.props.dispatch({type: `CHANGE_CLIENT_INFO`, value: {...clientInfo}});
-        userMG.updateNotification(notifications, (error, result) => {
-        })
+        if(hasChanged !== -1){
+            userMG.updateNotification(notifications, (error, result) => {
+                // console.log(error);
+                // console.log(result)
+            })
+        }
     }
 
     render() {

@@ -157,7 +157,7 @@
       top: 77px;
       min-width: 430px;
       max-width: 500px;
-      height: 200px;
+      max-height: 200px;
       left: -150px;
       border-radius: 5px;
       border: 1px solid #eeeeee;

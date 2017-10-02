@@ -31,14 +31,7 @@ class Socket{
                         var postInfo = '';
 
                         postDM.findById(postId, (error, result) => {
-                            if(error) {
-                                console.log(`Error when find post by id `)
-                                postInfo = `<img class='col-md-4 col-sm-4 col-xs-4' src='underfined' />`
-                            }else{
-                                console.log(result.photos);
-                                postInfo = `<img class='col-md-4 col-sm-4 col-xs-4' src='${result.photos[0]}' /> `
-                            }
-                            
+                            postInfo = `<a href='/post/${postId}'> <img class='col-md-4 col-sm-4 col-xs-4' src='${result.photos[0]}' /> </a>`
                             data.message = `<p class='col-md-8 col-sm-8 col-xs-8'> <a href='/user/${sendUs}'> ${sendUs} </a> have liked your post  </p> ${postInfo}`
                         })
 
