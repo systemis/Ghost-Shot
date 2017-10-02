@@ -22,11 +22,13 @@ class PostCard extends Component {
         this.props.dispatch({type: 'CHANGE_DIALOG', value: ''});
     }
 
+    // To see last comment 
     scroll(){
         const field     = document.getElementById(`show-comments-group-${this.props.postInfo.id}`);
         field.scrollTop = field.scrollHeight;
     }
 
+    // Show users which liked this post in a dialog 
     showUserLiked(){
         const usersLiked = this.state.likes;
         if(usersLiked.length <= 0) return ;
@@ -52,6 +54,7 @@ class PostCard extends Component {
         })
     }
 
+    // Hanle when client click heart icon in bottom card 
     likeOrUnlikePost(){
         const like = () => {
             var old   = this.state.isLike;
@@ -62,7 +65,10 @@ class PostCard extends Component {
                     const notification = {
                         type: `LIKE`,
                         sendUser: this.props.clientInfo,
-                        receiveUser: this.props.postInfo.user
+                        receiveUser: this.props.postInfo.user,
+                        data: {
+                            postId: this.props.postInfo.id
+                        }
                     }
                     
                     this.props.socket.sendNotification(notification);
@@ -76,6 +82,7 @@ class PostCard extends Component {
         this.whenLogin(like.bind(this));
     }
 
+    // Handle when client want to comment 
     postComment(e){
         e.preventDefault();
         const newCommnet = () => {

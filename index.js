@@ -11,13 +11,15 @@ const userDM         = require('./Server/model/user.js');
 const postsDM        = require('./Server/model/posts.js');
 const newFeedMG      = require('./Server/app/new-feed.js');
 const socketMG       = require('./Server/app/socket/index.js');
+const isEmail        = require('validator/lib/isEmail');
 const app            = express();
 const server         = http.Server(app);
 
 
 app.use(express.static('build'));
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({limit: `50mb`}));
+app.use(bodyParser.urlencoded({limit: `50mb`, extended: true}));
 app.use(cookieParser());
 app.use(expresssession({
     secret: 'secret',
@@ -29,9 +31,9 @@ require('./Server/app/auth.js')(app);
 require('./Server/app/product.js')(app);
 require('./Server/app/app.js')(app);
 require('./Server/app/image.js')(app);
-require('./Server/app/user.js')(app);
 require('./Server/app/search.js')(app);
 require('./Server/route.js')(app);
+require('./Server/app/user.js')(app);
 
 // custom socket here .
 new socketMG(server);
@@ -43,7 +45,7 @@ server.listen(PORT, () => {
     // userDM.dropTable((error, result) => console.log(result));
     // postsDM.dropTable((error, result) => console.log(result));
 
-    // userDM.removeField('Thịnh Phạm', 'notifications', '[]', (error, result) => {
+    // userDM.removeField('systemis', 'notifications', '[]', (error, result) => {
     //     console.log(error);
     //     console.log(result);
     // })
@@ -52,4 +54,38 @@ server.listen(PORT, () => {
     //     console.log(error);
     //     console.log(result);
     // })
+
+    // userDM.findUserByName('systemis', (error, result) => console.log(result));
+
+    // testThuatToan();
 })
+
+function testThuatToan(){
+    var arr = [[4, 233, 23, 787923, 32, 218987, 432, 390], [98923, 43247823, 7689], [89839, 47792], [67839]];
+    var big = arr[0][0];
+    var indexA = 0;
+    
+    var minHieu = () => {
+        var min = big - arr[i][j];
+        for(var i = 0, length = arr.length; i < length; i++){
+            for(var j = 0; j < arr[i].length; j++){
+                // if(big - arr[i][j] )
+            }
+        }
+    }
+
+    var get = () => {
+        for(var i = 0, length = arr.length; i < length; i++){
+            for(var j = 0; j < arr[i].length; j++){
+                if(big < arr[i][j]){
+                    let pg = big;
+                    big = arr[i][j];
+                    arr[i][j] = pg;
+                }
+            }
+        }
+    }
+
+    get();
+    console.log(big);
+}

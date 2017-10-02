@@ -1,25 +1,11 @@
 import React, { Component } from 'react';
 import {connect}            from 'react-redux';
 import PostCard             from '../../Components/Card/post-card.js';
-import exam from '../../image/ex-avatar.png';
 class PostItem extends Component {
     constructor(props){
         super(props);
         this.state = {
-            detailsInfo: {
-                id: this.props.post.id,
-                user: {id: '999', username: 'systemis', avatar: exam},
-                status: 'Hello new day !', 
-                like: [111, 112], 
-                comments: [
-                    {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                    {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                    {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                    {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                    {id: 111, username: 'systemis', comment: 'Hahaha, like it !', date: new Date().toLocaleDateString()},
-                ],
-                images: [this.props.post.value]
-            }
+            detailsInfo: {}
         }
     }
 
@@ -30,7 +16,9 @@ class PostItem extends Component {
         var classNameId = `post-card-w-id-${this.props.post.id}`;
         this.props.dispatch({
             type: 'CHANGE_DIALOG', 
-            value: { type: 'post', bundle: {type: `POST_ID`, idDom: classNameId}, component:
+            value: { 
+            type: 'post', bundle: {type: `POST_ID`, idDom: classNameId}, 
+            component:
             <PostCard
                 id={this.props.post.id} 
                 postInfo={this.props.post}

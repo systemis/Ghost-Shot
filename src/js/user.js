@@ -50,7 +50,7 @@ class userMG{
 
     updateNotification(notifications, fn){
         $.ajax({
-            url: `/update-notifications/`, type: `POST`, data: {notifications},
+            url: `/update-notifications/`, type: `POST`, data: {notifications: JSON.stringify(notifications)},
             success: data  => fn(data.error, data.result),
             error:   error => fn(JSON.stringify(error), null)
         })

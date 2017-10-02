@@ -112,34 +112,46 @@ class userDM{
     findUserById(id, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id], (err, result) => {
             if(result.length <= 0) return fn('Not exists', null);
-            result[0].follower  = JSON.parse(result[0].follower);
-            result[0].following = JSON.parse(result[0].following);
-            result[0].posts     = JSON.parse(result[0].posts);
-            result[0].notifications = JSON.parse(result[0].notifications);
-            
-            return fn(err, result[0]);
+            try{
+                result[0].follower  = JSON.parse(result[0].follower);
+                result[0].following = JSON.parse(result[0].following);
+                result[0].posts     = JSON.parse(result[0].posts);
+                result[0].notifications = JSON.parse(result[0].notifications);
+                return fn(err, result[0]);
+            }catch(e){
+                return fn(e, null);
+            }
         });
     }
     
     findUserByEmail(email, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE email = ?`, [email], (err, result) => {
             if(result.length <= 0) return fn('Not exists', null);
-            result[0].follower  = JSON.parse(result[0].follower);
-            result[0].following = JSON.parse(result[0].following);
-            result[0].posts     = JSON.parse(result[0].posts);
-            result[0].notifications = JSON.parse(result[0].notifications);
-            return fn(err, result[0]);
+            try{
+                result[0].follower      = JSON.parse(result[0].follower);
+                result[0].following     = JSON.parse(result[0].following);
+                result[0].posts         = JSON.parse(result[0].posts);
+                result[0].notifications = JSON.parse(result[0].notifications);
+                return fn(err, result[0]);
+            }catch(e){
+                return fn(e, null);
+            }
         });
     }
 
     findUserByName(username, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE username = ?`, [username], (err, result) => {
             if(err || result.length <= 0) return fn('Not exists', null);
-            result[0].follower  = JSON.parse(result[0].follower);
-            result[0].following = JSON.parse(result[0].following);
-            result[0].posts     = JSON.parse(result[0].posts);
-            result[0].notifications = JSON.parse(result[0].notifications);
-            return fn(err, result[0]);
+            try{
+                result[0].follower  = JSON.parse(result[0].follower);
+                result[0].following = JSON.parse(result[0].following);
+                result[0].posts     = JSON.parse(result[0].posts);
+                result[0].notifications = JSON.parse(result[0].notifications);
+                return fn(err, result[0]);
+            
+            }catch(e){
+                return fn(e, null);
+            }
         });
     }
 
@@ -210,7 +222,13 @@ class userDM{
     }
 
     updateNotification(username, notifications, fn){
-        pool.query(`UPDATE ${tableName} SET notifications = ? WHERE username = ?`, [JSON.stringify(notifications), username], (error, result) => {
+        try{
+            notifications = JSON.stringify(notifications);
+        }catch(e) {
+            console.log(e);
+        }
+        
+        pool.query(`UPDATE ${tableName} SET notifications = ? WHERE username = ?`, [notifications, username], (error, result) => {
             fn(error, result);
         })
     }

@@ -1,4 +1,5 @@
 module.exports = (app) => {
+    const envServer        = `http://localhost:3200`
     const passport         = require('passport');
     const passportLocal    = require('passport-local');
     const passportFb       = require('passport-facebook');
@@ -24,12 +25,26 @@ module.exports = (app) => {
         })
     }))
 
+
+    // Config key from admin bill
+    const clientIDFaceBook      = `506130339729926`, 
+          clientSecretFaceBook  = `64a37c6a76585faba21ef8d4a8aaa238`,
+          cbFaceBookAuth        = `${envServer}/auth/fb`,
+          
+          consumerKeyTwitter    = `JEwImG5MD0KEORcqFQgrQvcbU`, 
+          consumerSecretTwitter = `VF6Hq1G4lAj8Rh2HPt1MD4oDTRJTe7eGwzZiY4q8pLOhehD01E`,
+          cbTwitterAuth         = `${envServer}/auth/twitter`,
+          
+          clientIDGitHUb        = `c2adbee4e8bacb7fa9d0`,
+          clientSecretGitHub    = `5d8dfb3c7f59922823977b3e23e6c041b33de8c6` 
+          cbGitHubAuth          = `${envServer}/auth/github`;
+          
     // Login with facebook 
     passport.use(new passportFb.Strategy(
         {
-            clientID: '506130339729926',
-            clientSecret: '64a37c6a76585faba21ef8d4a8aaa238',
-            callbackURL: 'http://localhost:3200/auth/fb',
+            clientID: clientIDFaceBook,
+            clientSecret: clientSecretFaceBook,
+            callbackURL: cbFaceBookAuth,
             profileFields: ['email', 'displayName']
         },
         function(accessToken, refreshToken, profile, done){
@@ -50,9 +65,9 @@ module.exports = (app) => {
     // Login with twitter 
     passport.use(new passportTwtiiter.Strategy(
         {
-            consumerKey: 'JEwImG5MD0KEORcqFQgrQvcbU',
-            consumerSecret: 'VF6Hq1G4lAj8Rh2HPt1MD4oDTRJTe7eGwzZiY4q8pLOhehD01E',
-            callbackURL: 'http://localhost:3200/auth/twitter'
+            consumerKey: consumerKeyTwitter,
+            consumerSecret: consumerSecretTwitter,
+            callbackURL: cbTwitterAuth
         },
         function(accessToken, refreshToken, profile, done){
             profile = profile._json;
@@ -71,9 +86,9 @@ module.exports = (app) => {
     // Login with github 
     passport.use(new passportGithub(
         {
-            clientID: 'c2adbee4e8bacb7fa9d0',
-            clientSecret: '5d8dfb3c7f59922823977b3e23e6c041b33de8c6',
-            callbackURL: 'http://localhost:3200/auth/github',
+            clientID: clientIDGitHUb,
+            clientSecret: clientSecretGitHub,
+            callbackURL: cbGitHubAuth
             //scope: ['user:email']
         },
         function(accessToken, refreshToken, profile, done){

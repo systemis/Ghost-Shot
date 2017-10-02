@@ -50,7 +50,7 @@ module.exports = app => {
         if(!req.isAuthenticated()) return res.send({error: `NOT LOGIN`, result: null});
         
         const username      = req.user.username;
-        const notifications = req.body.notifications;
+        const notifications = JSON.parse(req.body.notifications);
 
         userDM.updateNotification(username, notifications, (error, result) => {
             var info = req.user; 
@@ -59,4 +59,13 @@ module.exports = app => {
             res.send({error: error, result: result});
         })        
     });
+
+    app.post(`/load-new/new-feed`, (req, res) => {
+        if(!req.isAuthenticated) return res.send({error: `Not Login`, result: null});
+        
+        const position = req.body.position;
+        newFeedMG.get(req, (error, posts) => {
+
+        })
+    })
 }

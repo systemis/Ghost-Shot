@@ -19,9 +19,12 @@ class NewFeedManager{
         cb();
     }
     
-    get(req, cb){
+    get(req, cb, position = new Date().toLocaleString()){
         if(!req.isAuthenticated()) return cb(null, []);
         
+        // Config data to get 
+        var lengthPost  = 0;
+        var lastTime    = 0;
         var clientInfo  = req.user; 
         var clientId    = clientInfo.id;
         var followings  = [...clientInfo.following, clientInfo.username]; 
@@ -34,16 +37,23 @@ class NewFeedManager{
         })
         
         var index = 0;
+        
+        var runAl = () => {
+            console.log(lengthPost);
+
+            if(posts.length <= 0) {
+                return cb(null, []);
+            }
+    
+            this.sortByDate(posts, () => {
+                // post.splice(position, posts.length);
+                return cb(null, posts);
+            });
+        }
+        
         var get = () => {
             if(index >= followings.length){
-                if(posts.length <= 0) {
-                    return cb(null, []);
-                }
-        
-                this.sortByDate(posts, () => {
-                    // post.splice(position, posts.length);
-                    return cb(null, posts);
-                });
+                runAl();
             }else{
                 const following = followings[index];
                 userDM.findUserByName(following, (error, result) => {
@@ -51,7 +61,10 @@ class NewFeedManager{
                         result.posts.forEach((post, index2, arr2) => {
                             postDM.findById(post, (err, rs) => {
                                 if(!err){
-                                    posts.push(rs);
+                                    if(Date.parse(rs.date) <= Date.parse(position)){
+                                        posts.push(rs);
+                                        lengthPost += 1;
+                                    }
                                 }
     
                                 if(index2 === result.posts.length - 1){
