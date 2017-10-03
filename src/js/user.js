@@ -1,4 +1,4 @@
-import $ from 'jquery';
+const $ = require('jquery') 
 class userMG{
     signUp(email, username, password, fn){
         $.ajax({
@@ -57,4 +57,4 @@ class userMG{
     }
 }
 
-export default new userMG();
+module.exports =new userMG();

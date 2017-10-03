@@ -27,17 +27,22 @@ class UserInfoPage extends Component {
         }
     }
 
-    getPostsInfo(postsId){
-        var posts = [];
-        postsId.map((id, index) => {
-            postsMG.findPostById(id, (error, result) => {
-                if(error) return index += 1;
-                posts.push(result);
-                if(index === postsId.length - 1){
-                    this.setState({posts: posts});
-                }
+        getPostsInfo(postsId){
+        var posts   = [];
+    
+        if(postsId.length <= 0){
+            this.setState({posts: []});
+        }else{
+            postsId.map((id, index) => {
+                postsMG.findPostById(id, (error, result) => {
+                    if(error) return index += 1;
+                    posts.push(result);
+                    if(index === postsId.length - 1 && posts.length === this.props.info.posts.length){
+                        this.setState({posts: [...posts]});
+                    }
+                })
             })
-        })
+        }
     }
 
     showFollowers(){
@@ -89,9 +94,6 @@ class UserInfoPage extends Component {
             var clInfo = {...this.props.clientInfo};
             var oldFollowings = clInfo.following;
             clInfo.following = following;
-
-            console.log(oldFollowings);
-            console.log(following);
 
             if(following.length > oldFollowings.length){
                 const notification = {
@@ -259,27 +261,31 @@ class UserInfoPage extends Component {
                     </div>
                     <div 
                         className="show-posts row">
-                        {this.state.posts.map((post, index) => {
-                            if(index < 6) {
+                        {   
+                            this.state.posts.forEach((post, index, arr) => {
+                                post = arr[arr.length - index - 1];
                                 return <PostItem post={post} key={index} />
-                            }
-                        })}
+                            })
+                        }
                     </div>
                     {btnShowInfo()}
                 </div>
             </div>
-        );
+        )
     }
+
 
     shouldComponentUpdate(nextProps, nextState){
         // Do other something        
+        // Do something with client info 
+        // if(!nextProps.clientInfo.id) return false;
         if(nextProps.info.id !== this.props.info.id){
+            // this.getPostsInfo(nextProps.info.posts);
+
             this.getPostsInfo(nextProps.info.posts);
             this.setState({userFollower: nextProps.info.follower});
         }
-
-        // Do something with client info 
-        if(!nextProps.clientInfo.id) return true;
+        
         if(nextProps.clientInfo.id !== this.props.clientInfo.id){
             this.setState({clFollowing: nextProps.clientInfo.following});
         }

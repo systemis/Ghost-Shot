@@ -1,4 +1,4 @@
-import $ from 'jquery' 
+const $ = require('jquery') 
 class postsMG{
     findPostById(postId, fn){
         $.ajax({
@@ -57,4 +57,4 @@ class postsMG{
     }
 }
 
-export default new postsMG();
+module.exports = new postsMG();
