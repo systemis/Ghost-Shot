@@ -56,7 +56,7 @@ class SearchComponent extends Component {
         if(!search_value){
             field.style.textAlign = 'center';
             document.getElementById('div-sh-rs-search').style.display = 'none';
-            this.setState({search_value: []});
+            this.setState({search_value: this.state.searchHistory});
         }else{
             this.findInHistory(search_value);
         }
@@ -113,18 +113,23 @@ class SearchComponent extends Component {
         
         // Check exists child 
         this.history.once('value', snap => {
-            if(snap.val()) return;
+            if(snap.val()) {
+                this.setState({searchHistory: JSON.parse(snap.val())});
+                this.setState({search_value: JSON.parse(snap.val())});
+                return;
+            }
+            
             this.history.set('[]')
+            this.history.on('value', snap => {
+                try{
+                    this.setState({searchHistory: JSON.parse(snap.val())})
+                }catch(e){
+                    console.log(e);
+                }
+            })
         })
 
         // Realtime when history changed 
-        this.history.on('value', snap => {
-            try{
-                this.setState({searchHistory: JSON.parse(snap.val())})
-            }catch(e){
-                console.log(e);
-            }
-        })
     }
 
     componentWillMount() {
@@ -139,7 +144,18 @@ class SearchComponent extends Component {
                             id="input-search-app"
                             type="text" 
                             onChange={this.onSearch.bind(this)}
-                            placeholder="Tìm Kiếm"/>
+                            placeholder="Tìm Kiếm"
+                            onFocus={() => {
+                                document.getElementById('div-sh-rs-search').style.display = 'block'
+                            }}
+
+                            onBlur={() => {
+                                setTimeout(() => {
+                                    document.getElementById('div-sh-rs-search').style.display = 'none'
+                                }, 200)
+                            }}
+
+                            />
                         <span className="fa fa-search"></span>
                         <div 
                             className="show-result-field" 
