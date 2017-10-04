@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect}            from 'react-redux';
+import * as firebase        from 'firebase';
 import SearchUserItem       from './s-user-item.js';
 import searchCookie         from '../../../js/cookie/search.js';
 import appMG                from '../../../js/app.js';
@@ -7,6 +9,7 @@ class SearchComponent extends Component {
     constructor(props){
         super(props);
         this.state = {
+            searchHistory: [],
             rs_search: [],
             search_value: []
         }
@@ -15,18 +18,17 @@ class SearchComponent extends Component {
     findInServer(word, nvSearchValue){
         if(!word) return console.log(`Key word not underfind ${word}`);
         
-        appMG.search(word, (error, data) => {
+        appMG.search(this.state.searchHistory, word, (error, data) => {
             if(error) return console.log(error);
 
             // console.log(searchCookie.getCookie());
             data = data.concat(nvSearchValue);
-            console.log(data);
             this.setState({search_value: data});
         })
     }
     
     findInHistory(word){
-        var history = searchCookie.getCookie();
+        var history = this.state.searchHistory;
         var data = [];
         
         // Find in history
@@ -59,6 +61,74 @@ class SearchComponent extends Component {
             this.findInHistory(search_value);
         }
     }
+
+    historyComponent(){
+        var history = this.state.searchHistory;
+        
+        const checkAlready = id => {
+            var indexL = -1;
+            
+            // Check already item in row
+            history.forEach((value, index, arr) => {
+                try{
+                    if(value.id === id){
+                        indexL = index;
+                        return;
+                    }
+                }catch(e){
+                    console.log(e);
+                }
+            })
+    
+            return indexL;
+        }
+
+        return {
+            add: user => {
+                history.push(user);
+
+                var index = checkAlready(user.id);
+
+                // Delete and push 
+                history.splice(index, 1);
+                history.push(user);
+
+                try{
+                    this.history.set(JSON.stringify(history))
+                }catch(e){
+                    console.log(e);
+                }
+            },
+
+            remove: userId => {
+                var index = checkAlready(userId);
+                history.splice(index, 1);
+            }
+        }
+    }
+
+    onSearchHistory(username = 'systemis'){
+        this.rootRef   = firebase.database().ref().child('App');
+        this.history   = firebase.database().ref(`/history/${username}`);
+        
+        // Check exists child 
+        this.history.once('value', snap => {
+            if(snap.val()) return;
+            this.history.set('[]')
+        })
+
+        // Realtime when history changed 
+        this.history.on('value', snap => {
+            try{
+                this.setState({searchHistory: JSON.parse(snap.val())})
+            }catch(e){
+                console.log(e);
+            }
+        })
+    }
+
+    componentWillMount() {
+    }
     
     render() {
         return (
@@ -80,7 +150,12 @@ class SearchComponent extends Component {
                                     const rsDiv = document.getElementById('div-sh-rs-search');
                                     rsDiv.style.display = 'block';
                                 }
-                                return <SearchUserItem info={info} key={index} />
+                                return <SearchUserItem 
+                                            info={info} 
+                                            key={index} 
+                                            history={
+                                                this.historyComponent.bind(this)
+                                            }/>
                             })}
                         </div>
                     </p>
@@ -89,7 +164,14 @@ class SearchComponent extends Component {
         );
     }
 
+    componentDidMount() {
+    }
+    
     shouldComponentUpdate(nextProps, nextState) {
+        if(nextProps.clientInfo.id !== this.props.clientInfo.id){
+            this.onSearchHistory(nextProps.clientInfo.username);
+        }
+
         if(this.state.search_value.length !== nextState.search_value.length){
             var data = nextState.search_value;
 
@@ -117,9 +199,13 @@ class SearchComponent extends Component {
 
             this.setState({search_value: data});
         }
-        
+
         return true;
     }
 }
 
-export default SearchComponent;
+export default connect(state => {
+    return {
+        clientInfo: state.clientInfo
+    }
+})(SearchComponent);

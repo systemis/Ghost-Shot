@@ -15,6 +15,7 @@ import Header        from './Components/Header/index.js';
 import Footer        from './Components/footer/index.js';
 import './Style/app.css';
 
+
 var index = 0;
 class App extends Component {
   constructor(props){
@@ -80,14 +81,7 @@ class App extends Component {
 
   componentDidMount() {
     window.onresize = this.reSizeScreenWidthListener.bind(this);
-
-    const rootRef = firebase.database().ref().child('test');
-    const history = rootRef.child(`history`);
-
-    history.on('value', snap => {
-        console.log(snap.val());
-    })
-  }
+  }  
   
   shouldComponentUpdate(nextProps, nextState) {
     if(nextProps.clientInfo.id !== this.props.clientInfo && nextProps.clientInfo.username) {

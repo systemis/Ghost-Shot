@@ -1,5 +1,5 @@
 class SearchCookie{
-    constructor(){
+    constructor(clientId){
         this.search_value_list = this.getCookie();
     }
 
@@ -19,7 +19,6 @@ class SearchCookie{
         if(!value || value === ''){
             return []
         }else{
-            console.log(value);
             return JSON.parse(value);
         }
     }

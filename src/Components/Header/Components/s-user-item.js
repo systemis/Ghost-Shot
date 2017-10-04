@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
-import searchCookie         from '../../../js/cookie/search.js';
-
 class SearchUserItem extends Component {
     constructor(props){
         super(props);
     }
 
     onClick(e){
-        var searchInputValue  = document.getElementById('input-search-app').value;
-        var userSelected      = this.props.info;
-
-        console.log(this.props.info.username);
-
-        searchCookie.setCookie(userSelected);
+        var searchInputValue   = document.getElementById('input-search-app').value;
+        var {info, history}    = this.props;
+        
+        history().add(info);
 
         return true;
     }

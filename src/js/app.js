@@ -20,8 +20,8 @@ class appMG{
         })
     }
 
-    search(keyWord, cb){
-        const cookie = searchCookie.getCookie();
+    search(history, keyWord, cb){
+        const cookie = history;
         $.ajax({
             url: `/search`, type: `POST`,
             data: {word: keyWord},
