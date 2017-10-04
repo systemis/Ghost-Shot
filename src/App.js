@@ -55,6 +55,7 @@ class App extends Component {
   
   componentWillMount() {
     this.getClientInfo();    
+    firebase.initializeApp(this.props.firebaseConfig);
   }
 
   render() {
@@ -92,7 +93,6 @@ class App extends Component {
     if(nextProps.clientInfo.id !== this.props.clientInfo && nextProps.clientInfo.username) {
       if(index !== 0) return;
       this.props.socket.onNewNotification(nextProps.clientInfo.username, data => {
-        console.log(data);
         var clientInfo = nextProps.clientInfo;
         clientInfo.notifications.push(data);
         this.props.dispatch({
@@ -112,6 +112,7 @@ export default connect(state => {
     screenVersion: state.screenVersion,
     callbacksResizeScreen: state.callbacksResizeScreen,
     clientInfo: state.clientInfo,
+    firebaseConfig: state.firebaseConfig,
     socket: state.socket
   }
 })(App);

@@ -1,6 +1,7 @@
 var redux        = require('redux');
 var uiReducers   = require('./ui.js');
 var userReducers = require('./user.js');
+var firebase     = require('./api/firebase.js');
 var socketMG     = require('./api/socket.js');
 
 const screenVersionReducer = (state = 'desktop', action) => {
@@ -18,9 +19,9 @@ const reducer = redux.combineReducers({
     callbacksResizeScreen: uiReducers.callbacksResizeScreenReducer,
     clientInfo: userReducers.clientInfoReducer,
     userSelectedInfo: userReducers.userSelectedInfoReducer,
-
+    firebaseConfig: firebase.firebaseReducer,
     // For api here 
-    socket: () => 'socketMG'
+    socket: () => socketMG
 })
 
 const store = redux.createStore(reducer);
