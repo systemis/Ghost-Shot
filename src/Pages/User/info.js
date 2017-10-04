@@ -27,7 +27,7 @@ class UserInfoPage extends Component {
         }
     }
 
-        getPostsInfo(postsId){
+    getPostsInfo(postsId){
         var posts   = [];
     
         if(postsId.length <= 0){
@@ -262,8 +262,11 @@ class UserInfoPage extends Component {
                     <div 
                         className="show-posts row">
                         {   
-                            this.state.posts.forEach((post, index, arr) => {
-                                post = arr[arr.length - index - 1];
+                            this.state.posts.map((post, index) => {
+                                if(index >= 6) return;
+                                
+                                index = this.state.posts.length - index - 1;
+                                post  = this.state.posts[index];
                                 return <PostItem post={post} key={index} />
                             })
                         }

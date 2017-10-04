@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import {connect}    from 'react-redux';
-import $            from 'jquery';
-import userMG       from './js/user.js';
-import RootRoute    from './root.js';
-
-import HomePage     from './Pages/Home/home.js';
-import SignInPage   from './Pages/Login/sign-in.js';
-import SignUpPage   from './Pages/Login/sign-up.js';
-import UserInfoPage from './Pages/User/info.js';
-import PostShow     from './Pages/PostShow/post-show.js';
-import DialogField  from './Components/Dialog/dialog.js';
-import Header       from './Components/Header/index.js';
-import Footer       from './Components/footer/index.js';
+import {connect}     from 'react-redux';
+import * as firebase from 'firebase';
+import $             from 'jquery';
+import userMG        from './js/user.js';
+import RootRoute     from './root.js';
+import HomePage      from './Pages/Home/home.js';
+import SignInPage    from './Pages/Login/sign-in.js';
+import SignUpPage    from './Pages/Login/sign-up.js';
+import UserInfoPage  from './Pages/User/info.js';
+import PostShow      from './Pages/PostShow/post-show.js';
+import DialogField   from './Components/Dialog/dialog.js';
+import Header        from './Components/Header/index.js';
+import Footer        from './Components/footer/index.js';
 import './Style/app.css';
 
 var index = 0;
@@ -80,6 +80,12 @@ class App extends Component {
   componentDidMount() {
     window.onresize = this.reSizeScreenWidthListener.bind(this);
 
+    const rootRef = firebase.database().ref().child('test');
+    const history = rootRef.child(`history`);
+
+    history.on('value', snap => {
+        console.log(snap.val());
+    })
   }
   
   shouldComponentUpdate(nextProps, nextState) {

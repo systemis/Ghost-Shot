@@ -20,7 +20,7 @@ const reducer = redux.combineReducers({
     userSelectedInfo: userReducers.userSelectedInfoReducer,
 
     // For api here 
-    socket: () => socketMG
+    socket: () => 'socketMG'
 })
 
 const store = redux.createStore(reducer);

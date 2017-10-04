@@ -58,6 +58,8 @@ server.listen(PORT, () => {
     // userDM.findUserByName('systemis', (error, result) => console.log(result));
 
     // testThuatToan();
+
+    // make();
 })
 
 function testThuatToan(){
@@ -89,3 +91,24 @@ function testThuatToan(){
     get();
     console.log(big);
 }
+
+// function getInfo(){
+//     userDM.findUserByName(`systemis`, (error, result) => {
+//         return result;
+//     })
+// }
+
+// async function make(){
+//     await getInfo();
+//     console.log('Geting');
+// }
+
+// function make(){
+//     userDM.findUserByName('systemis')
+//         .then((result) => {
+//             console.log('Success: ' + result);
+//         })
+//         .catch((error) => {
+//             console.log(error);
+//         })
+// }

@@ -8,6 +8,7 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.15.4",
     "express-session": "^1.15.5",
+    "firebase": "^4.5.0",
     "github-user-email": "^2.0.0",
     "imgur-uploader": "^4.2.1",
     "jquery": "^3.2.1",
