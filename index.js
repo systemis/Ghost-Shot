@@ -41,25 +41,6 @@ new socketMG(server);
 const PORT   = process.env.PORT || 3200;
 server.listen(PORT, () => {
     console.log(`Server is listening on ${PORT}`);
-
-    // userDM.dropTable((error, result) => console.log(result));
-    // postsDM.dropTable((error, result) => console.log(result));
-
-    // userDM.removeField('systemis', 'notifications', '[]', (error, result) => {
-    //     console.log(error);
-    //     console.log(result);
-    // })
-
-    // newFeedMG.get({user: {id: 222, username: 'systemis1', following: []}}, {}, 3, (error, result) => {
-    //     console.log(error);
-    //     console.log(result);
-    // })
-
-    // userDM.findUserByName('systemis', (error, result) => console.log(result));
-
-    // testThuatToan();
-
-    // make();
 })
 
 function testThuatToan(){

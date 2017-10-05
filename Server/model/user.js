@@ -267,6 +267,12 @@ class userDM{
         })
     }
 
+    deleteByName(username, fn){
+        pool.query(`DELETE FROM ${tableName} WHERE username = ?`, [username], (error, result) => {
+            fn(error, result);
+        })
+    }
+
     dropTable(fn){
         pool.query(`DROP TABLE ${tableName}`, (err, result) => {
             fn(err, result);

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {connect}            from 'react-redux';
 import * as firebase        from 'firebase';
 import SearchUserItem       from './s-user-item.js';
-import searchCookie         from '../../../js/cookie/search.js';
 import appMG                from '../../../js/app.js';
 
 class SearchComponent extends Component {
@@ -21,7 +20,6 @@ class SearchComponent extends Component {
         appMG.search(this.state.searchHistory, word, (error, data) => {
             if(error) return console.log(error);
 
-            // console.log(searchCookie.getCookie());
             data = data.concat(nvSearchValue);
             this.setState({search_value: data});
         })
@@ -120,6 +118,8 @@ class SearchComponent extends Component {
             }
             
             this.history.set('[]')
+     
+            // Realtime when history changed 
             this.history.on('value', snap => {
                 try{
                     this.setState({searchHistory: JSON.parse(snap.val())})
@@ -128,11 +128,6 @@ class SearchComponent extends Component {
                 }
             })
         })
-
-        // Realtime when history changed 
-    }
-
-    componentWillMount() {
     }
     
     render() {
@@ -166,6 +161,10 @@ class SearchComponent extends Component {
                                     const rsDiv = document.getElementById('div-sh-rs-search');
                                     rsDiv.style.display = 'block';
                                 }
+
+                                index = this.state.search_value.length - 1 - index;
+                                info  = this.state.search_value[index];
+
                                 return <SearchUserItem 
                                             info={info} 
                                             key={index} 

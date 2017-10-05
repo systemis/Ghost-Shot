@@ -1,5 +1,4 @@
 import $            from 'jquery';
-import searchCookie from './cookie/search.js';
 class appMG{
     isLogin(fn){
         $.ajax({
