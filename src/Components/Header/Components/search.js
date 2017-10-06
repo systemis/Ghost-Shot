@@ -38,9 +38,6 @@ class SearchComponent extends Component {
             }   
         })
 
-        // Set now search result before request to server 
-        // this.setState({search_value: data});
-        
         // request to server to finding 
         this.findInServer(word, data);
     }

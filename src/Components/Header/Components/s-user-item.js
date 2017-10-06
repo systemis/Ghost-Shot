@@ -8,7 +8,7 @@ class SearchUserItem extends Component {
         var searchInputValue   = document.getElementById('input-search-app').value;
         var {info, history}    = this.props;
 
-        history().add({id: info.id, username: info.username, avatar: info.avatar});
+        history().add(info);
 
         return true;
     }
