@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect}            from 'react-redux';
 import * as firebase        from 'firebase';
 import SearchUserItem       from './s-user-item.js';
+import userMG               from '../../../js/user.js';
 import appMG                from '../../../js/app.js';
 
 class SearchComponent extends Component {
@@ -38,7 +39,7 @@ class SearchComponent extends Component {
         })
 
         // Set now search result before request to server 
-        this.setState({search_value: data});
+        // this.setState({search_value: data});
         
         // request to server to finding 
         this.findInServer(word, data);
@@ -68,39 +69,41 @@ class SearchComponent extends Component {
             
             // Check already item in row
             history.forEach((value, index, arr) => {
-                try{
-                    if(value.id === id){
-                        indexL = index;
-                        return;
-                    }
-                }catch(e){
-                    console.log(e);
+                if(value.id === id){
+                    indexL = index;
+                    return;
                 }
             })
     
             return indexL;
         }
+        
+        const set = () => {
+            try{
+                this.history.set(JSON.stringify(history))
+            }catch(e){
+                console.log(e);
+            }
+        }
 
         return {
             add: user => {
                 history.push(user);
-
-                var index = checkAlready(user.id);
+                let index = checkAlready(user.id);
 
                 // Delete and push 
-                history.splice(index, 1);
-                history.push(user);
-
-                try{
-                    this.history.set(JSON.stringify(history))
-                }catch(e){
-                    console.log(e);
+                if(index === -1){
+                    history.push(user);
                 }
+
+                set();
             },
 
             remove: userId => {
-                var index = checkAlready(userId);
+                let index = checkAlready(userId);
                 history.splice(index, 1);
+
+                set();
             }
         }
     }
@@ -113,7 +116,6 @@ class SearchComponent extends Component {
         this.history.once('value', snap => {
             if(snap.val()) {
                 this.setState({searchHistory: JSON.parse(snap.val())});
-                this.setState({search_value: JSON.parse(snap.val())});
                 return;
             }
             
@@ -122,6 +124,7 @@ class SearchComponent extends Component {
             // Realtime when history changed 
             this.history.on('value', snap => {
                 try{
+                    console.log(JSON.parse(snap.val()));
                     this.setState({searchHistory: JSON.parse(snap.val())})
                 }catch(e){
                     console.log(e);
@@ -141,6 +144,7 @@ class SearchComponent extends Component {
                             onChange={this.onSearch.bind(this)}
                             placeholder="Tìm Kiếm"
                             onFocus={() => {
+                                this.setState({search_value: this.state.searchHistory});
                                 document.getElementById('div-sh-rs-search').style.display = 'block'
                             }}
 
@@ -188,6 +192,7 @@ class SearchComponent extends Component {
         }
 
         if(this.state.search_value.length !== nextState.search_value.length){
+
             var data = nextState.search_value;
 
             // Sort by priortive 

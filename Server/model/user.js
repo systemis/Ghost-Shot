@@ -166,12 +166,18 @@ class userDM{
 
             result.map((item, index) => {
                 if(item.username.toLowerCase().indexOf(keyWord.toLowerCase()) >= 0){
-                    item.following = JSON.parse(item.following);
-                    item.follower  = JSON.parse(item.follower);
-                    item.posts     = JSON.parse(item.posts);
-                    
-                    // Don not show password in list 
-                    delete item['password'];
+                    try{
+                        // Don not show password in list 
+                        delete item['password'];
+                        delete item['following'];
+                        delete item['follower'];
+                        delete item['posts'];
+                        delete item['phone'];
+                        delete item['notifications'];
+
+                    }catch(e){
+                        console.log('Error when delete field of row when search by people', e);
+                    }
     
                     data.push(item);
                 }
