@@ -22,6 +22,18 @@ class Socket{
                     receiveUs = '';
                 }   
 
+
+                const enTry = () => {
+                    if(data.sendUser.username === data.receiveUser.username) return;
+                    userDM.addNewNotification(data.receiveUser.username, data, (error, result) => {
+                        if(error) {
+                            return;
+                        }
+    
+                        this.socket.sockets.emit(`ON_NOTIFICATION/${receiveUs}`, data);
+                    })
+                }
+
                 /* TO DO: handle to send html string to client
                 ** Action: like, follow, notification from admin 
                 */
@@ -33,24 +45,34 @@ class Socket{
                         postDM.findById(postId, (error, result) => {
                             postInfo = `<a href='/post/${postId}'> <img class='col-md-4 col-sm-4 col-xs-4' src='${result.photos[0]}' /> </a>`
                             data.message = `<p class='col-md-8 col-sm-8 col-xs-8'> <a href='/user/${sendUs}'> ${sendUs} </a> have liked your post  </p> ${postInfo}`
+                            
+                            enTry();
                         })
+
+                        break;
+
+                    case `COMMENT`:
+                        var postId   = data.data.postId;
+                        var postInfo = '';
+
+                        postDM.findById(postId, (error, result) => {
+                            postInfo = `<a href='/post/${postId}'> <img class='col-md-4 col-sm-4 col-xs-4' src='${result.photos[0]}' /> </a>`
+                            
+                            data.message = `<p class='col-md-8 col-sm-8 col-xs-8'> <a href='/user/${sendUs}'> ${sendUs} </a> have commented your post: ${data.value.comment || ''}  </p> ${postInfo}`
+                            
+                            enTry();
+                        });
 
                         break;
                     case `FOLLOW`:
                         data.message = `<a href='/user/${sendUs}'> ${sendUs} </a> have followed you.`
+                        enTry();
                         break;
                     default: 
                         data.message = `<a href='/user/${sendUs}'> ${sendUse} </a> have send you a notification.`
+                        enTry();
+                        break;
                 }
-                
-                if(data.sendUser.username === data.receiveUser.username) return;
-                userDM.addNewNotification(data.receiveUser.username, data, (error, result) => {
-                    if(error) {
-                        return;
-                    }
-
-                    this.socket.sockets.emit(`ON_NOTIFICATION/${receiveUs}`, data);
-                })
             })
         })
     }

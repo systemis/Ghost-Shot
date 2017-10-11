@@ -12,5 +12,5 @@ const firebaseReducer = (state = firebaseConfig, action) => {
 }
 
 module.exports = {
-    firebaseReducer: firebaseReducer
+    firebaseReducer: firebaseReducer,
 };

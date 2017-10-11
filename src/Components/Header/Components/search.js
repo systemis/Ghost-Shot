@@ -9,6 +9,7 @@ class SearchComponent extends Component {
     constructor(props){
         super(props);
         this.state = {
+            onLoad: false, 
             searchHistory: [],
             rs_search: [],
             search_value: []
@@ -58,6 +59,7 @@ class SearchComponent extends Component {
         }
     }
 
+    // Hisotry OPP 
     historyComponent(){
         var history = this.state.searchHistory;
         
@@ -85,7 +87,6 @@ class SearchComponent extends Component {
 
         return {
             add: user => {
-                history.push(user);
                 let index = checkAlready(user.id);
 
                 // Delete and push 
@@ -106,27 +107,39 @@ class SearchComponent extends Component {
     }
 
     onSearchHistory(username = 'systemis'){
+        // Set AJAX
+        const rsDiv = document.getElementById('div-sh-rs-search');
+        rsDiv.style.display = 'block';
+        
         this.rootRef   = firebase.database().ref().child('App');
         this.history   = firebase.database().ref(`/history/${username}`);
         
         // Check exists child 
+        rsDiv.style.display = 'none';
+        
+        try{
+            rsDiv.removeChild(rsDiv.firstChild);
+        }catch(e){
+            console.log(e);
+        };
+        
         this.history.once('value', snap => {
             if(snap.val()) {
                 this.setState({searchHistory: JSON.parse(snap.val())});
                 return;
             }
-            
+
             this.history.set('[]')
-     
-            // Realtime when history changed 
-            this.history.on('value', snap => {
-                try{
-                    console.log(JSON.parse(snap.val()));
-                    this.setState({searchHistory: JSON.parse(snap.val())})
-                }catch(e){
-                    console.log(e);
-                }
-            })
+        })
+        
+        // Realtime when history changed 
+        this.history.on('value', snap => {
+            try{
+                console.log(JSON.parse(snap.val()));
+                this.setState({searchHistory: JSON.parse(snap.val())})
+            }catch(e){
+                console.log(e);
+            }
         })
     }
     
@@ -142,7 +155,8 @@ class SearchComponent extends Component {
                             placeholder="Tìm Kiếm"
                             onFocus={() => {
                                 this.setState({search_value: this.state.searchHistory});
-                                document.getElementById('div-sh-rs-search').style.display = 'block'
+                                let rsDiv = document.getElementById('div-sh-rs-search');
+                                rsDiv.style.display = 'block'
                             }}
 
                             onBlur={() => {
@@ -157,6 +171,7 @@ class SearchComponent extends Component {
                             className="show-result-field" 
                             id="div-sh-rs-search"
                             style={{display: 'none'}}>
+                            <p style={{textAlign: 'center'}}> Loading </p> 
                             {this.state.search_value.map((info, index) => {
                                 if(index == 0) {
                                     const rsDiv = document.getElementById('div-sh-rs-search');

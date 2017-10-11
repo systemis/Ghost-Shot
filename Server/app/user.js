@@ -28,6 +28,9 @@ module.exports = app => {
         userDM.findUserByName(userName, (error, result) => {
             if(error) return res.send({err: error, result: null});
             delete result['password'];
+            
+            console.log(error);
+            
             res.send({err: error, result: result});
         })
     })

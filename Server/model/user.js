@@ -142,6 +142,7 @@ class userDM{
     findUserByName(username, fn){
         pool.query(`SELECT * FROM ${tableName} WHERE username = ?`, [username], (err, result) => {
             if(err || result.length <= 0) return fn('Not exists', null);
+
             try{
                 result[0].follower  = JSON.parse(result[0].follower);
                 result[0].following = JSON.parse(result[0].following);

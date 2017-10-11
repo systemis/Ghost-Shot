@@ -100,6 +100,18 @@ class PostCard extends Component {
                 this.setState({comments: old});
                 this.scroll();
                 
+                const notification = {
+                    type: `COMMENT`,
+                    sendUser: this.props.clientInfo,
+                    receiveUser: this.props.postInfo.user,
+                    value: comment, 
+                    data: {
+                        postId: this.props.postInfo.id
+                    }
+                }
+                
+                this.props.socket.sendNotification(notification);
+
                 field.value = '';
             })
         }

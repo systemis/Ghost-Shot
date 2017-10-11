@@ -23,7 +23,7 @@ class UserInfoPage extends Component {
             clFollowing: [],
             userFollower: [],
             posts: [],
-            info:{}
+            info: {}
         }
     }
 
@@ -162,22 +162,9 @@ class UserInfoPage extends Component {
         })
     }
 
-    componentWillMount() {
-        if(window.location.href.indexOf('/user/') !== -1){
-            const userName = this.props.match.params.username;
-            userMG.findUserByName(userName, (err, result) => {
-                if(err) {
-                    return console.log(`Error when get user info by userName: ${err}`);
-                }
-
-                this.setState({userFollower: result.follower});
-                this.props.dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: result});
-            })
-        }
-    }
 
     render() {
-        if(this.props.info.id === '0'){
+        if(!this.state.info.id || this.state.info.id === '0'){
             return (
                 <div className="show-label-not-exists-user">
                     <h1 style={{textAlign: 'center', lineHeight: '100vh'}}>User not exists</h1>
@@ -211,7 +198,7 @@ class UserInfoPage extends Component {
                 <div className="layout">
                     <div className="show-info row">
                         <div className="show-user-avatar col-md-3 col-sm-3 col-xs-3">
-                            <img src={this.props.info.avatar} alt="User avatar"/>
+                            <img src={this.state.info.avatar} alt="User avatar"/>
                         </div>
                         <div className="show-user-info col-md-9 col-sm-9 col-xs-9">
                             <div className="show-user-name show-btn-edit">
@@ -233,7 +220,7 @@ class UserInfoPage extends Component {
                                         <li>
                                             <button>
                                                 <strong>
-                                                    {this.props.info.posts.length}
+                                                    {this.state.info.posts.length}
                                                 </strong> Posts
                                             </button>
                                         </li>
@@ -255,7 +242,7 @@ class UserInfoPage extends Component {
                                 </div>
                             </div>
                             <div className="show-status">
-                                <h4>{this.props.info.description}</h4>
+                                <h4>{this.state.info.description}</h4>
                             </div>
                         </div>
                     </div>
@@ -277,6 +264,26 @@ class UserInfoPage extends Component {
         )
     }
 
+    componentDidMount() {
+        if(window.location.href.indexOf('/user/') !== -1){
+            const userName = this.props.match.params.username;
+            userMG.findUserByName(userName, (err, result) => {
+                if(err) {
+                    this.setState({info: {}});
+                    return console.log(`Error when get user info by userName: ${JSON.stringify(err)}`);
+                }
+
+                console.log(`Get all by page `);
+                
+                this.setState({userFollower: result.follower});
+                this.setState({info: result});
+                this.props.dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: result});
+            })
+        }else{
+            console.log(`Get ALl by component`, this.props.clientInfo)
+            this.setState({info: this.props.clientInfo});
+        }
+    }
 
     shouldComponentUpdate(nextProps, nextState){
         // Do other something        
@@ -286,6 +293,7 @@ class UserInfoPage extends Component {
             // this.getPostsInfo(nextProps.info.posts);
 
             this.getPostsInfo(nextProps.info.posts);
+            this.setState({info: nextProps.info});
             this.setState({userFollower: nextProps.info.follower});
         }
         

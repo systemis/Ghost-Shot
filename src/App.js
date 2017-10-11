@@ -39,6 +39,7 @@ class App extends Component {
     })
   }
 
+
   getClientInfo(){    
       const {dispatch} = this.props;
       userMG.getClientInfo((err, result) => {
@@ -82,7 +83,7 @@ class App extends Component {
   componentDidMount() {
     window.onresize = this.reSizeScreenWidthListener.bind(this);
   }  
-  
+
   shouldComponentUpdate(nextProps, nextState) {
     if(nextProps.clientInfo.id !== this.props.clientInfo && nextProps.clientInfo.username) {
       if(index !== 0) return;
