@@ -6,6 +6,7 @@ import SignInPage    from './Pages/Login/sign-in.js';
 import SignUpPage    from './Pages/Login/sign-up.js';
 import UserInfoPage  from './Pages/User/info.js';
 import PostShow      from './Pages/PostShow/post-show.js';
+import DashBoardPage from './Pages/UserDashBoard/dasboard.js';
 import Footer        from './Components/footer/index.js';
 
 class RouteCM extends Component{
@@ -19,7 +20,7 @@ class RouteCM extends Component{
                 <Route path='/sign-up'        component={SignUpPage}   />
                 <Route path='/a/settings/'    component={UserInfoPage} />
                 <Route path='/post/:postId'   component={PostShow}     />
-                <Route path='/user/:username' component={UserInfoPage} />
+                <Route path='/user/:username' component={DashBoardPage} />
                 <Footer />
             </div>
         </Router>
