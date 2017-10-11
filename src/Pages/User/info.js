@@ -270,17 +270,16 @@ class UserInfoPage extends Component {
             userMG.findUserByName(userName, (err, result) => {
                 if(err) {
                     this.setState({info: {}});
-                    return console.log(`Error when get user info by userName: ${JSON.stringify(err)}`);
+                    return console.log(`
+                    Error when get user 
+                    info by userName: ${JSON.stringify(err)}`);
                 }
 
-                console.log(`Get all by page `);
-                
                 this.setState({userFollower: result.follower});
                 this.setState({info: result});
                 this.props.dispatch({type: `CHANGE_USER_SELECTED_INFO`, value: result});
             })
         }else{
-            console.log(`Get ALl by component`, this.props.clientInfo)
             this.setState({info: this.props.clientInfo});
         }
     }
@@ -290,8 +289,6 @@ class UserInfoPage extends Component {
         // Do something with client info 
         // if(!nextProps.clientInfo.id) return false;
         if(nextProps.info.id !== this.props.info.id){
-            // this.getPostsInfo(nextProps.info.posts);
-
             this.getPostsInfo(nextProps.info.posts);
             this.setState({info: nextProps.info});
             this.setState({userFollower: nextProps.info.follower});
