@@ -12,6 +12,7 @@ module.exports = app => {
     }
 
     app.get('/home', routeK1);
+    app.get('/a/settings', routeK1);
     
     app.get('/user/:username', routeK0);
     app.get('/post/:postId', routeK0);

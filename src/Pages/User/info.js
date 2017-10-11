@@ -143,7 +143,7 @@ class UserInfoPage extends Component {
                         className="menu-drop-settings"
                         id="drop-menu-tosettings-info-dh">
                         <li> 
-                            <a href="/settings"> Settings </a> 
+                            <a href="/a/settings"> Settings </a> 
                         </li>
                         <li> 
                             <a href="/logout"> Logout </a> 

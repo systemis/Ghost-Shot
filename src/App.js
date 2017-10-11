@@ -4,15 +4,9 @@ import {connect}     from 'react-redux';
 import * as firebase from 'firebase';
 import $             from 'jquery';
 import userMG        from './js/user.js';
-import RootRoute     from './root.js';
-import HomePage      from './Pages/Home/home.js';
-import SignInPage    from './Pages/Login/sign-in.js';
-import SignUpPage    from './Pages/Login/sign-up.js';
-import UserInfoPage  from './Pages/User/info.js';
-import PostShow      from './Pages/PostShow/post-show.js';
+import RouterCM      from './route.js';
 import DialogField   from './Components/Dialog/dialog.js';
 import Header        from './Components/Header/index.js';
-import Footer        from './Components/footer/index.js';
 import './Style/app.css';
 
 
@@ -54,26 +48,10 @@ class App extends Component {
       })
   }
 
-  
-  componentWillMount() {
-    this.getClientInfo();    
-    firebase.initializeApp(this.props.firebaseConfig);
-  }
-
   render() {
     return (
       <div id="App">
-        <Router>
-          <div id="main-layout">
-            <Route path='/' exact         component={RootRoute}    />
-            <Route path='/home'           component={HomePage}     />
-            <Route path='/sign-in'        component={SignInPage}   />
-            <Route path='/sign-up'        component={SignUpPage}   />
-            <Route path='/post/:postId'   component={PostShow}     />
-            <Route path='/user/:username' component={UserInfoPage} />
-            <Footer />
-          </div>
-        </Router>
+        <RouterCM />
         <Header />
         <DialogField />
       </div>
@@ -81,6 +59,8 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getClientInfo();    
+    firebase.initializeApp(this.props.firebaseConfig);
     window.onresize = this.reSizeScreenWidthListener.bind(this);
   }  
 
