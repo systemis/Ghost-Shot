@@ -18,9 +18,9 @@ class RouteCM extends Component{
                 <Route path='/home'           component={HomePage}     />
                 <Route path='/sign-in'        component={SignInPage}   />
                 <Route path='/sign-up'        component={SignUpPage}   />
-                <Route path='/a/settings/'    component={UserInfoPage} />
+                <Route path='/a/settings/'    component={DashBoardPage} />
                 <Route path='/post/:postId'   component={PostShow}     />
-                <Route path='/user/:username' component={DashBoardPage} />
+                <Route path='/user/:username' component={UserInfoPage} />
                 <Footer />
             </div>
         </Router>
